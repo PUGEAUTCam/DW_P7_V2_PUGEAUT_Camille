@@ -1,0 +1,25 @@
+{
+    "name": "back-end",
+    "version": "1.0.0",
+    "description": "Groupomania social media MERN application",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon server.js"
+    },
+    "author": "Camille PUGEAUT",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.1.0",
+        "dotenv": "^16.0.3",
+        "helmet": "^6.0.0",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^6.6.5",
+        "mongoose-unique-validator": "^3.1.0",
+        "multer": "^1.4.5-lts.1",
+        "password-validator": "^5.3.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.20"
+    }
+}
