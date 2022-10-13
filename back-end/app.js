@@ -5,7 +5,6 @@ const app = express();
 const helmet = require('helmet');
 app.use(helmet());
 //DOTENV
-const dotenv = require("dotenv");
 require('dotenv').config();
 
 //Middleware qui gere les requetes POST venant du front en extrayant le corps JSON
@@ -24,8 +23,6 @@ app.use((req, res, next) => {
     res.setHeader("Cross-Origin-Resource-Policy", "same-site");
     next();
 });
-
-
 
 // Load the routes
 app.use('/api/auth', userRoutes);

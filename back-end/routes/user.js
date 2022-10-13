@@ -9,6 +9,6 @@ const userCtrl = require('../controllers/user');
 
 // Create 2 routes
 router.post('/signup', passwordValidator, userCtrl.signup);
-// router.post('/login', userCtrl.login);
+router.post('/login', userCtrl.login);
 
 module.exports = router;
