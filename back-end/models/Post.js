@@ -11,7 +11,7 @@ const postSchema = mongoose.Schema({
 });
 
 
-//On exporte le model pour enregistrer nos sauces selon le shema cree
+
 module.exports = mongoose.model('Post', postSchema);
 
 

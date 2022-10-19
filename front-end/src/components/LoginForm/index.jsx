@@ -4,10 +4,14 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import Text from "../Text"
 import { Link, useNavigate } from 'react-router-dom';
 import { API_ROUTES } from '../../API';
+import { useDispatch } from "react-redux";
+import { getUser } from "../../features/usersSlice";
 
 const LoginForm = () => {
 
     const [token, setToken] = useLocalStorage("TOKEN", []);
+    const dispatch = useDispatch();
+
 
     const [form, setForm] = useState({
         email: '',
@@ -23,8 +27,9 @@ const LoginForm = () => {
             email: form.email,
             password: form.password,
         })
-            .then((res) => {
+            .then(async (res) => {
                 setToken(res.data.token);
+                await dispatch(getUser())
                 navigate('/')
             })
 

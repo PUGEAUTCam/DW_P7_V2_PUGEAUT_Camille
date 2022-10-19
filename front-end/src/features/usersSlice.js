@@ -1,13 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, builder } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { API_ROUTES } from "../API";
+import { API_ROUTES, header } from "../API";
 
 
 //Initialize the state value
 const initialState = {
     user: null,
+    loading: false,
+    error: null
 };
+
+
 
 export const usersSlice = createSlice({
     name: 'userStore',
@@ -18,29 +22,29 @@ export const usersSlice = createSlice({
         setUser: (state, action) => {
             state.user = action.payload;
         }
+    },
 
+    extraReducers(builder) {
+        builder.addCase(getUser.fulfilled, (state, action) => {
+            state.user = action.payload.user;
+        })
     }
 });
 
-export const getUserAsync = async (dispatch) => {
-    let token = localStorage.getItem('TOKEN');
 
-    if (token) {
-        axios.get(API_ROUTES.me, {
-            headers: { authorization: `bearer ${JSON.parse(token)}` }
-        })
-            .then((res) => {
-                dispatch(setUser(res.data.user))
-            })
-            .catch((error) => console.log(error))
-    }
-}
+export const getUser = createAsyncThunk("user/getUser", async () => {
+    let res = await axios.get(API_ROUTES.me, header())
+        .then((res) => res)
+        .catch((error) => console.log(error))
+
+    return res.data
+})
 
 
 
 
 //export les fonctions / actions pour les fichiers
-export const { addUser, setUser } = usersSlice.actions;
+export const { setUser } = usersSlice.actions;
 
 //Exporter la slice en entier pour le store
 export default usersSlice.reducer;

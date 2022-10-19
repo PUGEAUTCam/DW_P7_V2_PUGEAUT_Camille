@@ -4,27 +4,26 @@ import LoginPage from "./views/loginPage";
 import HomePage from "./views/homePage";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserAsync } from "./features/usersSlice";
+import { getUser } from "./features/usersSlice";
 
 function App() {
-    const dispatch = useDispatch();
     const [ready, setReady] = useState(false)
+    const dispatch = useDispatch();
+    const userStore = useSelector((state) => state.userStore)
 
     useEffect(() => {
-        console.log('coucou');
-        getUserAsync(dispatch)
-        setReady(true)
+        dispatch(getUser())
+            .then(() => setReady(true))
     }, [])
 
-    const RequiredLogged = (props) => {
-        let logged = useSelector((state) => state.userStore)
-        return logged.user ? props.children : <Navigate to="/login" replace />
+    const requiredLogged = (props) => {
+        let logged = userStore.user !== null
+        return logged ? props.view : <Navigate to="/login" replace />
     }
 
     if (!ready) {
         return null;
     }
-
 
     return (
         <BrowserRouter>
@@ -35,14 +34,17 @@ function App() {
 
                 <Route
                     path="/"
-                    element={
-                        <RequiredLogged>
-                            <HomePage />
-                        </RequiredLogged>
-                    }
+                    element={requiredLogged({
+                        view: <HomePage />
+                    })}
                 />
 
-                <Route path="/profil" element={() => null} />
+                <Route
+                    path="/profile"
+                    element={requiredLogged({
+                        view: null
+                    })}
+                />
 
             </Routes>
         </BrowserRouter>

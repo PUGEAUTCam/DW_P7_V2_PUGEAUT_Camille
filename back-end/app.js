@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 
 //HELMET
 const helmet = require('helmet');
@@ -13,6 +14,7 @@ app.use(express.json());
 
 //Import Routes
 const userRoutes = require('./routes/user');
+const postRoutes = require('./routes/post')
 
 
 //Middleware CORS
@@ -25,6 +27,9 @@ app.use((req, res, next) => {
 });
 
 // Load the routes
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/auth', userRoutes);
+app.use('/api/post', postRoutes);
+
 
 module.exports = app;

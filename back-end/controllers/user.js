@@ -64,7 +64,6 @@ exports.me = (req, res, next) => {
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
         const userId = decodedToken.userId;
-        console.log(userId);
 
         if (!decodedToken) {
             return res.status(401).json({ error: 'Invalid token', message: 'Invalid token' });
