@@ -8,6 +8,7 @@ import { API_ROUTES } from '../../API';
 const LoginForm = () => {
 
     const [token, setToken] = useLocalStorage("TOKEN", []);
+
     const [form, setForm] = useState({
         email: '',
         password: '',

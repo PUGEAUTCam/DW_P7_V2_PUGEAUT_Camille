@@ -1,7 +1,6 @@
 //Hash password
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const cryptoJS = require('crypto-js');
 require('dotenv').config();
 
 //Import user model 
@@ -10,7 +9,6 @@ const UserModel = require('../models/User');
 
 
 exports.signup = (req, res, next) => {
-    const emailCryptoJS = cryptoJS.HmacSHA256(req.body.email, process.env.KEY_CRYPTO_JS).toString();
 
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -18,21 +16,20 @@ exports.signup = (req, res, next) => {
                 name: req.body.name,
                 firstname: req.body.firstname,
                 pseudo: req.body.pseudo,
-                email: emailCryptoJS,
+                email: req.body.email,
                 password: hash
             });
             user.save()
                 .then(() => res.status(201).json({ message: `User created and registered in the database` }))
-                .catch(error => res.status(400).json({ message: `Veuillez remplir le formulaire selon les champs demandés` }));
+                .catch(error => res.status(400).json({ error }));
         })
         .catch(error => res.status(500).json({ error }));
 };
 
 
 exports.login = (req, res, next) => {
-    const emailCryptoJS = cryptoJS.HmacSHA256(req.body.email, process.env.KEY_CRYPTO_JS).toString();
 
-    UserModel.findOne({ email: emailCryptoJS })
+    UserModel.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {
                 return res.status(401).json({ error: "login_refused", message: 'Email ou mot de passe incorrect' });
@@ -43,6 +40,7 @@ exports.login = (req, res, next) => {
                         return res.status(401).json({ error: "login_refused", message: 'Email ou mot de passe incorrect' });
                     }
                     res.status(200).json({
+                        //user._id : donnees MongoDB
                         userId: user._id,
                         //Mise en place des tokens grace a la fonction sign de JWT 
                         token: jwt.sign(
@@ -57,3 +55,33 @@ exports.login = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
+
+exports.me = (req, res, next) => {
+
+    try {
+        const token = req.headers.authorization.split(' ')[1];
+
+        const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+        const userId = decodedToken.userId;
+        console.log(userId);
+
+        if (!decodedToken) {
+            return res.status(401).json({ error: 'Invalid token', message: 'Invalid token' });
+        }
+        UserModel.findOne({ _id: userId })
+            .then(user => res.status(200).json({
+                user: {
+                    _id: user._id,
+                    firstname: user.firstname,
+                    pseudo: user.pseudo,
+                    name: user.name,
+                    email: user.email,
+                }
+            }))
+            .catch(error => res.status(401).json({ error }))
+
+    } catch (error) {
+        res.status(402).json({ error });
+    }
+};

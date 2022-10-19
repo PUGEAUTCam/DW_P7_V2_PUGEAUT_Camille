@@ -4,7 +4,6 @@ import { API_ROUTES } from '../../API';
 import axios from "axios";
 import { validEmail, validFirstname, validName, validPassword, validPseudo } from '../../utils/formCheck';
 
-
 const SignupForm = () => {
 
     const [form, setForm] = useState({
@@ -42,6 +41,7 @@ const SignupForm = () => {
                     setForm({ ...form, error: response?.status === 500 ? 'Erreur serveur' : response?.data?.message })
                 });
         }
+
     };
 
     return (
@@ -90,7 +90,7 @@ const SignupForm = () => {
 
             <div onClick={handleSubmit}>S'inscrire</div>
 
-            <p>Vous avez déjà un compte ? <Link to='/login'>Connectez-vous</Link></p>
+            <p>Vous avez déjà un compte ? <Link to='/'>Connectez-vous</Link></p>
         </div>
     );
 };
