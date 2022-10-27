@@ -1,17 +1,13 @@
 import React from 'react';
-import CreatePost from '../../components/CreatePost';
 import Header from '../../components/Header';
 
-const HomePage = (props) => {
-
-
-
+const ProfilePage = () => {
     return (
         <div>
             <Header />
-            <CreatePost />
+            <h1>Page du profil a faire !</h1>
         </div>
     );
 };
 
-export default HomePage;
+export default ProfilePage;

@@ -38,6 +38,9 @@ const userSchema = mongoose.Schema({
         max: 1024,
         minlength: 6,
     },
+    avatar: {
+        type: String,
+    }
 });
 
 userSchema.plugin(emailUniqueValidator);

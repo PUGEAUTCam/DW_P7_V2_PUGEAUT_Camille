@@ -1,17 +1,13 @@
 import React from 'react';
-import CreatePost from '../../components/CreatePost';
 import Header from '../../components/Header';
 
-const HomePage = (props) => {
-
-
-
+const PostsLiked = () => {
     return (
         <div>
             <Header />
-            <CreatePost />
+            <h1>Page des posts Like a faire</h1>
         </div>
     );
 };
 
-export default HomePage;
+export default PostsLiked;

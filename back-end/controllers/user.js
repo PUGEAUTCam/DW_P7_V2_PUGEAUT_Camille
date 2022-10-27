@@ -17,7 +17,7 @@ exports.signup = (req, res, next) => {
                 firstname: req.body.firstname,
                 pseudo: req.body.pseudo,
                 email: req.body.email,
-                password: hash
+                password: hash,
             });
             user.save()
                 .then(() => res.status(201).json({ message: `User created and registered in the database` }))
