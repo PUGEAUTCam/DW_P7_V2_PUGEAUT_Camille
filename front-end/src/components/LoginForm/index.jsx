@@ -8,10 +8,10 @@ import { useDispatch } from "react-redux";
 import { getUser } from "../../features/usersSlice";
 
 const LoginForm = () => {
-
+    // eslint-disable-next-line 
     const [token, setToken] = useLocalStorage("TOKEN", []);
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
 
     const [form, setForm] = useState({
         email: '',
@@ -19,7 +19,6 @@ const LoginForm = () => {
         error: '',
     });
 
-    const navigate = useNavigate();
 
     const handleSubmit = () => {
 
@@ -34,7 +33,7 @@ const LoginForm = () => {
             })
 
             .catch(({ response }) => {
-                setForm({ ...form, error: response?.status === 500 ? 'Notre serveur est actuellement indisponible' : response?.data?.message })
+                setForm({ ...form, error: response?.status === 500 ? 'Notre serveur est actuellement indisponible' : "Votre email ou mot de passe est incorrect" })
             });
     };
 

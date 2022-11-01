@@ -6,10 +6,13 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { ContainerBtnIcon } from './style';
 import { API_ROUTES, header } from '../../API';
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { getPost } from '../../features/postsSlice';
 
 
 const CreatePost = () => {
     const userStore = useSelector((state) => state.userStore);
+    const dispatch = useDispatch();
 
     const [newPost, setNewPost] = useState("")
     const [postImage, setPostImage] = useState(null);
@@ -17,23 +20,27 @@ const CreatePost = () => {
 
     const handleImage = (e) => {
         setPostImage(URL.createObjectURL(e.target.files[0]));
-        setFile(URL.createObjectURL(e.target.files[0]));
+        setFile(e.target.files[0]);
     }
 
     const handlePost = async () => {
         if (newPost || postImage) {
             const formData = new FormData();
-            formData.append('message', newPost);
 
+            formData.append('message', newPost);
             if (file) formData.append('image', file);
 
             await axios.post(API_ROUTES.post, formData, header({ formData: true }))
-            cleanState()
+                .then(async (res) => {
+                    await dispatch(getPost())
+                    cleanState()
+                })
+                .catch((error) => console.log(error))
+
         } else {
             alert('Entre un message ou une image sur ton post! A MODIFIER')
         }
     };
-
 
     const cleanState = () => {
         setNewPost("")
@@ -77,7 +84,7 @@ const CreatePost = () => {
                 <GifBoxIcon />
                 <div>
                     {newPost || postImage ? (
-                        <button onClick={(e) => cleanState()}>Annuler le post</button>
+                        <button onClick={cleanState}>Annuler le post</button>
                     ) : null}
                     <button onClick={handlePost}>Grouposter</button>
                 </div>

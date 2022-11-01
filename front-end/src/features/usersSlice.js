@@ -10,8 +10,6 @@ const initialState = {
     error: null
 };
 
-
-
 export const usersSlice = createSlice({
     name: 'userStore',
 
@@ -38,9 +36,6 @@ export const getUser = createAsyncThunk("user/getUser", async () => {
 
     return res.data
 })
-
-
-
 
 //export les fonctions / actions pour les fichiers
 export const { setUser } = usersSlice.actions;

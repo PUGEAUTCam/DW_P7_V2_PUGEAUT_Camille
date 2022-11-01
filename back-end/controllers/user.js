@@ -73,9 +73,11 @@ exports.me = (req, res, next) => {
                 user: {
                     _id: user._id,
                     firstname: user.firstname,
-                    pseudo: user.pseudo,
                     name: user.name,
+                    pseudo: user.pseudo,
                     email: user.email,
+                    avatar: user.avatar,
+                    dateSignup: user.createdAt,
                 }
             }))
             .catch(error => res.status(401).json({ error }))

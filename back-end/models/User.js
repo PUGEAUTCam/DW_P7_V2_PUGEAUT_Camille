@@ -40,8 +40,13 @@ const userSchema = mongoose.Schema({
     },
     avatar: {
         type: String,
+        default: "../images/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg"
     }
-});
+},
+    {
+        timestamps: true
+    }
+);
 
 userSchema.plugin(emailUniqueValidator);
 

@@ -5,10 +5,12 @@ const postSchema = mongoose.Schema({
     message: { type: String },
     imageUrl: { type: String },
     likes: { type: Number, default: 0 },
-    dislikes: { type: Number, default: 0 },
     usersLiked: { type: [] },
-    usersDisliked: { type: [] },
-});
+},
+    {
+        timestamps: true
+    }
+);
 
 module.exports = mongoose.model('Post', postSchema);
 
