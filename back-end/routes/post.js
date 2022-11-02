@@ -14,6 +14,6 @@ router.get('/userPosts', auth, postCtrl.getUserPosts);
 
 router.delete('/:id', auth, postCtrl.deletePost);
 
-// router.post('/', auth, postCtrl.likePost);
+router.post('/like', auth, postCtrl.likePost);
 
 module.exports = router;

@@ -24,6 +24,15 @@ exports.signup = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
+exports.profileUpdate = (req, res, next) => {
+    const userInfo = req.body;
+    let userId = req.auth.userId;
+
+    UserModel.updateOne({ _id: userId }, { ...userInfo })
+        .then(() => res.status(200).json({ message: 'Profil mis a jour' }))
+        .catch(error => res.status(401).json({ error }));
+};
+
 
 exports.login = (req, res, next) => {
 
@@ -77,7 +86,7 @@ exports.me = (req, res, next) => {
                     phonePro: user.phonePro,
                     actualLocation: user.actualLocation,
                     birthLocation: user.birthLocation,
-                    biographie: user.biographie,
+                    biography: user.biography,
                     avatar: user.avatar,
                     coverImg: user.coverImg,
                     dateSignup: user.createdAt,
@@ -89,6 +98,8 @@ exports.me = (req, res, next) => {
         res.status(402).json({ error });
     }
 };
+
+
 
 exports.uploadCoverImg = (req, res) => {
 

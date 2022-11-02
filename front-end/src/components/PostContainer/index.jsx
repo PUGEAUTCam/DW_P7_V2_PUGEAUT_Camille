@@ -5,7 +5,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { ContainerPost } from './style';
-import { deletePost } from '../../API';
+import { deletePost, likePost } from '../../API';
 import { useSelector } from "react-redux";
 import dayjs from 'dayjs';
 import { useDispatch } from "react-redux";
@@ -21,9 +21,13 @@ const PostContainer = () => {
         dispatch(getPost())
     }, [])
 
-    const handleDeletePost = async (dataIndex) => {
-        await deletePost(dataIndex)
+    const handleDeletePost = async (post) => {
+        await deletePost(post)
         dispatch(getPost())
+    }
+
+    const handleLike = async (post) => {
+        await likePost(post)
     }
 
 
@@ -45,7 +49,7 @@ const PostContainer = () => {
 
                     <div>
                         <InsertCommentIcon />
-                        <FavoriteBorderIcon />
+                        <FavoriteBorderIcon onClick={() => handleLike(postsStore.posts[index])} />
 
                         {/* Uniquement si user a cree le post */}
                         <FontAwesomeIcon icon={faPenToSquare} />

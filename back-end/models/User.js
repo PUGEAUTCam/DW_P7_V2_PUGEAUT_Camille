@@ -42,7 +42,7 @@ const userSchema = mongoose.Schema({
     birthLocation: {
         type: String,
     },
-    biographie: {
+    biography: {
         type: String,
     },
     avatar: {
