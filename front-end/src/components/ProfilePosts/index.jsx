@@ -8,19 +8,23 @@ import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { deletePost } from '../../API';
 import { ContainerPost } from '../PostContainer/style';
+import { useDispatch } from "react-redux";
+import { getPost } from '../../features/postsSlice';
 
 
 const ProfilePosts = () => {
 
     const [data, setData] = useState(null)
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         getuserPosts().then((res) => setData(res.data))
-
     }, [])
 
     const handleDeletePost = async (dataIndex) => {
         await deletePost(dataIndex)
+        getuserPosts().then((res) => setData(res.data))
     }
 
     return (
