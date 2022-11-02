@@ -28,6 +28,8 @@ const CreatePost = () => {
             const formData = new FormData();
 
             formData.append('message', newPost);
+            formData.append('avatar', userStore.user.avatar);
+            formData.append('name', userStore.user.firstname + " " + userStore.user.name);
             if (file) formData.append('image', file);
 
             await axios.post(API_ROUTES.post, formData, header({ formData: true }))

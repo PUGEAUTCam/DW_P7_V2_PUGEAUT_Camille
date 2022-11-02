@@ -2,11 +2,10 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const fs = require('fs');
 
 //Import user model 
 const UserModel = require('../models/User');
-
-
 
 exports.signup = (req, res, next) => {
 
@@ -15,7 +14,6 @@ exports.signup = (req, res, next) => {
             const user = new UserModel({
                 name: req.body.name,
                 firstname: req.body.firstname,
-                pseudo: req.body.pseudo,
                 email: req.body.email,
                 password: hash,
             });
@@ -74,9 +72,14 @@ exports.me = (req, res, next) => {
                     _id: user._id,
                     firstname: user.firstname,
                     name: user.name,
-                    pseudo: user.pseudo,
                     email: user.email,
+                    phoneNumber: user.phoneNumber,
+                    phonePro: user.phonePro,
+                    actualLocation: user.actualLocation,
+                    birthLocation: user.birthLocation,
+                    biographie: user.biographie,
                     avatar: user.avatar,
+                    coverImg: user.coverImg,
                     dateSignup: user.createdAt,
                 }
             }))
@@ -86,3 +89,29 @@ exports.me = (req, res, next) => {
         res.status(402).json({ error });
     }
 };
+
+exports.uploadCoverImg = (req, res) => {
+
+    UserModel.findOne({ _id: req.params.id })
+        .then((user) => {
+            if (user.userId != req.auth.userId) {
+                res.status(403).json({ message: 'Not authorized' });
+            }
+            else {
+                //On supprime l'ancienne image de la BDD
+                const filename = user.coverImg.split('/images/')[1];
+                fs.unlink(`images/${filename}`, (err) => {
+                    if (err) throw error;
+                });
+
+                UserModel.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
+                    .then(() => res.status(200).json({ message: 'Couverture du profil modifiée' }))
+                    .catch(error => res.status(401).json({ error }));
+            }
+        })
+
+        .catch((error) => {
+            res.status(400).json({ error });
+        });
+};
+

@@ -1,11 +1,16 @@
 import React from 'react';
 import Header from '../../components/Header';
+import ProfileCover from '../../components/ProfileCover';
+import ProfileDescription from '../../components/ProfileDescription';
+import ProfilePosts from '../../components/ProfilePosts';
 
 const ProfilePage = () => {
     return (
         <div>
             <Header />
-            <h1>Page du profil a faire !</h1>
+            <ProfileCover />
+            <ProfileDescription />
+            <ProfilePosts />
         </div>
     );
 };

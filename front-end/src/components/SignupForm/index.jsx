@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_ROUTES } from '../../API';
 import axios from "axios";
-import { validEmail, validFirstname, validName, validPassword, validPseudo } from '../../utils/formCheck';
+import { validEmail, validFirstname, validName, validPassword } from '../../utils/formCheck';
 
 const SignupForm = () => {
 
     const [form, setForm] = useState({
         name: '',
         firstname: '',
-        pseudo: '',
         email: '',
         password: '',
         error: '',
@@ -23,13 +22,11 @@ const SignupForm = () => {
             validName(form.name).isValid &&
             validFirstname(form.firstname).isValid &&
             validEmail(form.email).isValid &&
-            validPseudo(form.pseudo).isValid &&
             validPassword(form.password).isValid
         ) {
             axios.post(API_ROUTES.signup, {
                 name: form.name,
                 firstname: form.firstname,
-                pseudo: form.pseudo,
                 email: form.email,
                 password: form.password,
             })
@@ -62,14 +59,6 @@ const SignupForm = () => {
                 onChange={(e) => setForm({ ...form, firstname: e.target.value })}
             />
             <div>{form.firstname.length >= 1 ? validFirstname(form.firstname).message : null}</div>
-            <input
-                type="text"
-                id='pseudo'
-                placeholder='Pseudo'
-                value={form.pseudo}
-                onChange={(e) => setForm({ ...form, pseudo: e.target.value })}
-            />
-            <div>{form.pseudo.length >= 1 ? validPseudo(form.pseudo).message : null}</div>
             <input
                 type="text"
                 id='email'

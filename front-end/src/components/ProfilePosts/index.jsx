@@ -1,35 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getuserPosts } from '../../API';
+import dayjs from 'dayjs';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { ContainerPost } from './style';
 import { deletePost } from '../../API';
-import { useSelector } from "react-redux";
-import dayjs from 'dayjs';
-import { useDispatch } from "react-redux";
-import { getPost } from '../../features/postsSlice';
+import { ContainerPost } from '../PostContainer/style';
 
 
-const PostContainer = () => {
+const ProfilePosts = () => {
 
-    const postsStore = useSelector((state) => state.postsStore);
-    const dispatch = useDispatch();
+    const [data, setData] = useState(null)
 
     useEffect(() => {
-        dispatch(getPost())
+        getuserPosts().then((res) => setData(res.data))
+
     }, [])
 
     const handleDeletePost = async (dataIndex) => {
         await deletePost(dataIndex)
-        dispatch(getPost())
     }
-
 
     return (
         <div>
-            {postsStore.posts?.map((postInfo, index) =>
+            {data?.map((postInfo, index) =>
                 <ContainerPost key={index}>
                     <div >
                         <div>
@@ -47,15 +43,15 @@ const PostContainer = () => {
                         <InsertCommentIcon />
                         <FavoriteBorderIcon />
 
-                        {/* Uniquement si user a cree le post */}
                         <FontAwesomeIcon icon={faPenToSquare} />
-                        <DeleteForeverIcon onClick={() => handleDeletePost(postsStore.posts[index])} />
+                        <DeleteForeverIcon onClick={() => handleDeletePost(data[index])} />
 
                     </div>
                 </ContainerPost>
+
             )}
         </div>
     );
 };
 
-export default PostContainer;
+export default ProfilePosts;

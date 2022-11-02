@@ -22,7 +22,11 @@ exports.getAllPosts = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
-
+exports.getUserPosts = (req, res, next) => {
+    Post.find({ userId: req.auth.userId })
+        .then(posts => res.status(200).json(posts))
+        .catch(error => res.status(404).json({ error }));
+};
 
 exports.deletePost = (req, res, next) => {
 

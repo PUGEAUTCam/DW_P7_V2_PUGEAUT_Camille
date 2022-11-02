@@ -17,14 +17,6 @@ const userSchema = mongoose.Schema({
         maxLength: 55,
         trim: true,
     },
-    pseudo: {
-        type: String,
-        required: true,
-        unique: true,
-        minLength: 2,
-        maxLength: 55,
-        trim: true,
-    },
     email: {
         type: String,
         required: true,
@@ -38,10 +30,30 @@ const userSchema = mongoose.Schema({
         max: 1024,
         minlength: 6,
     },
+    phoneNumber: {
+        type: String,
+    },
+    phonePro: {
+        type: String,
+    },
+    actualLocation: {
+        type: String,
+    },
+    birthLocation: {
+        type: String,
+    },
+    biographie: {
+        type: String,
+    },
     avatar: {
         type: String,
-        default: "../images/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg"
+        default: "http://localhost:5500/images/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg"
+    },
+    coverImg: {
+        type: String,
+        default: "http://http://localhost:5500/images/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg"
     }
+
 },
     {
         timestamps: true

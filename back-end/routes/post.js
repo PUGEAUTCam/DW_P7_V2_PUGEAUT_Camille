@@ -10,6 +10,8 @@ router.post('/', auth, multer, postCtrl.createPost);
 
 router.get('/', auth, postCtrl.getAllPosts);
 
+router.get('/userPosts', auth, postCtrl.getUserPosts);
+
 router.delete('/:id', auth, postCtrl.deletePost);
 
 // router.post('/', auth, postCtrl.likePost);

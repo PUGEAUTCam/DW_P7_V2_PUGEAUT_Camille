@@ -4,7 +4,10 @@ export const API_ROUTES = {
     login: `http://localhost:5500/api/auth/login`,
     signup: `http://localhost:5500/api/auth/signup`,
     me: `http://localhost:5500/api/auth/me`,
+    uploadCover: `http://localhost:5500/api/auth/uploadCoverImg`,
     post: `http://localhost:5500/api/post/`,
+    userPosts: `http://localhost:5500/api/post/userPosts`,
+
 
 }
 
@@ -28,6 +31,12 @@ export const header = (config = defaultConfig) => {
 
 export const getAllPosts = async () => {
     return await axios.get(API_ROUTES.post, header())
+        .then((res) => res)
+        .catch((error) => console.log(error))
+};
+
+export const getuserPosts = async () => {
+    return await axios.get(API_ROUTES.userPosts, header())
         .then((res) => res)
         .catch((error) => console.log(error))
 };

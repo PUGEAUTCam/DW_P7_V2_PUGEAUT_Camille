@@ -24,14 +24,6 @@ export const validEmail = (email) => {
     }
 };
 
-export const validPseudo = (pseudo) => {
-    let isValid = REGEX.pseudo.test(pseudo);
-    return {
-        isValid: isValid,
-        message: isValid ? '' : 'Veuillez entrer un pseudo valide'
-    }
-};
-
 export const validPassword = (password) => {
     let isValid = REGEX.password.test(password);
     return {
