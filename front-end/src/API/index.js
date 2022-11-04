@@ -64,6 +64,10 @@ export const profileUpdate = async (form) => {
         .catch((error) => console.log(error))
 };
 
-
-
-
+export const postUpdate = async ({ post, formData }) => {
+    console.log(formData)
+    console.log(post);
+    return await axios.patch(API_ROUTES.post + post._id, formData, header({ formData: true }))
+        .then((res) => res)
+        .catch((error) => console.log(error))
+};

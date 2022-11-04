@@ -28,7 +28,7 @@ exports.profileUpdate = (req, res, next) => {
     const userInfo = req.body;
     let userId = req.auth.userId;
 
-    UserModel.updateOne({ _id: userId }, { ...userInfo })
+    UserModel.updateOne({ _id: userId }, userInfo)
         .then(() => res.status(200).json({ message: 'Profil mis a jour' }))
         .catch(error => res.status(401).json({ error }));
 };

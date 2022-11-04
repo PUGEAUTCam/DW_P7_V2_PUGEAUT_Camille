@@ -16,11 +16,11 @@ const ProfileDescription = () => {
     const [open, setOpen] = useState(false);
 
     const [form, setForm] = useState({
-        phoneNumber: '',
-        phonePro: '',
-        actualLocation: '',
-        birthLocation: '',
-        biography: '',
+        phoneNumber: userStore.user.phoneNumber,
+        phonePro: userStore.user.phonePro,
+        actualLocation: userStore.user.actualLocation,
+        birthLocation: userStore.user.birthLocation,
+        biography: userStore.user.biography,
     });
 
     const handleSubmit = async () => {

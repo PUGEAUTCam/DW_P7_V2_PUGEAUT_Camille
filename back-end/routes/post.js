@@ -14,6 +14,11 @@ router.get('/userPosts', auth, postCtrl.getUserPosts);
 
 router.delete('/:id', auth, postCtrl.deletePost);
 
+router.patch('/:id', auth, multer, postCtrl.modifyOnePost);
+
 router.post('/like', auth, postCtrl.likePost);
+
+
+
 
 module.exports = router;

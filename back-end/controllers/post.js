@@ -79,6 +79,35 @@ exports.likePost = (req, res, next) => {
         });
 };
 
+exports.modifyOnePost = (req, res, next) => {
+    const postBody = { ...req.body, userId: req.auth.userId, imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '' }
+
+    Post.findOne({ _id: req.params.id })
+
+        .then((post) => {
+            if (post.userId != req.auth.userId) {
+                res.status(403).json({ message: 'Not authorized' });
+            }
+            else {
+                // On supprime l'ancienne image de la BDD
+                const filename = post.imageUrl.split('/images/')[1];
+                if (filename) {
+                    fs.unlink(`images/${filename}`, (err) => {
+                        if (err) throw err;
+                    });
+                };
+
+                Post.updateOne({ _id: req.params.id }, { ...postBody, _id: req.params.id })
+                    .then(() => res.status(200).json({ message: 'Post modifiée' }))
+                    .catch(error => res.status(401).json({ error }));
+            }
+        })
+
+        .catch((error) => {
+            console.log(error);
+            res.status(400).json({ error });
+        });
+};
 
 
 
