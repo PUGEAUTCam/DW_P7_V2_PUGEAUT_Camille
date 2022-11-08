@@ -28,8 +28,9 @@ export const header = (config = defaultConfig) => {
 }
 
 //CALL API
-export const getAllPosts = async () => {
-    return await axios.get(API_ROUTES.post, header())
+export const getAllPosts = async (page) => {
+    console.log(page);
+    return await axios.get(API_ROUTES.post, { ...header(), params: { page } })
         .then((res) => res)
         .catch((error) => console.log(error))
 };

@@ -5,7 +5,6 @@ const initialState = {
     posts: null,
     loading: false,
     error: null
-
 };
 
 export const postsSlice = createSlice({
@@ -21,14 +20,18 @@ export const postsSlice = createSlice({
 
     extraReducers(builder) {
         builder.addCase(getPost.fulfilled, (state, action) => {
-            state.posts = action.payload;
+            if (state.posts === null) {
+                state.posts = action.payload
+            } else {
+                state.posts = { ...action.payload, docs: [...state.posts.docs, ...action.payload.docs] }
+            }
         })
     }
 });
 
 
-export const getPost = createAsyncThunk("posts/getPost", async () => {
-    let res = await getAllPosts()
+export const getPost = createAsyncThunk("posts/getPost", async (page, thunkAPI) => {
+    let res = await getAllPosts(page)
     return res.data
 })
 

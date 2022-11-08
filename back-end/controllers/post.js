@@ -1,7 +1,6 @@
 const Post = require('../models/Post');
 const fs = require('fs');
 
-
 exports.createPost = (req, res, next) => {
     const postBody = req.body
 
@@ -17,21 +16,20 @@ exports.createPost = (req, res, next) => {
 
 
 exports.getAllPosts = (req, res, next) => {
-    Post.find()
+    Post.paginate({}, { page: Number(req.query.page), sort: { createdAt: -1 } })
         .then(posts => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error }));
 };
 
 exports.getUserPosts = (req, res, next) => {
-    Post.find({ userId: req.auth.userId })
+    Post.paginate({ userId: req.auth.userId }, { sort: { createdAt: -1 } })
         .then(posts => res.status(200).json(posts))
-        .catch(error => res.status(404).json({ error }));
+        .catch(error => res.status(400).json({ error }));
 };
 
 exports.deletePost = (req, res, next) => {
 
     Post.findOne({ _id: req.params.id })
-
         .then(post => {
 
             if (post.userId != req.auth.userId) {
@@ -47,7 +45,6 @@ exports.deletePost = (req, res, next) => {
                 });
             }
         })
-
         .catch(error => {
             console.log(error);
             res.status(500).json({ error });
@@ -73,7 +70,6 @@ exports.likePost = (req, res, next) => {
                     .catch(error => res.status(403).json({ error }))
             }
         })
-
         .catch((error) => {
             res.status(500).json({ error });
         });
@@ -102,7 +98,6 @@ exports.modifyOnePost = (req, res, next) => {
                     .catch(error => res.status(401).json({ error }));
             }
         })
-
         .catch((error) => {
             console.log(error);
             res.status(400).json({ error });

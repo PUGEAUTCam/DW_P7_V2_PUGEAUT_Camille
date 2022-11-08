@@ -10,7 +10,7 @@ import { deletePost, likePost } from '../../API';
 import PostUpdateModal from '../PostUpdateModal';
 
 
-const Posts = ({ post, index, onUpdate }) => {
+const Post = ({ post, index, onUpdate }) => {
 
     const userStore = useSelector((state) => state.userStore);
 
@@ -58,4 +58,4 @@ const Posts = ({ post, index, onUpdate }) => {
     );
 };
 
-export default Posts;
+export default Post;

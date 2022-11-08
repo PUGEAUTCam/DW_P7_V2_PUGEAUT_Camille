@@ -4,10 +4,9 @@ import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getPost } from '../../features/postsSlice';
-import { API_ROUTES, header, postUpdate } from '../../API';
+import { postUpdate } from '../../API';
 
 
 const PostUpdateModal = ({ post }) => {

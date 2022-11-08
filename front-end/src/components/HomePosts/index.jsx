@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getPost } from '../../features/postsSlice';
-import Posts from '../Posts';
+import Post from '../Post';
+import InfiniteScroll from "react-infinite-scroll-component";
+import CreatePost from '../CreatePost';
 
 const HomePosts = () => {
 
@@ -10,20 +12,27 @@ const HomePosts = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getPost())
+        dispatch(getPost(1))
     }, [])
 
 
-
     return (
-        <div>
-            {postsStore.posts?.map((post, index) =>
-                <Posts
+        <InfiniteScroll
+            dataLength={postsStore.posts?.docs?.length || 0}
+            next={() => postsStore.posts?.hasNextPage && dispatch(getPost(postsStore.posts?.nextPage))}
+            loader={<h4>Loading...</h4>}
+            hasMore={postsStore.posts?.hasNextPage}
+            endMessage={
+                <CreatePost />
+            }
+        >
+            {postsStore.posts?.docs?.map((post, index) =>
+                <Post
                     key={index}
                     post={post}
                     onUpdate={() => dispatch(getPost())}
                 />)}
-        </div>
+        </InfiniteScroll>
     );
 }
 
