@@ -27,6 +27,8 @@ const PostUpdateModal = ({ post, onUpdate }) => {
             if (updateFile) formData.append('image', updateFile);
             let res = await postUpdate({ post, formData })
             await onUpdate(res.data)
+            setUpdateImage(null)
+            setUpdateFile(null)
         }
         setOpen(false)
     };
@@ -54,9 +56,9 @@ const PostUpdateModal = ({ post, onUpdate }) => {
                         : null
                     }
                 </div>
-                <label htmlFor="updateFile"><ImageSearchIcon /></label>
+                <label htmlFor={`updateFile_${post._id}`}><ImageSearchIcon /></label>
                 <input type="file"
-                    id='updateFile'
+                    id={`updateFile_${post._id}`}
                     name='file'
                     accept='.jpg, .jpeg, .png'
                     style={{ display: 'none' }}

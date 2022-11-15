@@ -8,8 +8,10 @@ const ProfilePosts = () => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        getuserPosts().then((res) => setData(res.data))
+        getData()
     }, [])
+
+    const getData = () => getuserPosts().then((res) => setData(res.data));
 
     return (
         <div>
@@ -17,8 +19,9 @@ const ProfilePosts = () => {
                 <Post
                     key={index}
                     post={post}
-                    onUpdate={() => { getuserPosts().then((res) => setData(res.data)) }}
-                    onDelete={() => { deletePost().then((res) => setData(res.data)) }}
+                    onUpdate={getData}
+                    onDelete={getData}
+                    onLike={getData}
                 />
             )}
         </div>
