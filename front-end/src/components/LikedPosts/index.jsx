@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { getuserPosts } from '../../API';
+import { getLikedPosts } from '../../API';
 import Post from '../Post';
 
-
-const ProfilePosts = () => {
+const LikedPosts = () => {
 
     const [data, setData] = useState(null);
 
@@ -11,7 +10,7 @@ const ProfilePosts = () => {
         getData()
     }, [])
 
-    const getData = () => getuserPosts().then((res) => setData(res.data));
+    const getData = () => getLikedPosts().then((res) => setData(res.data));
 
     return (
         <div>
@@ -27,4 +26,5 @@ const ProfilePosts = () => {
         </div>
     );
 };
-export default ProfilePosts;
+
+export default LikedPosts;

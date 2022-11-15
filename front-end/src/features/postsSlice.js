@@ -43,11 +43,9 @@ export const postsSlice = createSlice({
         },
     },
 
-
-
     extraReducers(builder) {
         builder.addCase(getPost.fulfilled, (state, action) => {
-            if (state.posts === null) {
+            if (state.posts === null || action.payload.page === 1) {
                 state.posts = action.payload
             } else {
                 state.posts = { ...action.payload, docs: [...state.posts.docs, ...action.payload.docs] }
@@ -55,7 +53,6 @@ export const postsSlice = createSlice({
         })
     }
 });
-
 
 export const getPost = createAsyncThunk("posts/getPost", async (page) => {
     let res = await getAllPosts(page)

@@ -9,6 +9,7 @@ export const API_ROUTES = {
     uploadAvatar: `http://localhost:5500/api/auth/uploadAvatarImg`,
     post: `http://localhost:5500/api/post/`,
     userPosts: `http://localhost:5500/api/post/userPosts`,
+    likedPosts: `http://localhost:5500/api/post/likedPosts`,
     like: `http://localhost:5500/api/post/like`,
 }
 
@@ -36,6 +37,12 @@ export const getAllPosts = async (page) => {
 
 export const getuserPosts = async (page) => {
     return await axios.get(API_ROUTES.userPosts, { ...header(), params: { page } })
+        .then((res) => res)
+        .catch((error) => console.log(error))
+};
+
+export const getLikedPosts = async () => {
+    return await axios.get(API_ROUTES.likedPosts, header())
         .then((res) => res)
         .catch((error) => console.log(error))
 };

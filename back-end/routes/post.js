@@ -12,6 +12,8 @@ router.get('/', auth, postCtrl.getAllPosts);
 
 router.get('/userPosts', auth, postCtrl.getUserPosts);
 
+router.get('/likedPosts', auth, postCtrl.getLikedPosts);
+
 router.delete('/:id', auth, postCtrl.deletePost);
 
 router.patch('/:id', auth, multer, postCtrl.modifyOnePost);

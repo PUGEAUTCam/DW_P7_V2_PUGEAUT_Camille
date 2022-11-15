@@ -15,17 +15,13 @@ const HomePosts = () => {
         dispatch(getPost(1))
     }, [])
 
-
     return (
         <InfiniteScroll
             dataLength={postsStore.posts?.docs?.length || 0}
             next={() => postsStore.posts?.hasNextPage && dispatch(getPost(postsStore.posts?.nextPage))}
             loader={<h4>Loading...</h4>}
             hasMore={postsStore.posts?.hasNextPage}
-            endMessage={postsStore.posts
-                ? <CreatePost />
-                : <p>Plus de news à consulter pour le moment</p>
-            }
+            endMessage={<CreatePost />}
         >
             {postsStore.posts?.docs?.map((post, index) =>
                 <Post

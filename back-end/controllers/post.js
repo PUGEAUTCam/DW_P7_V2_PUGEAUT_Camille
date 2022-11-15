@@ -31,8 +31,15 @@ exports.getUserPosts = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
-exports.deletePost = (req, res, next) => {
+exports.getLikedPosts = (req, res, next) => {
+    Post.find({ usersLiked: req.auth.userId })
+        .sort({ createdAt: -1 })
+        .populate("userId", "name firstname avatar")
+        .then(posts => res.status(200).json(posts))
+        .catch(error => res.status(400).json({ error }));
+};
 
+exports.deletePost = (req, res, next) => {
     Post.findOne({ _id: req.params.id })
         .then(post => {
 
@@ -107,6 +114,8 @@ exports.modifyOnePost = (req, res, next) => {
             res.status(400).json({ error });
         });
 };
+
+
 
 
 

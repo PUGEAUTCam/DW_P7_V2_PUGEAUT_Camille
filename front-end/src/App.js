@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./features/usersSlice";
 import ProfilePage from "./views/profilePage";
-import PostsLiked from "./views/postsLiked";
+import LikedPage from "./views/likedPage";
 
 function App() {
     const [ready, setReady] = useState(false)
@@ -51,7 +51,7 @@ function App() {
                 <Route
                     path="/postsLiked"
                     element={requiredLogged({
-                        view: <PostsLiked />
+                        view: <LikedPage />
                     })}
                 />
 
