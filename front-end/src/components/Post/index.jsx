@@ -3,13 +3,13 @@ import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { ContainerPost } from './style';
+import { AvatarImg, ContainerPost } from './style';
 import dayjs from 'dayjs';
 import { useSelector } from "react-redux";
 import { deletePost, likePost } from '../../API';
 import PostUpdateModal from '../PostUpdateModal';
 
-const Post = ({ post, index, onUpdate, onLike, onDelete }) => {
+const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
 
     const userStore = useSelector((state) => state.userStore);
 
@@ -28,18 +28,19 @@ const Post = ({ post, index, onUpdate, onLike, onDelete }) => {
         <ContainerPost key={index}>
             <div>
                 <div>
-                    <img src='' alt={"avatar de " + post.userId?.firstname + " " + post.userId?.name} />
+                    <AvatarImg src={post.userId.avatar} alt={"avatar de " + post.userId?.firstname + " " + post.userId?.name} />
                     <p> {post.userId?.firstname + " " + post.userId?.name}</p>
                     <p>{dayjs(post.createdAt).format("DD/MM/YYYY à HH:mm")}</p>
                 </div>
-
                 <p>{post.message} </p>
-
                 <img src={post.imageUrl} alt="" />
             </div>
 
             <div>
+                {/* Comment */}
                 <InsertCommentIcon />
+
+                {/* Like */}
                 <div style={{ display: 'flex' }}>
                     {
                         post.usersLiked.includes(userStore.user._id)
@@ -49,6 +50,7 @@ const Post = ({ post, index, onUpdate, onLike, onDelete }) => {
                     <p>{post.likes}</p>
                 </div>
 
+                {/* Delete et modal Update */}
                 {
                     post.userId._id === userStore.user._id
                         ? <div>

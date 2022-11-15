@@ -15,4 +15,5 @@ export const IconHeader = styled.div`
     justify-content: center;
     align-items: center;
     margin-left: 20px;
+    overflow: hidden;
 `

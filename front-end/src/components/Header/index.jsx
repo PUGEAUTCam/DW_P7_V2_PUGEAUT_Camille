@@ -3,10 +3,11 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import SleddingIcon from '@mui/icons-material/Sledding';
 import { Link } from 'react-router-dom';
 import { ContainerHeader, IconHeader } from './style';
-
+import { useSelector } from 'react-redux';
 
 
 const Header = () => {
+    const userStore = useSelector((state) => state.userStore);
 
     return (
         <ContainerHeader>
@@ -16,7 +17,13 @@ const Header = () => {
                     <Link to="/postsLiked"><FavoriteBorderIcon sx={{ fontSize: 30, color: 'black' }} /></Link>
                 </IconHeader>
                 <IconHeader>
-                    <Link to="/profile"><SleddingIcon sx={{ fontSize: 30, color: 'black' }} /></Link>
+                    <Link to="/profile">
+                        <img
+                            src={userStore.user.avatar}
+                            alt={`image de profil de ${userStore.user.firstname} `}
+                            style={{ height: '90px' }}
+                        />
+                    </Link>
                 </IconHeader>
             </div>
         </ContainerHeader>

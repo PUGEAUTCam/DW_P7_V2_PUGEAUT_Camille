@@ -35,8 +35,8 @@ export const getAllPosts = async (page) => {
         .catch((error) => console.log(error))
 };
 
-export const getuserPosts = async (page) => {
-    return await axios.get(API_ROUTES.userPosts, { ...header(), params: { page } })
+export const getuserPosts = async () => {
+    return await axios.get(API_ROUTES.userPosts, header())
         .then((res) => res)
         .catch((error) => console.log(error))
 };

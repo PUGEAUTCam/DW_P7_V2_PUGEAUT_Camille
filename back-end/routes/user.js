@@ -14,7 +14,6 @@ router.post('/signup', passwordValidator, userCtrl.signup);
 router.post('/login', userCtrl.login);
 router.get('/me', userCtrl.me);
 router.patch('/profileUpdate', auth, userCtrl.profileUpdate);
-
 router.post("/uploadCoverImg", multer, auth, userCtrl.uploadCoverImg);
 router.post("/uploadAvatarImg", multer, auth, userCtrl.uploadAvatarImg);
 

@@ -5,3 +5,7 @@ export const ContainerPost = styled.div`
     width: 690px;
     margin: 0px auto;
 `
+
+export const AvatarImg = styled.img`
+    height: 68px;
+`

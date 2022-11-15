@@ -9,7 +9,6 @@ exports.createPost = async (req, res, next) => {
         userId: req.auth.userId,
         imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '',
     });
-    console.log(post);
     post.save()
         .then(post => post.populate("userId", "name firstname avatar"))
         .then(() => res.status(201).json({ message: 'Post registered in database', post }))
