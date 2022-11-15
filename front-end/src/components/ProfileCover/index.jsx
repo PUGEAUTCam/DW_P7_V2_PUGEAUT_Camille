@@ -1,52 +1,67 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
-import AutoFixNormalIcon from '@mui/icons-material/AutoFixNormal';
 import { useDispatch } from "react-redux";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { getUser } from '../../features/usersSlice';
-import { uploadCoverImg } from '../../API';
+import { uploadCoverImg, uploadAvatarImg } from '../../API';
 
 const ProfileCover = () => {
     const userStore = useSelector((state) => state.userStore);
     const dispatch = useDispatch();
 
-    const [file, setFile] = useState(null);
-    const [image, setImage] = useState(null);
+    //COVER
+    const [fileCover, setFileCover] = useState(null);
+    const [imageCover, setImageCover] = useState(null);
+    //AVATAR
+    const [fileAvatar, setFileAvatar] = useState(null);
+    const [imageAvatar, setImageAvatar] = useState(null);
 
-    const handleImage = async (e) => {
-        setImage(URL.createObjectURL(e.target.files[0]));
-        setFile(e.target.files[0]);
+    //COVER
+    const handleImageCover = async (e) => {
+        setImageCover(URL.createObjectURL(e.target.files[0]));
+        setFileCover(e.target.files[0]);
     };
-
-    const handleChange = async () => {
+    const handleChangeCover = async () => {
         const formData = new FormData();
-        formData.append('image', file);
+        formData.append('image', fileCover);
         await uploadCoverImg(formData);
         await dispatch(getUser())
         cleanState();
     };
 
-    const cleanState = () => {
-        setImage(null)
-        setFile(null)
+    //AVATAR
+    const handleImageAvatar = async (e) => {
+        setImageAvatar(URL.createObjectURL(e.target.files[0]));
+        setFileAvatar(e.target.files[0]);
     };
-
-
+    const handleChangeAvatar = async () => {
+        const formData = new FormData();
+        formData.append('image', fileAvatar);
+        await uploadAvatarImg(formData);
+        await dispatch(getUser())
+        cleanState();
+    }
+    //ALL
+    const cleanState = () => {
+        setImageCover(null)
+        setFileCover(null)
+        setImageAvatar(null)
+        setFileAvatar(null)
+    };
 
     return (
         <div>
             <div>
-                {image
+                {imageCover
                     ? (<div>
-                        <img src={image} alt={"Image de couverture de " + userStore.user.firstname} />
-                        <button onClick={(e) => { setImage(null); setFile(null) }}><HighlightOffIcon />
+                        <img src={imageCover} alt={"Image de couverture de " + userStore.user.firstname} />
+                        <button onClick={(e) => { setImageCover(null); setFileCover(null) }}><HighlightOffIcon />
                         </button>
                     </div>)
                     : <img src={userStore.user.coverImg} alt={"Image de couverture de " + userStore.user.firstname} />
                 }
             </div>
-
             <div>
                 <label htmlFor="coverFile"><AutoFixHighIcon /></label>
                 <input
@@ -55,35 +70,43 @@ const ProfileCover = () => {
                     name="coverFile"
                     accept='.jpg, .jpeg, .png'
                     style={{ display: 'none' }}
-                    onChange={(e) => handleImage(e)}
+                    onChange={(e) => handleImageCover(e)}
                 />
             </div>
             <div>
-                {image
-                    ? (<button onClick={handleChange}>Modifier la cover</button>)
+                {imageCover
+                    ? (<button onClick={handleChangeCover}>Modifier la cover</button>)
                     : null
                 }
             </div>
 
-
-
-
-
-
-            {/* <div>
-                <img src={userStore.user.avatar} alt={"Avatar de " + userStore.user.firstname} />
-                <label htmlFor="avatarFile"><AutoFixNormalIcon /></label>
+            <div>
+                {imageAvatar
+                    ? (<div>
+                        <img src={imageAvatar} alt={"Avatar de " + userStore.user.firstname} />
+                        <button onClick={(e) => { setImageAvatar(null); setFileAvatar(null) }}><HighlightOffIcon />
+                        </button>
+                    </div>)
+                    : <img src={userStore.user.avatar} alt={"Avatar de " + userStore.user.firstname} />
+                }
+            </div>
+            <div>
+                <label htmlFor="avatarFile"><AutoFixHighIcon /></label>
                 <input
                     id='avatarFile'
                     type="file"
                     name="avatarFile"
                     accept='.jpg, .jpeg, .png'
                     style={{ display: 'none' }}
-                    onChange={(e) => setFile(e.target.files[0])}
+                    onChange={(e) => handleImageAvatar(e)}
                 />
-            </div> */}
-
-
+            </div>
+            <div>
+                {imageAvatar
+                    ? (<button onClick={handleChangeAvatar}>Modifier la photo de profil</button>)
+                    : null
+                }
+            </div>
         </div>
     );
 };
