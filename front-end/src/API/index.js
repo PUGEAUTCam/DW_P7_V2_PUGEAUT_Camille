@@ -6,6 +6,7 @@ export const API_ROUTES = {
     me: `http://localhost:5500/api/auth/me`,
     profileUpdate: `http://localhost:5500/api/auth/profileUpdate`,
     uploadCover: `http://localhost:5500/api/auth/uploadCoverImg`,
+    uploadAvatar: `http://localhost:5500/api/auth/uploadAvatarImg`,
     post: `http://localhost:5500/api/post/`,
     userPosts: `http://localhost:5500/api/post/userPosts`,
     like: `http://localhost:5500/api/post/like`,
@@ -21,7 +22,6 @@ export const header = (config = defaultConfig) => {
     return {
         headers: {
             'Content-Type': config.formData ? 'multipart/form-data' : 'application/json',
-
             authorization: `bearer ${JSON.parse(token)}`
         }
     }
@@ -29,14 +29,13 @@ export const header = (config = defaultConfig) => {
 
 //CALL API
 export const getAllPosts = async (page) => {
-    console.log(page);
     return await axios.get(API_ROUTES.post, { ...header(), params: { page } })
         .then((res) => res)
         .catch((error) => console.log(error))
 };
 
-export const getuserPosts = async () => {
-    return await axios.get(API_ROUTES.userPosts, header())
+export const getuserPosts = async (page) => {
+    return await axios.get(API_ROUTES.userPosts, { ...header(), params: { page } })
         .then((res) => res)
         .catch((error) => console.log(error))
 };
@@ -66,9 +65,19 @@ export const profileUpdate = async (form) => {
 };
 
 export const postUpdate = async ({ post, formData }) => {
-    console.log(formData)
-    console.log(post);
     return await axios.patch(API_ROUTES.post + post._id, formData, header({ formData: true }))
         .then((res) => res)
+        .catch((error) => console.log(error))
+};
+
+export const uploadCoverImg = async (formData) => {
+    return await axios.post(API_ROUTES.uploadCover, formData, header({ formData: true }))
+        .then(async (res) => res)
+        .catch((error) => console.log(error))
+};
+
+export const uploadAvatarImg = async (formData) => {
+    await axios.post(API_ROUTES.uploadAvatar, formData, header({ formData: true }))
+        .then(async (res) => res)
         .catch((error) => console.log(error))
 };

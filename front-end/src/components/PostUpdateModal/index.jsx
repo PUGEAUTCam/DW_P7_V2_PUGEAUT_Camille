@@ -4,18 +4,15 @@ import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
-import { useDispatch } from "react-redux";
-import { getPost } from '../../features/postsSlice';
 import { postUpdate } from '../../API';
 
 
-const PostUpdateModal = ({ post }) => {
-    const dispatch = useDispatch();
+const PostUpdateModal = ({ post, onUpdate }) => {
     const [open, setOpen] = useState(false);
 
-    const [updatePost, setupdatePost] = useState(post.message)
-    const [updateImage, setUpdateImage] = useState(null);
-    const [updateFile, setUpdateFile] = useState(null);
+    const [updatePost, setUpdatePost] = useState(post.message)
+    const [updateImage, setUpdateImage] = useState(post.imageUrl);
+    const [updateFile, setUpdateFile] = useState(post.imageUrl);
 
     const handleImage = (e) => {
         setUpdateImage(URL.createObjectURL(e.target.files[0]));
@@ -23,21 +20,15 @@ const PostUpdateModal = ({ post }) => {
     }
 
     const handleSubmit = async () => {
+        if (post.imageUrl) { setUpdateFile(post.imageUrl) }
         if (updatePost || updateImage) {
             const formData = new FormData();
             formData.append('message', updatePost);
             if (updateFile) formData.append('image', updateFile);
-            await postUpdate({ post, formData })
-            await dispatch(getPost())
+            let res = await postUpdate({ post, formData })
+            await onUpdate(res.data)
         }
-        cleanState()
         setOpen(false)
-    };
-
-    const cleanState = () => {
-        setupdatePost("")
-        setUpdateImage(null)
-        setUpdateFile(null)
     };
 
     return (
@@ -52,17 +43,17 @@ const PostUpdateModal = ({ post }) => {
                     rows='10'
                     placeholder='Ton nouveau post'
                     value={updatePost}
-                    onChange={(e) => setupdatePost(e.target.value)}
+                    onChange={(e) => setUpdatePost(e.target.value)}
                 >
                 </textarea>
 
                 <div>
                     <img src={updateImage} alt='' />
-                    {updateImage ? (
-                        <button onClick={(e) => { setUpdateImage(null); setUpdateFile(null) }}><HighlightOffIcon /></button>
-                    ) : null}
+                    {updateImage
+                        ? (<button onClick={() => { setUpdateImage(null); setUpdateFile(null) }}><HighlightOffIcon /></button>)
+                        : null
+                    }
                 </div>
-
                 <label htmlFor="updateFile"><ImageSearchIcon /></label>
                 <input type="file"
                     id='updateFile'
@@ -72,7 +63,7 @@ const PostUpdateModal = ({ post }) => {
                     onChange={(e) => handleImage(e)}
                 />
 
-                <button onClick={handleSubmit}>Enregistrer les modifications</button>
+                <button onClick={handleSubmit} >Enregistrer les modifications</button>
                 <button onClick={() => setOpen(false)}>Retour</button>
             </HyperModal >
 

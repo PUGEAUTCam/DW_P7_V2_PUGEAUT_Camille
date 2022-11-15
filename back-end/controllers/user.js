@@ -3,12 +3,10 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const fs = require('fs');
-
 //Import user model 
 const UserModel = require('../models/User');
 
 exports.signup = (req, res, next) => {
-
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new UserModel({
@@ -19,7 +17,7 @@ exports.signup = (req, res, next) => {
             });
             user.save()
                 .then(() => res.status(201).json({ message: `User created and registered in the database` }))
-                .catch(error => res.status(400).json({ error }));
+                .catch(error => res.status(400).json({ error: error }));
         })
         .catch(error => res.status(500).json({ error }));
 };
@@ -35,7 +33,6 @@ exports.profileUpdate = (req, res, next) => {
 
 
 exports.login = (req, res, next) => {
-
     UserModel.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {
@@ -64,12 +61,9 @@ exports.login = (req, res, next) => {
 
 
 exports.me = (req, res, next) => {
-
     try {
         const token = req.headers.authorization.split(' ')[1];
-
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-
         const userId = decodedToken.userId;
 
         if (!decodedToken) {
@@ -99,30 +93,52 @@ exports.me = (req, res, next) => {
     }
 };
 
-
-
-exports.uploadCoverImg = (req, res) => {
-
-    UserModel.findOne({ _id: req.params.id })
+exports.uploadCoverImg = (req, res, next) => {
+    const coverImage = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '';
+    UserModel.findOne({ _id: req.auth.userId })
         .then((user) => {
-            if (user.userId != req.auth.userId) {
+            if (user._id != req.auth.userId) {
                 res.status(403).json({ message: 'Not authorized' });
             }
             else {
-                //On supprime l'ancienne image de la BDD
-                const filename = user.coverImg.split('/images/')[1];
-                fs.unlink(`images/${filename}`, (err) => {
-                    if (err) throw error;
-                });
+                // const filename = user.coverImg.split('/images/')[1];
+                // if (filename) {
+                //     fs.unlink(`images/${filename}`, (err) => {
+                //         if (err) throw err;
+                //     });
+                // };
 
-                UserModel.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-                    .then(() => res.status(200).json({ message: 'Couverture du profil modifiée' }))
+                UserModel.updateOne({ _id: req.auth.userId }, { coverImg: coverImage })
+                    .then(() => res.status(200).json({ message: 'Couverture de profil modifiée' }))
                     .catch(error => res.status(401).json({ error }));
             }
         })
-
         .catch((error) => {
             res.status(400).json({ error });
         });
 };
 
+exports.uploadAvatarImg = (req, res, next) => {
+    const avatarImage = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '';
+    UserModel.findOne({ _id: req.auth.userId })
+        .then((user) => {
+            if (user._id != req.auth.userId) {
+                res.status(403).json({ message: 'Not authorized' });
+            }
+            else {
+                // const filename = user.avatar.split('/images/')[1];
+                // if (filename) {
+                //     fs.unlink(`images/${filename}`, (err) => {
+                //         if (err) throw err;
+                //     });
+                // };
+
+                UserModel.updateOne({ _id: req.auth.userId }, { avatar: avatarImage })
+                    .then(() => res.status(200).json({ message: 'avatar de profil modifié' }))
+                    .catch(error => res.status(401).json({ error }));
+            }
+        })
+        .catch((error) => {
+            res.status(400).json({ error });
+        });
+};

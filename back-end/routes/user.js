@@ -15,6 +15,8 @@ router.post('/login', userCtrl.login);
 router.get('/me', userCtrl.me);
 router.patch('/profileUpdate', auth, userCtrl.profileUpdate);
 
-router.post("/uploadCoverImg", multer, userCtrl.uploadCoverImg);
+router.post("/uploadCoverImg", multer, auth, userCtrl.uploadCoverImg);
+router.post("/uploadAvatarImg", multer, auth, userCtrl.uploadAvatarImg);
+
 
 module.exports = router;

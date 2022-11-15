@@ -7,6 +7,7 @@ import { ModalInputContainer } from './style';
 import { profileUpdate } from '../../API';
 import { useDispatch } from "react-redux";
 import { getUser } from '../../features/usersSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 const ProfileDescription = () => {
@@ -14,6 +15,7 @@ const ProfileDescription = () => {
     const userStore = useSelector((state) => state.userStore);
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
 
     const [form, setForm] = useState({
         phoneNumber: userStore.user.phoneNumber,
@@ -29,10 +31,15 @@ const ProfileDescription = () => {
         setOpen(false)
     }
 
+    const handleDeconnexion = () => {
+        localStorage.clear()
+        navigate('/login')
+    }
+
     return (
         <div>
             <div>
-                <h2>{userStore.user.firstname}</h2>
+                <h2>{userStore.user.firstname + " " + userStore.user.name}</h2>
                 <p>Membre depuis le {dayjs(userStore.user.dateSignup).format("DD/MM/YYYY")}</p>
                 <p>Numéro perso {userStore.user.phoneNumber}</p>
                 <p>Numéro pro {userStore.user.phonePro} </p>
@@ -92,6 +99,8 @@ const ProfileDescription = () => {
                 </HyperModal>
 
                 <AutoFixHighIcon onClick={() => setOpen(true)} />
+
+                <button onClick={handleDeconnexion}>Se déconnecter</button>
 
             </div>
 

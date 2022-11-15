@@ -7,7 +7,7 @@ import { ContainerBtnIcon } from './style';
 import { API_ROUTES, header } from '../../API';
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { getPost } from '../../features/postsSlice';
+import { addPost } from '../../features/postsSlice';
 
 
 const CreatePost = () => {
@@ -26,19 +26,18 @@ const CreatePost = () => {
     const handlePost = async () => {
         if (newPost || postImage) {
             const formData = new FormData();
-
             formData.append('message', newPost);
             if (file) formData.append('image', file);
 
             await axios.post(API_ROUTES.post, formData, header({ formData: true }))
                 .then(async (res) => {
-                    await dispatch(getPost())
+                    await dispatch(addPost(res.data.post))
                     cleanState()
                 })
                 .catch((error) => console.log(error))
 
         } else {
-            alert('Entre un message ou une image sur ton post! A MODIFIER')
+            alert('Veuillez grouposter un message ou une image ! ')
         }
     };
 
@@ -48,10 +47,8 @@ const CreatePost = () => {
         setFile(null)
     };
 
-
     return (
         <ContainerBtnIcon>
-
             <h1>Bonjour {userStore.user.firstname}</h1>
             <textarea
                 name="post"
@@ -66,10 +63,14 @@ const CreatePost = () => {
 
             <div>
                 <div>
-                    <img src={postImage} alt='' />
-                    {postImage ? (
-                        <button onClick={(e) => { setPostImage(null); setFile(null) }}><HighlightOffIcon /></button>
-                    ) : null}
+                    {postImage
+                        ? (<div>
+                            <img src={postImage} alt="" />
+                            <button onClick={(e) => { setPostImage(null); setFile(null) }}><HighlightOffIcon />
+                            </button>
+                        </div>)
+                        : null
+                    }
                 </div>
 
                 <label htmlFor="file"><ImageSearchIcon /></label>
@@ -89,7 +90,6 @@ const CreatePost = () => {
                     <button onClick={handlePost}>Grouposter</button>
                 </div>
             </div>
-
         </ContainerBtnIcon >
     );
 };

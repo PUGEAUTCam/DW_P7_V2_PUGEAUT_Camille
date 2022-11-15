@@ -9,27 +9,27 @@ import { useSelector } from "react-redux";
 import { deletePost, likePost } from '../../API';
 import PostUpdateModal from '../PostUpdateModal';
 
-
-const Post = ({ post, index, onUpdate }) => {
+const Post = ({ post, index, onUpdate, onLike, onDelete }) => {
 
     const userStore = useSelector((state) => state.userStore);
 
     const handleDeletePost = async (post) => {
-        await deletePost(post)
-        onUpdate()
+        let res = await deletePost(post)
+        onDelete(res.data)
     }
 
     const handleLike = async (post) => {
-        await likePost(post)
-        onUpdate()
+        let res = await likePost(post)
+        console.log(res.data)
+        onLike(res.data)
     }
 
     return (
         <ContainerPost key={index}>
             <div>
                 <div>
-                    <img src='' alt={"avatar de "} />
-                    <p> {post.name}</p>
+                    <img src='' alt={"avatar de " + post.userId?.firstname + " " + post.userId?.name} />
+                    <p> {post.userId?.firstname + " " + post.userId?.name}</p>
                     <p>{dayjs(post.createdAt).format("DD/MM/YYYY à HH:mm")}</p>
                 </div>
 
@@ -49,10 +49,14 @@ const Post = ({ post, index, onUpdate }) => {
                     <p>{post.likes}</p>
                 </div>
 
-                {/* Uniquement si user a cree le post */}
-                <PostUpdateModal post={post} />
-                <DeleteForeverIcon onClick={() => handleDeletePost(post)} />
-
+                {
+                    post.userId._id === userStore.user._id
+                        ? <div>
+                            <PostUpdateModal post={post} onUpdate={onUpdate} />
+                            <DeleteForeverIcon onClick={() => handleDeletePost(post)} />
+                        </div>
+                        : null
+                }
             </div>
         </ContainerPost>
     );

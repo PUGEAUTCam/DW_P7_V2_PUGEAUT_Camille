@@ -47,13 +47,15 @@ const userSchema = mongoose.Schema({
     },
     avatar: {
         type: String,
-        default: "http://localhost:5500/images/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg"
+        default: "http://localhost:5500/images/profil-picture.jpg",
     },
     coverImg: {
         type: String,
-        default: "http://http://localhost:5500/images/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg"
-    }
-
+        default: "http://localhost:5500/images/profil-picture.jpg",
+    },
+    posts: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
+    ]
 },
     {
         timestamps: true
@@ -62,5 +64,5 @@ const userSchema = mongoose.Schema({
 
 userSchema.plugin(emailUniqueValidator);
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model('User', userSchema);
 
