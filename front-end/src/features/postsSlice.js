@@ -19,7 +19,6 @@ export const postsSlice = createSlice({
             state.posts = action.payload;
         },
         addPost: (state, action) => {
-            console.log(action.payload);
             state.posts = { ...state.posts, docs: [action.payload, ...state.posts.docs] }
         },
         updatePostStore: (state, action) => {
@@ -41,6 +40,11 @@ export const postsSlice = createSlice({
             let index = state.posts.docs.findIndex(e => e._id === action.payload.postId);
             state.posts.docs.splice(index, 1)
         },
+        commentStore: (state, action) => {
+            console.log(action.payload)
+            let postIndex = state.posts.docs.findIndex(e => e._id === action.payload.postId);
+            state.posts.docs[postIndex] = { ...state.posts.docs[postIndex], comments: [...state.posts.docs[postIndex].comments, action.payload] }
+        }
     },
 
     extraReducers(builder) {
@@ -60,7 +64,7 @@ export const getPost = createAsyncThunk("posts/getPost", async (page) => {
 })
 
 //export les fonctions / actions pour les fichiers
-export const { setPost, addPost, updatePost, likePostStore, deletePostStore, updatePostStore } = postsSlice.actions;
+export const { setPost, addPost, updatePost, likePostStore, deletePostStore, updatePostStore, commentStore } = postsSlice.actions;
 
 //Exporter la slice en entier pour le store
 export default postsSlice.reducer;

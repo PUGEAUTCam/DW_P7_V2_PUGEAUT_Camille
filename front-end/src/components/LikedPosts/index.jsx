@@ -21,6 +21,7 @@ const LikedPosts = () => {
                     onUpdate={getData}
                     onDelete={getData}
                     onLike={getData}
+                    onComment={getData}
                 />
             )}
         </div>

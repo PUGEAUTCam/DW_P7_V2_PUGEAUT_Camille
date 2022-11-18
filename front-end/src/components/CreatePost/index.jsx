@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from "react-redux";
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
-import GifBoxIcon from '@mui/icons-material/GifBox';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { ContainerBtnIcon } from './style';
 import { API_ROUTES, header } from '../../API';
@@ -37,7 +36,7 @@ const CreatePost = () => {
                 .catch((error) => console.log(error))
 
         } else {
-            alert('Veuillez grouposter un message ou une image ! ')
+            alert(`Veuillez group'oster un message ou une image ! `)
         }
     };
 
@@ -82,11 +81,11 @@ const CreatePost = () => {
                     onChange={(e) => handleImage(e)}
                 />
 
-                <GifBoxIcon />
                 <div>
-                    {newPost || postImage ? (
-                        <button onClick={cleanState}>Annuler le post</button>
-                    ) : null}
+                    {newPost || postImage
+                        ? (<button onClick={cleanState}>Annuler le post</button>)
+                        : null}
+
                     <button onClick={handlePost}>Grouposter</button>
                 </div>
             </div>

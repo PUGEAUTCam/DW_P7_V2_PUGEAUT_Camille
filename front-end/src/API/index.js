@@ -11,6 +11,7 @@ export const API_ROUTES = {
     userPosts: `http://localhost:5500/api/post/userPosts`,
     likedPosts: `http://localhost:5500/api/post/likedPosts`,
     like: `http://localhost:5500/api/post/like`,
+    comment: `http://localhost:5500/api/comment/`
 }
 
 //AUTH
@@ -84,7 +85,16 @@ export const uploadCoverImg = async (formData) => {
 };
 
 export const uploadAvatarImg = async (formData) => {
-    await axios.post(API_ROUTES.uploadAvatar, formData, header({ formData: true }))
+    return await axios.post(API_ROUTES.uploadAvatar, formData, header({ formData: true }))
+        .then(async (res) => res)
+        .catch((error) => console.log(error))
+};
+
+export const createComment = async ({ post, newComment }) => {
+    return await axios.post(API_ROUTES.comment, {
+        postId: post._id,
+        message: newComment,
+    }, header())
         .then(async (res) => res)
         .catch((error) => console.log(error))
 };

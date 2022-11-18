@@ -57,7 +57,7 @@ const LoginForm = () => {
                 onChange={(e) => setForm({ ...form, password: e.target.value, error: '' })}
             />
 
-            <div onClick={handleSubmit}>Connexion</div>
+            <button onClick={handleSubmit}>Connexion</button>
 
             <Text>Vous n’avez pas de compte ? <Link to="/signup">Inscrivez-vous</Link></Text>
             <div>{form.error}</div>

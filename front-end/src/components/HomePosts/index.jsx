@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getPost, updatePostStore, likePostStore, deletePostStore } from '../../features/postsSlice';
+import { getPost, updatePostStore, likePostStore, deletePostStore, commentStore } from '../../features/postsSlice';
 import Post from '../Post';
 import InfiniteScroll from "react-infinite-scroll-component";
 import CreatePost from '../CreatePost';
@@ -30,6 +30,7 @@ const HomePosts = () => {
                     onUpdate={(updatedPost) => dispatch(updatePostStore(updatedPost))}
                     onLike={(likedPost) => dispatch(likePostStore(likedPost))}
                     onDelete={(deletedPost) => dispatch(deletePostStore(deletedPost))}
+                    onComment={(commentedPost) => dispatch(commentStore(commentedPost))}
                 />)}
         </InfiniteScroll>
     );

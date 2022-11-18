@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const emailUniqueValidator = require('mongoose-unique-validator');
 
-
 const userSchema = mongoose.Schema({
     name: {
         type: String,
@@ -53,9 +52,6 @@ const userSchema = mongoose.Schema({
         type: String,
         default: "http://localhost:5500/images/profil-picture.jpg",
     },
-    posts: [
-        { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
-    ]
 },
     {
         timestamps: true
@@ -63,6 +59,5 @@ const userSchema = mongoose.Schema({
 );
 
 userSchema.plugin(emailUniqueValidator);
-
 module.exports = mongoose.model('User', userSchema);
 

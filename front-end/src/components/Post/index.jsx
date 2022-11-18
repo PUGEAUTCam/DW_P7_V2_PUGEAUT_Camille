@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -8,10 +8,12 @@ import dayjs from 'dayjs';
 import { useSelector } from "react-redux";
 import { deletePost, likePost } from '../../API';
 import PostUpdateModal from '../PostUpdateModal';
+import Comment from '../Comment';
 
 const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
 
     const userStore = useSelector((state) => state.userStore);
+    const [openComment, setOpenComment] = useState(false);
 
     const handleDeletePost = async (post) => {
         let res = await deletePost(post)
@@ -20,7 +22,6 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
 
     const handleLike = async (post) => {
         let res = await likePost(post)
-        console.log(res.data)
         onLike(res.data)
     }
 
@@ -37,9 +38,18 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
             </div>
 
             <div>
-                {/* Comment */}
-                <InsertCommentIcon />
+                {/* Delete et modal Update */}
+                {
+                    post.userId._id === userStore.user._id
+                        ? <div>
+                            <PostUpdateModal post={post} onUpdate={onUpdate} />
+                            <DeleteForeverIcon onClick={() => handleDeletePost(post)} />
+                        </div>
+                        : null
+                }
+            </div>
 
+            <div>
                 {/* Like */}
                 <div style={{ display: 'flex' }}>
                     {
@@ -50,15 +60,9 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                     <p>{post.likes}</p>
                 </div>
 
-                {/* Delete et modal Update */}
-                {
-                    post.userId._id === userStore.user._id
-                        ? <div>
-                            <PostUpdateModal post={post} onUpdate={onUpdate} />
-                            <DeleteForeverIcon onClick={() => handleDeletePost(post)} />
-                        </div>
-                        : null
-                }
+                {/* Comment */}
+                <InsertCommentIcon onClick={() => setOpenComment(!openComment)} />
+                {openComment && <Comment post={post} onComment={onComment} />}
             </div>
         </ContainerPost>
     );

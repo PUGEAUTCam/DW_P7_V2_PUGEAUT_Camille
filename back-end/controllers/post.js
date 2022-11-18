@@ -17,7 +17,20 @@ exports.createPost = async (req, res, next) => {
 
 
 exports.getAllPosts = (req, res, next) => {
-    Post.paginate({}, { page: Number(req.query.page), sort: { createdAt: -1 }, populate: { path: "userId", select: ["name", "firstname", "avatar"] } })
+    Post.paginate({}, {
+        page: Number(req.query.page),
+        sort: { createdAt: -1 },
+        populate: [
+            { path: "userId", select: ["name", "firstname", "avatar"] },
+            {
+                path: 'comments', populate: {
+                    path: 'userId',
+                    model: 'User',
+                    select: 'name firstname avatar'
+                }
+            }
+        ]
+    })
         .then(posts => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error }));
 };
@@ -25,7 +38,13 @@ exports.getAllPosts = (req, res, next) => {
 exports.getUserPosts = (req, res, next) => {
     Post.find({ userId: req.auth.userId })
         .sort({ createdAt: -1 })
-        .populate("userId", "name firstname avatar")
+        .populate([{ path: 'userId', select: 'name firstname avatar' }, {
+            path: "comments", populate: {
+                path: 'userId',
+                model: 'User',
+                select: 'name firstname avatar'
+            }
+        }])
         .then(posts => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error }));
 };
@@ -33,7 +52,13 @@ exports.getUserPosts = (req, res, next) => {
 exports.getLikedPosts = (req, res, next) => {
     Post.find({ usersLiked: req.auth.userId })
         .sort({ createdAt: -1 })
-        .populate("userId", "name firstname avatar")
+        .populate([{ path: 'userId', select: 'name firstname avatar' }, {
+            path: "comments", populate: {
+                path: 'userId',
+                model: 'User',
+                select: 'name firstname avatar'
+            }
+        }])
         .then(posts => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error }));
 };

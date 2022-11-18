@@ -7,6 +7,7 @@ const postSchema = mongoose.Schema({
     imageUrl: { type: String },
     likes: { type: Number, default: 0 },
     usersLiked: { type: [] },
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
 },
     {
         timestamps: true
@@ -14,7 +15,6 @@ const postSchema = mongoose.Schema({
 );
 
 postSchema.plugin(mongoosePaginate);
-
 module.exports = mongoose.model('Post', postSchema);
 
 

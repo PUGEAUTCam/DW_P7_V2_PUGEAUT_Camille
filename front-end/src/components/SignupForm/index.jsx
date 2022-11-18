@@ -77,7 +77,7 @@ const SignupForm = () => {
             <div>{form.password.length >= 1 ? validPassword(form.password).message : null}</div>
 
 
-            <div onClick={handleSubmit}>S'inscrire</div>
+            <button onClick={handleSubmit}>S'inscrire</button>
 
             <p>Vous avez déjà un compte ? <Link to='/'>Connectez-vous</Link></p>
         </div>
