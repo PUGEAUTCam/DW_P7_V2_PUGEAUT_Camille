@@ -9,7 +9,7 @@ const Comment = ({ post, onComment }) => {
 
     const handlePost = async () => {
         let res = await createComment({ post, newComment })
-        await onComment(res.data)
+        await onComment(res.data.comment)
         setNewComment("")
     }
 
@@ -26,7 +26,7 @@ const Comment = ({ post, onComment }) => {
             {post.comments.map((comment, index) =>
                 <div key={index}>
                     <AvatarImg src={comment.userId.avatar} alt={"avatar de " + post.userId?.firstname + " " + post.userId?.name} />
-                    <p>{comment.userId.name + comment.userId.firstname}</p>
+                    <p>{comment.userId.firstname + comment.userId.name}</p>
                     <p>{comment.message}</p>
                     <p>{dayjs(comment.createdAt).format("DD/MM/YYYY à HH:mm")}</p>
                 </div>

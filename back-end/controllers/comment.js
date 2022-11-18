@@ -10,11 +10,14 @@ exports.createComment = async (req, res, next) => {
 
     comment.save()
         .then((commentRes) => {
+            commentRes.populate("userId", "name firstname avatar")
             Post.findByIdAndUpdate(
                 req.body.postId,
                 { $push: { comments: commentRes._id } },
                 { new: true, useFindAndModify: false }
-            ).then(() => res.status(201).json({ message: 'Comment registered in database', comment }))
+            )
+                .then(() => res.status(201).json({ message: 'Comment registered in database', comment }))
+                .catch(err => console.error(err));
         })
         .catch(error => res.status(400).json({ error }));
 };

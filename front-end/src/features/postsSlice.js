@@ -41,7 +41,6 @@ export const postsSlice = createSlice({
             state.posts.docs.splice(index, 1)
         },
         commentStore: (state, action) => {
-            console.log(action.payload)
             let postIndex = state.posts.docs.findIndex(e => e._id === action.payload.postId);
             state.posts.docs[postIndex] = { ...state.posts.docs[postIndex], comments: [...state.posts.docs[postIndex].comments, action.payload] }
         }
