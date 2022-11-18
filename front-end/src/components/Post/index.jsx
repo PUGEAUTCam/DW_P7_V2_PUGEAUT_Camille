@@ -9,8 +9,10 @@ import { useSelector } from "react-redux";
 import { deletePost, likePost } from '../../API';
 import PostUpdateModal from '../PostUpdateModal';
 import Comment from '../Comment';
+import { useNavigate } from 'react-router-dom';
 
 const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
+    const navigate = useNavigate();
 
     const userStore = useSelector((state) => state.userStore);
     const [openComment, setOpenComment] = useState(false);
@@ -28,11 +30,11 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
     return (
         <ContainerPost key={index}>
             <div>
-                <div>
+                <div onClick={() => navigate(`/profile?id=${post.userId._id}`)}>
                     <AvatarImg src={post.userId.avatar} alt={"avatar de " + post.userId?.firstname + " " + post.userId?.name} />
                     <p> {post.userId?.firstname + " " + post.userId?.name}</p>
-                    <p>{dayjs(post.createdAt).format("DD/MM/YYYY à HH:mm")}</p>
                 </div>
+                <p>{dayjs(post.createdAt).format("DD/MM/YYYY à HH:mm")}</p>
                 <p>{post.message} </p>
                 <img src={post.imageUrl} alt="" />
             </div>
@@ -59,7 +61,6 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                     }
                     <p>{post.likes}</p>
                 </div>
-
                 {/* Comment */}
                 <InsertCommentIcon onClick={() => setOpenComment(!openComment)} />
                 {openComment && <Comment post={post} onComment={onComment} />}

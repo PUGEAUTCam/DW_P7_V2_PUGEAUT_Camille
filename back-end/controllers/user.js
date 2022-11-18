@@ -70,28 +70,28 @@ exports.me = (req, res, next) => {
             return res.status(401).json({ error: 'Invalid token', message: 'Invalid token' });
         }
         UserModel.findOne({ _id: userId })
-            .then(user => res.status(200).json({
-                user: {
-                    _id: user._id,
-                    firstname: user.firstname,
-                    name: user.name,
-                    email: user.email,
-                    phoneNumber: user.phoneNumber,
-                    phonePro: user.phonePro,
-                    actualLocation: user.actualLocation,
-                    birthLocation: user.birthLocation,
-                    biography: user.biography,
-                    avatar: user.avatar,
-                    coverImg: user.coverImg,
-                    dateSignup: user.createdAt,
-                }
-            }))
-            .catch(error => res.status(401).json({ error }))
+            // delete user.password
+            .then(user => {
+                delete user.password
+                res.status(200).json({ user })
+            })
+            .catch(error => res.status(403).json({ error }))
 
     } catch (error) {
         res.status(402).json({ error });
     }
 };
+
+exports.getOneUser = (req, res, next) => {
+    UserModel.findById(req.params.id)
+        .then(user => {
+            delete user.password
+            res.status(200).json({ user })
+        })
+
+        .catch(error => res.status(403).json(console.log(error)))
+};
+
 
 exports.uploadCoverImg = (req, res, next) => {
     const coverImage = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '';
@@ -101,16 +101,15 @@ exports.uploadCoverImg = (req, res, next) => {
                 res.status(403).json({ message: 'Not authorized' });
             }
             else {
-                // const filename = user.coverImg.split('/images/')[1];
+                // const filename = user.file.split('/images/')[1];
                 // if (filename) {
                 //     fs.unlink(`images/${filename}`, (err) => {
                 //         if (err) throw err;
                 //     });
                 // };
-
                 UserModel.updateOne({ _id: req.auth.userId }, { coverImg: coverImage })
                     .then(() => res.status(200).json({ message: 'Couverture de profil modifiée' }))
-                    .catch(error => res.status(401).json({ error }));
+                    .catch(error => res.status(403).json({ error }));
             }
         })
         .catch((error) => {
@@ -132,7 +131,6 @@ exports.uploadAvatarImg = (req, res, next) => {
                 //         if (err) throw err;
                 //     });
                 // };
-
                 UserModel.updateOne({ _id: req.auth.userId }, { avatar: avatarImage })
                     .then(() => res.status(200).json({ message: 'avatar de profil modifié' }))
                     .catch(error => res.status(401).json({ error }));

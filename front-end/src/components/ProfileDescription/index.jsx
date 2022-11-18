@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 const ProfileDescription = () => {
-
     const userStore = useSelector((state) => state.userStore);
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
@@ -35,6 +34,9 @@ const ProfileDescription = () => {
         localStorage.clear()
         navigate('/login')
     }
+
+    // user = isMe ? userStore.user : userOther
+
 
     return (
         <div>
