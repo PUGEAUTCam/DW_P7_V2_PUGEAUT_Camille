@@ -59,7 +59,7 @@ const LoginForm = () => {
 
             <button onClick={handleSubmit}>Connexion</button>
 
-            <Text>Vous n’avez pas de compte ? <Link to="/signup">Inscrivez-vous</Link></Text>
+            <p>Vous n’avez pas de compte ? <Link to="/signup">Inscrivez-vous</Link></p>
             <div>{form.error}</div>
         </div>
 

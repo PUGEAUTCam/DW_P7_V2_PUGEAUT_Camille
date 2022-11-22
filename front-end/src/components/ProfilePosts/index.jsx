@@ -5,7 +5,6 @@ import Post from '../Post';
 
 
 const ProfilePosts = ({ id }) => {
-    console.log(id)
     const location = useLocation()
     const [data, setData] = useState(null);
     const [ready, setReady] = useState(false);
@@ -29,6 +28,7 @@ const ProfilePosts = ({ id }) => {
 
     return (
         <div>
+
             {data?.map((post, index) =>
                 <Post
                     key={index}

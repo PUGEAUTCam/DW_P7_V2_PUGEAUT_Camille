@@ -1,19 +1,16 @@
 import styled from "styled-components";
+// import colors from "../StyleDefinition/colors"
 
-export const ContainerHeader = styled.div`
+export const ContainerHeader = styled.header`
     display: flex;
     justify-content: space-between;
 `
 
-export const IconHeader = styled.div`
-    border: 1px black solid;
-    border-radius: 25px;
-    width: 50px;
-    height: 50px;
-    margin-top: 10px;
+export const Logo = styled.img`
+    width: 307px;
+    padding-top: 10px;    
+`
+
+export const NavBar = styled.nav`
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 20px;
-    overflow: hidden;
 `

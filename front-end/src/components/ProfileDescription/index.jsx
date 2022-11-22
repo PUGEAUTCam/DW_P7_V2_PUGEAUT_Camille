@@ -35,6 +35,7 @@ const ProfileDescription = ({ dataUser }) => {
 
     const handleDeconnexion = () => {
         localStorage.clear()
+
         navigate('/login')
     }
 

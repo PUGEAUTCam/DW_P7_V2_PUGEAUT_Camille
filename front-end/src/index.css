@@ -1,16 +1,12 @@
-body {
-    max-width: 1624px;
-	width: 100%;
-	/* margin: auto; */
-    
-    /* background-color: #2a2a2b; */
-}
-
-* {
-	box-sizing: border-box;
-	margin: 0;
-    padding: 0;
+html, body {
+    max-width: 1620px;
+	margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(24 23 23);
+    box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    color: white;
 }
 
 a:hover {
@@ -20,3 +16,4 @@ a:hover {
 a:active{
     color : black;
 }
+

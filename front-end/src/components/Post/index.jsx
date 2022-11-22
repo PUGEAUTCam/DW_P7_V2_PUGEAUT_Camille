@@ -3,13 +3,15 @@ import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { AvatarImg, ContainerPost } from './style';
+import { ContainerName, ContainerPost, ContainerTxtImg } from './style';
+import { AvatarImg, IconAvatar } from '../StyleDefinition/picture';
 import dayjs from 'dayjs';
 import { useSelector } from "react-redux";
 import { deletePost, likePost } from '../../API';
 import PostUpdateModal from '../PostUpdateModal';
 import Comment from '../Comment';
 import { useNavigate } from 'react-router-dom';
+import { Date, Text } from '../Text/index';
 
 const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
     const navigate = useNavigate();
@@ -29,14 +31,22 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
 
     return (
         <ContainerPost key={index}>
-            <div>
-                <div onClick={() => navigate(`/profile?id=${post.userId._id}`)}>
-                    <AvatarImg src={post.userId.avatar} alt={"avatar de " + post.userId?.firstname + " " + post.userId?.name} />
-                    <p> {post.userId?.firstname + " " + post.userId?.name}</p>
+            <div >
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <IconAvatar style={{ border: "1px solid #24b6a9" }} onClick={() => navigate(`/profile?id=${post.userId._id}`)}>
+                        <AvatarImg src={post.userId.avatar} alt={"avatar de " + post.userId?.firstname + " " + post.userId?.name} />
+                    </IconAvatar>
+
+                    <ContainerName>
+                        <p onClick={() => navigate(`/profile?id=${post.userId._id}`)}> {post.userId?.firstname + " " + post.userId?.name}</p>
+                        <Date>{dayjs(post.createdAt).format("DD/MM/YYYY à HH:mm")}</Date>
+                    </ContainerName>
                 </div>
-                <p>{dayjs(post.createdAt).format("DD/MM/YYYY à HH:mm")}</p>
-                <p>{post.message} </p>
-                <img src={post.imageUrl} alt="" />
+
+                <ContainerTxtImg>
+                    <Text style={{ margin: '27px 42px' }}>{post.message} </Text>
+                    <img style={{ width: 316 }} src={post.imageUrl} alt="" />
+                </ContainerTxtImg>
             </div>
 
             <div>
@@ -49,9 +59,6 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                         </div>
                         : null
                 }
-            </div>
-
-            <div>
                 {/* Like */}
                 <div style={{ display: 'flex' }}>
                     {
@@ -64,6 +71,7 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                 {/* Comment */}
                 <InsertCommentIcon onClick={() => setOpenComment(!openComment)} />
                 {openComment && <Comment post={post} onComment={onComment} />}
+
             </div>
         </ContainerPost>
     );

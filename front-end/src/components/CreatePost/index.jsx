@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector } from "react-redux";
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { ContainerBtnIcon } from './style';
+import { ContainerCreatePost, ContainerHello, ContainerBtn, ContainerInputBtn, HelloTitle, IconHello, TextArea, ContainerImg } from './style';
 import { API_ROUTES, header } from '../../API';
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addPost } from '../../features/postsSlice';
-
+import { AvatarImg } from '../StyleDefinition/picture';
+import { Button, ButtonDelete } from '../ButtonStyle/style';
 
 const CreatePost = () => {
     const userStore = useSelector((state) => state.userStore);
@@ -47,49 +47,54 @@ const CreatePost = () => {
     };
 
     return (
-        <ContainerBtnIcon>
-            <h1>Bonjour {userStore.user.firstname}</h1>
-            <textarea
-                name="post"
-                id="post"
-                cols='100'
-                rows='10'
-                placeholder='Une nouvelle à partager?'
-                value={newPost}
-                onChange={(e) => setNewPost(e.target.value)}
-            >
-            </textarea>
+        <ContainerCreatePost>
+            <ContainerHello>
+                <IconHello style={{ border: "1px solid rgb(225, 122, 122)", marginLeft: "13px" }}>
+                    <AvatarImg src={userStore.user.avatar} alt={"avatar de " + userStore.user.firstname} />
+                </IconHello>
+                <HelloTitle>Bonjour {userStore.user.firstname}</HelloTitle>
+            </ContainerHello>
+            <ContainerInputBtn>
+                <TextArea
+                    type="text"
+                    name="post"
+                    id="post"
+                    placeholder='Une nouvelle à partager?'
+                    value={newPost}
+                    onChange={(e) => setNewPost(e.target.value)}
+                >
+                </TextArea>
 
-            <div>
                 <div>
                     {postImage
-                        ? (<div>
-                            <img src={postImage} alt="" />
-                            <button onClick={(e) => { setPostImage(null); setFile(null) }}><HighlightOffIcon />
-                            </button>
-                        </div>)
+                        ? (<ContainerImg>
+                            <img src={postImage} style={{ width: 316 }} alt="" />
+                            <ButtonDelete onClick={(e) => { setPostImage(null); setFile(null) }}>X</ButtonDelete>
+                        </ContainerImg>)
                         : null
                     }
                 </div>
 
-                <label htmlFor="file"><ImageSearchIcon /></label>
-                <input type="file"
-                    id='file'
-                    name='file'
-                    accept='.jpg, .jpeg, .png'
-                    style={{ display: 'none' }}
-                    onChange={(e) => handleImage(e)}
-                />
+                <ContainerBtn>
+                    <label htmlFor="file"><ImageSearchIcon style={{ fontSize: 36, color: "#3e3e42" }} /></label>
+                    <input type="file"
+                        id='file'
+                        name='file'
+                        accept='.jpg, .jpeg, .png'
+                        style={{ display: 'none' }}
+                        onChange={(e) => handleImage(e)}
+                    />
 
-                <div>
-                    {newPost || postImage
-                        ? (<button onClick={cleanState}>Annuler le post</button>)
-                        : null}
+                    <div>
+                        {newPost || postImage
+                            ? (<Button onClick={cleanState}>Annuler le post</Button>)
+                            : null}
 
-                    <button onClick={handlePost}>Grouposter</button>
-                </div>
-            </div>
-        </ContainerBtnIcon >
+                        <Button onClick={handlePost}>Grouposter</Button>
+                    </div>
+                </ContainerBtn>
+            </ContainerInputBtn>
+        </ContainerCreatePost >
     );
 };
 
