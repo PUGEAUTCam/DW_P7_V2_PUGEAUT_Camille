@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./features/usersSlice";
 import ProfilePage from "./views/profilePage";
 import LikedPage from "./views/likedPage";
+import Chat from "./views/chat";
 
 function App() {
     const [ready, setReady] = useState(false)
@@ -54,6 +55,13 @@ function App() {
                         view: <LikedPage />
                     })}
                 />
+
+                <Route
+                    path="/chat"
+                    element={<Chat />}
+                />
+
+
 
             </Routes>
         </BrowserRouter>

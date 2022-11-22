@@ -36,7 +36,9 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 exports.getUserPosts = (req, res, next) => {
-    Post.find({ userId: req.auth.userId })
+    let userId = req.query.id ? req.query.id : req.auth.userId
+    console.log(userId);
+    Post.find({ userId: userId })
         .sort({ createdAt: -1 })
         .populate([{ path: 'userId', select: 'name firstname avatar' }, {
             path: "comments", populate: {

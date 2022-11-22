@@ -1,17 +1,31 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { getuserPosts } from '../../API';
 import Post from '../Post';
 
 
-const ProfilePosts = () => {
-
+const ProfilePosts = ({ id }) => {
+    console.log(id)
+    const location = useLocation()
     const [data, setData] = useState(null);
+    const [ready, setReady] = useState(false);
+
+    const getData = async () => {
+        if (id) {
+            await getuserPosts(id).then((res) => setData(res.data));
+        } else {
+            await getuserPosts().then((res) => setData(res.data));
+        }
+        setReady(true);
+    }
 
     useEffect(() => {
         getData()
-    }, [])
+    }, [location])
 
-    const getData = () => getuserPosts().then((res) => setData(res.data));
+    if (!ready) {
+        return null;
+    }
 
     return (
         <div>
