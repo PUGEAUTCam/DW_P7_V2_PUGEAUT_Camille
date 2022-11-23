@@ -16,5 +16,9 @@ export const ContainerName = styled.div`
 export const ContainerTxtImg = styled.div`
     display: flex;
     flex-direction: column;
+`
+export const ContainerIcon = styled.div`
+    display: flex;
+    justify-content: space-around;
     align-items: center;
 `

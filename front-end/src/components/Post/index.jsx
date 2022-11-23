@@ -3,7 +3,7 @@ import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { ContainerName, ContainerPost, ContainerTxtImg } from './style';
+import { ContainerIcon, ContainerName, ContainerPost, ContainerTxtImg } from './style';
 import { AvatarImg, IconAvatar } from '../StyleDefinition/picture';
 import dayjs from 'dayjs';
 import { useSelector } from "react-redux";
@@ -45,34 +45,34 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
 
                 <ContainerTxtImg>
                     <Text style={{ margin: '27px 42px' }}>{post.message} </Text>
-                    <img style={{ width: 316 }} src={post.imageUrl} alt="" />
+                    <img style={{ width: 316, margin: "0px auto" }} src={post.imageUrl} alt="" />
                 </ContainerTxtImg>
             </div>
 
-            <div>
+            <ContainerIcon>
                 {/* Delete et modal Update */}
                 {
                     post.userId._id === userStore.user._id
-                        ? <div>
+                        ? <div style={{ display: "flex" }}>
                             <PostUpdateModal post={post} onUpdate={onUpdate} />
                             <DeleteForeverIcon onClick={() => handleDeletePost(post)} />
                         </div>
                         : null
                 }
                 {/* Like */}
-                <div style={{ display: 'flex' }}>
+                <div style={{ display: 'flex', alignItems: "center" }}>
                     {
                         post.usersLiked.includes(userStore.user._id)
-                            ? <FavoriteIcon onClick={() => handleLike(post)} />
+                            ? <FavoriteIcon style={{ color: "#24b6a9" }} onClick={() => handleLike(post)} />
                             : <FavoriteBorderIcon onClick={() => handleLike(post)} />
                     }
                     <p>{post.likes}</p>
                 </div>
                 {/* Comment */}
-                <InsertCommentIcon onClick={() => setOpenComment(!openComment)} />
+                <InsertCommentIcon style={{ color: "#24b6a9" }} onClick={() => setOpenComment(!openComment)} />
                 {openComment && <Comment post={post} onComment={onComment} />}
 
-            </div>
+            </ContainerIcon>
         </ContainerPost>
     );
 };
