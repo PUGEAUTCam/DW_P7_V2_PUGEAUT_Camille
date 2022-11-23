@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector } from "react-redux";
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
-import { ContainerCreatePost, ContainerHello, ContainerBtn, ContainerInputBtn, HelloTitle, IconHello, TextArea, ContainerImg } from './style';
+import { ContainerCreatePost, ContainerHello, ContainerBtn, ContainerInputBtn, HelloTitle, IconHello, ContainerImg } from './style';
 import { API_ROUTES, header } from '../../API';
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addPost } from '../../features/postsSlice';
 import { AvatarImg } from '../StyleDefinition/picture';
-import { Button, ButtonDelete } from '../ButtonStyle/style';
+import { Button, ButtonDelete, TextArea } from '../ButtonStyle/style';
 
 const CreatePost = () => {
     const userStore = useSelector((state) => state.userStore);

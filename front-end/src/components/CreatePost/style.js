@@ -17,7 +17,7 @@ export const IconHello = styled.div`
     overflow: hidden;
 `
 export const HelloTitle = styled.h2`
-    color: ${colors.primary};
+    color: ${colors.primary2};
     font-weight: 300;
     margin-left: 11px;
 `
@@ -30,20 +30,6 @@ export const ContainerHello = styled.div`
 ///////////////
 export const ContainerInputBtn = styled.div`
     width: 100%;
-`
-export const TextArea = styled.textarea`
-    background: ${colors.bg1};
-    width: 93%;
-    height: 65px;
-    border: none;
-    resize: none;
-    font-size: 16px;
-    margin-left: 13px;
-    color: white;
-    overflow: auto;
-    outline: none;
-    box-shadow: none;
-    font-family: unset;
 `
 export const ContainerImg = styled.div`
     display: flex;

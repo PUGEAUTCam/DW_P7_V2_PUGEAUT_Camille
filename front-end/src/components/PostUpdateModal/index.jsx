@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import HyperModal from 'react-hyper-modal';
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import { postUpdate } from '../../API';
+import { Button, ButtonDelete, TextArea } from '../ButtonStyle/style';
 
 
 const PostUpdateModal = ({ post, onUpdate }) => {
@@ -35,27 +35,29 @@ const PostUpdateModal = ({ post, onUpdate }) => {
 
     return (
         <div>
-            <HyperModal isOpen={open} requestClose={() => setOpen(false)}>
-
+            <HyperModal isOpen={open} requestClose={() => setOpen(false)} style={{ background: "#454545e6" }}>
                 <h2>Modifier votre post</h2>
-                <textarea
-                    name="post"
-                    id="updatePost"
-                    cols='100'
-                    rows='10'
-                    placeholder='Ton nouveau post'
-                    value={updatePost}
-                    onChange={(e) => setUpdatePost(e.target.value)}
-                >
-                </textarea>
-
                 <div>
-                    <img src={updateImage} alt='' />
-                    {updateImage
-                        ? (<button onClick={() => { setUpdateImage(null); setUpdateFile(null) }}><HighlightOffIcon /></button>)
-                        : null
-                    }
+                    <TextArea
+                        name="post"
+                        id="updatePost"
+                        cols='100'
+                        rows='10'
+                        placeholder='Ton nouveau post'
+                        value={updatePost}
+                        onChange={(e) => setUpdatePost(e.target.value)}
+                    >
+                    </TextArea>
+
+                    <div>
+                        <img src={updateImage} alt='' style={{ width: 100 }} />
+                        {updateImage
+                            ? (<ButtonDelete onClick={() => { setUpdateImage(null); setUpdateFile(null) }}>X</ButtonDelete>)
+                            : null
+                        }
+                    </div>
                 </div>
+
                 <label htmlFor={`updateFile_${post._id}`}><ImageSearchIcon /></label>
                 <input type="file"
                     id={`updateFile_${post._id}`}
@@ -65,8 +67,8 @@ const PostUpdateModal = ({ post, onUpdate }) => {
                     onChange={(e) => handleImage(e)}
                 />
 
-                <button onClick={handleSubmit} >Enregistrer les modifications</button>
-                <button onClick={() => setOpen(false)}>Retour</button>
+                <Button onClick={handleSubmit} >Enregistrer</Button>
+                <Button onClick={() => setOpen(false)}>Retour</Button>
             </HyperModal >
 
             <FontAwesomeIcon icon={faPenToSquare} onClick={() => setOpen(true)} />

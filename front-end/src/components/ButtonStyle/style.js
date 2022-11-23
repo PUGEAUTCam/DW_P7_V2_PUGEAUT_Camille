@@ -8,7 +8,7 @@ export const Button = styled.button`
     background:  ${colors.btnBg};
     border: none;
     font-size: 19px;
-    color: rgb(185 46 46);
+    color: ${colors.primary};
     margin-left: 20px;
     transition: all 300ms ease;
 
@@ -17,7 +17,6 @@ export const Button = styled.button`
             transform: scale(1.01);
         }
 `
-
 export const ButtonDelete = styled.button`
     height: 38px;
     width: 36px;
@@ -25,7 +24,7 @@ export const ButtonDelete = styled.button`
     background: ${colors.btnBg};
     border: none;
     font-size: 20px;
-    color: rgb(185 46 46);
+    color: ${colors.primary};
     transition: all 300ms ease;
 
         :hover{
@@ -33,3 +32,50 @@ export const ButtonDelete = styled.button`
             transform: scale(1.03);
         }
 `
+
+export const ButtonComment = styled.button`
+    height: 26px;
+    width: 26px;
+    border-radius: 13px;
+    background: ${colors.btnBg};
+    border: none;
+    font-size: 20px;
+    color: ${colors.blue1};
+    transition: all 300ms ease;
+    margin-bottom: 14px;
+
+        :hover{
+            color:${colors.primary};
+            transform: scale(1.03);
+        }
+`
+
+//INPUT
+export const Input = styled.textarea`
+    background: ${colors.bg1};
+    border: none;
+    resize: none;
+    font-size: 16px;
+    color: white;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    font-family: unset;
+    // max-width: 468px;
+    // width: 100%;
+`
+export const TextArea = styled.textarea`
+    background: ${colors.bg1};
+    width: 93%;
+    height: 65px;
+    border: none;
+    resize: none;
+    font-size: 16px;
+    margin-left: 13px;
+    color: white;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    font-family: unset;
+`
+

@@ -5,7 +5,9 @@ import { useDispatch } from "react-redux";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { getUser } from '../../features/usersSlice';
 import { uploadCoverImg, uploadAvatarImg } from '../../API';
-import { AvatarImg, CoverImg } from './style';
+import { BtnUpdateCover, BtnUpdateCover2, CoverImg } from './style';
+import { Button } from '../ButtonStyle/style';
+import { AvatarProfile } from '../StyleDefinition/picture';
 
 const ProfileCover = ({ dataUser }) => {
     //COVER
@@ -53,21 +55,21 @@ const ProfileCover = ({ dataUser }) => {
 
     return (
         <div>
-            <div>
-                {imageCover
-                    ? (<div>
-                        <CoverImg src={imageCover} alt={"Image de couverture de " + user.firstname} />
-                        <button onClick={(e) => { setImageCover(null); setFileCover(null) }}><HighlightOffIcon />
-                        </button>
-                    </div>)
-                    : <CoverImg src={user.coverImg} alt={"Image de couverture de " + user.firstname} />
-                }
-            </div>
+            {imageCover
+                ? (<div>
+                    <CoverImg src={imageCover} alt={"Image de couverture de " + user.firstname} />
+                    <div>
+                        <Button onClick={(e) => { setImageCover(null); setFileCover(null) }}>Annuler</Button>
+                        <Button onClick={handleChangeCover}>Confirmer</Button>
+                    </div>
+                </div>)
+                : <CoverImg src={user.coverImg} alt={"Image de couverture de " + user.firstname} />
+            }
             {
                 dataUser
                     ? null
                     : <div>
-                        <label htmlFor="coverFile"><AutoFixHighIcon /></label>
+                        <BtnUpdateCover htmlFor="coverFile"><AutoFixHighIcon style={{ fontSize: 32 }} /></BtnUpdateCover>
                         <input
                             id='coverFile'
                             type="file"
@@ -78,44 +80,37 @@ const ProfileCover = ({ dataUser }) => {
                         />
                     </div>
             }
+
+
             <div>
-                {imageCover
-                    ? (<button onClick={handleChangeCover}>Modifier la cover</button>)
-                    : null
+                <div>
+                    {imageAvatar
+                        ? (<div>
+                            <AvatarProfile src={imageAvatar} alt={"Avatar de " + user.firstname} />
+                            <button onClick={(e) => { setImageAvatar(null); setFileAvatar(null) }}><HighlightOffIcon /></button>
+                            <button onClick={handleChangeAvatar}>Modifier la photo de profil</button>
+                        </div>)
+                        : <AvatarProfile src={user.avatar} alt={"Avatar de " + user.firstname} />
+                    }
+                </div>
+                {
+                    dataUser
+                        ? null
+                        : <div>
+                            <BtnUpdateCover2 htmlFor="avatarFile"><AutoFixHighIcon /></BtnUpdateCover2>
+                            <input
+                                id='avatarFile'
+                                type="file"
+                                name="avatarFile"
+                                accept='.jpg, .jpeg, .png'
+                                style={{ display: 'none' }}
+                                onChange={(e) => handleImageAvatar(e)}
+                            />
+                        </div>
                 }
             </div>
 
-            <div>
-                {imageAvatar
-                    ? (<div>
-                        <AvatarImg src={imageAvatar} alt={"Avatar de " + user.firstname} />
-                        <button onClick={(e) => { setImageAvatar(null); setFileAvatar(null) }}><HighlightOffIcon />
-                        </button>
-                    </div>)
-                    : <AvatarImg src={user.avatar} alt={"Avatar de " + user.firstname} />
-                }
-            </div>
-            {
-                dataUser
-                    ? null
-                    : <div>
-                        <label htmlFor="avatarFile"><AutoFixHighIcon /></label>
-                        <input
-                            id='avatarFile'
-                            type="file"
-                            name="avatarFile"
-                            accept='.jpg, .jpeg, .png'
-                            style={{ display: 'none' }}
-                            onChange={(e) => handleImageAvatar(e)}
-                        />
-                    </div>
-            }
-            <div>
-                {imageAvatar
-                    ? (<button onClick={handleChangeAvatar}>Modifier la photo de profil</button>)
-                    : null
-                }
-            </div>
+
         </div>
     );
 };

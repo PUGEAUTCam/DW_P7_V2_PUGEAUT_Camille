@@ -14,9 +14,15 @@ export const IconAvatar = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 13px;
     overflow: hidden;
 `
 
 
+export const AvatarProfile = styled.img`
+    width: 227px;
+    height: 259px;
+    border-radius: 40px;
+    object-fit: cover;
+  
 
+`

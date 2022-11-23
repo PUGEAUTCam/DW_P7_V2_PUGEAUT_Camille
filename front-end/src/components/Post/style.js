@@ -7,6 +7,12 @@ export const ContainerPost = styled.div`
     margin: 0px auto;
 `
 
+export const HeaderUser = styled.div`
+    display: flex;
+    align-items: center;
+    margin-left: 13px;
+`
+
 export const ContainerName = styled.div`
     margin-left: 11px;
     line-height: 5px;
@@ -21,4 +27,12 @@ export const ContainerIcon = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+`
+export const ContainerDeleteUpdate = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    border-top: 1px solid #ffffff36;
+    padding: 12px 0px;
 `

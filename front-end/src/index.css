@@ -17,3 +17,7 @@ a:active{
     color : black;
 }
 
+.icon:hover{
+    color: orangered;
+
+}

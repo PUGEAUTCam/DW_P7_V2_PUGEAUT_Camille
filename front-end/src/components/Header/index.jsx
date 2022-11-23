@@ -21,11 +21,11 @@ const Header = () => {
 
             <NavBar>
 
-                <IconAvatar>
+                <IconAvatar style={{ marginRight: 13 }}>
                     <SearchIcon sx={{ fontSize: 34, color: 'white', display: "flex" }} />
                 </IconAvatar>
 
-                <IconAvatar>
+                <IconAvatar style={{ marginRight: 13 }}>
                     <Link to="/postsLiked">
                         <FavoriteBorderIcon sx={{ fontSize: 34, color: 'white', display: "flex" }} />
                     </Link>
