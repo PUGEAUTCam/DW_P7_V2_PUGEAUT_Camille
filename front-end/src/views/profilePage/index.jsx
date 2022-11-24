@@ -35,8 +35,8 @@ const ProfilePage = () => {
         <div>
             <Header />
             <ProfileCover dataUser={dataUser} />
-            {/* <ProfileDescription dataUser={dataUser} />
-            <ProfilePosts id={id} /> */}
+            <ProfileDescription dataUser={dataUser} />
+            <ProfilePosts id={id} />
         </div>
     );
 };

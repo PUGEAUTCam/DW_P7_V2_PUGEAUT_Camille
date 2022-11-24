@@ -35,17 +35,16 @@ const ProfileDescription = ({ dataUser }) => {
 
     const handleDeconnexion = () => {
         localStorage.clear()
-
         navigate('/login')
     }
 
     return (
-        <div>
+        <div style={{ marginTop: 174 }}>
             <div>
                 <h2>{user.firstname + " " + user.name}</h2>
                 <p>Membre depuis le {dayjs(user.dateSignup).format("DD/MM/YYYY")}</p>
                 <p>Numéro perso {user.phoneNumber}</p>
-                <p>Numéro pro {user.phonePro} </p>
+                <p>Poste occupé : {user.phonePro} </p>
                 <p>Habite à {user.actualLocation}</p>
                 <p>De {user.birthLocation}</p>
             </div>

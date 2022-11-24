@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { API_ROUTES } from '../../API';
 import axios from "axios";
 import { validEmail, validFirstname, validName, validPassword } from '../../utils/formCheck';
+import { Button, InputForm } from '../ButtonStyle/style';
 
 const SignupForm = () => {
 
@@ -43,7 +44,7 @@ const SignupForm = () => {
 
     return (
         <div>
-            <input
+            <InputForm
                 type="text"
                 id='name'
                 placeholder='Nom'
@@ -51,7 +52,7 @@ const SignupForm = () => {
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
             />
             <div>{form.name.length >= 1 ? validName(form.name).message : null}</div>
-            <input
+            <InputForm
                 type="text"
                 id='firstname'
                 placeholder='Prénom'
@@ -59,15 +60,15 @@ const SignupForm = () => {
                 onChange={(e) => setForm({ ...form, firstname: e.target.value })}
             />
             <div>{form.firstname.length >= 1 ? validFirstname(form.firstname).message : null}</div>
-            <input
+            <InputForm
                 type="text"
                 id='email'
-                placeholder='Adresse Email'
+                placeholder='Adresse mail'
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
             />
             <div>{form.email.length >= 1 ? validEmail(form.email).message : null}</div>
-            <input
+            <InputForm
                 type="password"
                 id='password'
                 placeholder='Mot de passe'
@@ -77,9 +78,9 @@ const SignupForm = () => {
             <div>{form.password.length >= 1 ? validPassword(form.password).message : null}</div>
 
 
-            <button onClick={handleSubmit}>S'inscrire</button>
+            <Button onClick={handleSubmit} style={{ marginLeft: 0, marginTop: 61 }}>S'inscrire</Button>
 
-            <p>Vous avez déjà un compte ? <Link to='/'>Connectez-vous</Link></p>
+            <p style={{ marginTop: 48 }}>Vous avez déjà un compte ? <Link to='/' style={{ color: "#24b6a9" }}>Connectez-vous</Link></p>
         </div>
     );
 };

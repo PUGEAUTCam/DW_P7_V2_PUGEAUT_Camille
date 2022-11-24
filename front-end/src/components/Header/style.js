@@ -9,11 +9,17 @@ export const ContainerHeader = styled.header`
     left: 0;
     padding: 0px 36px;
     box-sizing: border-box;
+    margin-top: 6px;
 `
 
 export const Logo = styled.img`
     width: 307px;
-    padding-top: 10px;    
+    padding-top: 10px;  
+        
+    @media all and (max-width: 768px) {
+        
+    }
+  
 `
 
 export const NavBar = styled.nav`

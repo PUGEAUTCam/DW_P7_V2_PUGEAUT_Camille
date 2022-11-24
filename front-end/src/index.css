@@ -9,15 +9,16 @@ html, body {
     color: white;
 }
 
+a{
+    color: white;
+    text-decoration : none;
+}
+
 a:hover {
-    color: black;
+    color: #24b6a9;
 }
 
 a:active{
-    color : black;
+    color : #24b6a9;
 }
 
-.icon:hover{
-    color: orangered;
-
-}

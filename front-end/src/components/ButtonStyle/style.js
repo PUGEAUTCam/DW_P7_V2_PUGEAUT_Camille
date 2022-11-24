@@ -61,9 +61,24 @@ export const Input = styled.textarea`
     outline: none;
     box-shadow: none;
     font-family: unset;
-    // max-width: 468px;
-    // width: 100%;
+    
 `
+export const InputForm = styled.input`
+    background: ${colors.bg1};
+    border: none;
+    resize: none;
+    font-size: 16px;
+    color: white;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    font-family: unset;   
+    width: 327px;
+    border-bottom: 1px solid ${colors.primary};
+    margin-top: 40px;
+    padding-bottom: 9px;
+`
+
 export const TextArea = styled.textarea`
     background: ${colors.bg1};
     width: 93%;
@@ -78,4 +93,3 @@ export const TextArea = styled.textarea`
     box-shadow: none;
     font-family: unset;
 `
-

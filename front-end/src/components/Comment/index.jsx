@@ -41,7 +41,7 @@ const Comment = ({ post, onComment }) => {
                             <Date>{dayjs(comment.createdAt).format("DD/MM/YYYY à HH:mm")}</Date>
                         </ContainerName>
                     </HeaderUser>
-                    <Text style={{ margin: '-5px 71px' }}>{comment.message}</Text>
+                    <Text style={{ margin: '12px 71px' }}>{comment.message}</Text>
                 </CommentSection>
             )}
         </div>

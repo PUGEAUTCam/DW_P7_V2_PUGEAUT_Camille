@@ -11,6 +11,7 @@ export const HeaderUser = styled.div`
     display: flex;
     align-items: center;
     margin-left: 13px;
+    margin-top: 6px;
 `
 
 export const ContainerName = styled.div`

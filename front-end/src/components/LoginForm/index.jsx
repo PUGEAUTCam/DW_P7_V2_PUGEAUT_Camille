@@ -6,6 +6,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { API_ROUTES } from '../../API';
 import { useDispatch } from "react-redux";
 import { getUser } from "../../features/usersSlice";
+import { Button, InputForm } from '../ButtonStyle/style';
+import { ContainerLogin } from './style';
 
 const LoginForm = () => {
     // eslint-disable-next-line 
@@ -19,9 +21,7 @@ const LoginForm = () => {
         error: '',
     });
 
-
     const handleSubmit = () => {
-
         axios.post(API_ROUTES.login, {
             email: form.email,
             password: form.password,
@@ -39,31 +39,33 @@ const LoginForm = () => {
 
     return (
         <div>
-            <input
-                id="email"
-                label="Email"
-                type='text'
-                placeholder='Adresse Email'
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value, error: '' })}
-            />
+            <ContainerLogin>
+                <InputForm
+                    id="email"
+                    label="Email"
+                    type='text'
+                    // autofocus="true"
+                    placeholder='Adresse mail'
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value, error: '' })}
+                />
+                <InputForm
+                    id="Password"
+                    label="Mot de passe"
+                    type='password'
+                    placeholder='Mot de passe'
+                    value={form.password}
+                    onChange={(e) => setForm({ ...form, password: e.target.value, error: '' })}
+                />
 
-            <input
-                id="Password"
-                label="Mot de passe"
-                type='password'
-                placeholder='Mot de passe'
-                value={form.password}
-                onChange={(e) => setForm({ ...form, password: e.target.value, error: '' })}
-            />
+                <Button onClick={handleSubmit} style={{ marginLeft: 0, marginTop: 61 }}>Connexion</Button>
+                <div>{form.error}</div>
+            </ContainerLogin>
 
-            <button onClick={handleSubmit}>Connexion</button>
-
-            <p>Vous n’avez pas de compte ? <Link to="/signup">Inscrivez-vous</Link></p>
-            <div>{form.error}</div>
+            <p style={{ marginTop: 48 }}>
+                Vous n’avez pas de compte ? <Link to="/signup" style={{ color: "#24b6a9" }}>Inscrivez-vous</Link>
+            </p>
         </div>
-
-
     );
 };
 

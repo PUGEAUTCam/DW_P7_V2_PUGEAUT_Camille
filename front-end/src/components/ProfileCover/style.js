@@ -6,7 +6,6 @@ export const CoverImg = styled.img`
     height: 355px;
     object-fit: cover;
     border-radius: 11px;
-    position: relative;
     margin-top: 20px;
 `
 export const SectionCover = styled.div`
@@ -16,8 +15,8 @@ export const SectionCover = styled.div`
 export const BtnUpdateCover = styled.label`
     color: #000000;
     position: absolute;
-    bottom: 101px;
-    left: 35px;
+    bottom: 8px;
+    right: 11px;
     transition: all 300ms ease;
         :hover{
             color:${colors.primary};
@@ -25,12 +24,17 @@ export const BtnUpdateCover = styled.label`
         }
 `
 export const BtnUpdateCover2 = styled.label`
-    color: #000000;
-    position: absolute;
-   
+    color: white;
     transition: all 300ms ease;
+    margin-top: -30px;
         :hover{
-            color:${colors.primary};
+            color:${colors.blue1};
             transform: scale(1.03);
         }
+`
+
+export const ContainerAvatarBtn = styled.div`
+    position: absolute;
+    top: 236px;
+    left: 57px;
 `

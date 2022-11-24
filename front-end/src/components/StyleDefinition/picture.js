@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import colors from "../StyleDefinition/colors"
 
 export const AvatarImg = styled.img`
     width: 100%;
@@ -19,10 +20,9 @@ export const IconAvatar = styled.div`
 
 
 export const AvatarProfile = styled.img`
-    width: 227px;
-    height: 259px;
-    border-radius: 40px;
+    width: 204px;
+    height: 204px;
+    border-radius: 102px;
     object-fit: cover;
-  
-
+    border: 2px solid ${colors.primary};
 `
