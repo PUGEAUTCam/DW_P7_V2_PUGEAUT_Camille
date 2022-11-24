@@ -17,6 +17,22 @@ export const Button = styled.button`
             transform: scale(1.01);
         }
 `
+export const ButtonDeco = styled.button`
+    height: 39px;
+    width: 164px;
+    border-radius: 6px;
+    background:  ${colors.btnBg};
+    border: none;
+    font-size: 19px;
+    color: ${colors.primary};
+    margin-left: 20px;
+    transition: all 300ms ease;
+
+        :hover{
+            color:${colors.blue1};
+            transform: scale(1.01);
+        }
+`
 export const ButtonDelete = styled.button`
     height: 38px;
     width: 36px;

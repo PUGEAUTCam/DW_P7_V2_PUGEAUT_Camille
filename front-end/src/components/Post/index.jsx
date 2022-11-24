@@ -56,7 +56,7 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                 {
                     post.userId._id === userStore.user._id
                         ? <div>
-                            <DehazeIcon style={{ color: "#24b6a9" }} onClick={() => setOpenParams(!openParams)} />
+                            <DehazeIcon onClick={() => setOpenParams(!openParams)} />
                         </div>
                         : null
                 }

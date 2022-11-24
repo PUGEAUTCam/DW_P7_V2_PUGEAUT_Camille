@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
-import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
+import CreateIcon from '@mui/icons-material/Create';
 import HyperModal from 'react-hyper-modal';
-import { ModalInputContainer } from './style';
+import { ContainerBio, ModalInputContainer } from './style';
 import { profileUpdate } from '../../API';
 import { useDispatch } from "react-redux";
 import { getUser } from '../../features/usersSlice';
 import { useNavigate } from 'react-router-dom';
-
+import { ButtonDeco } from '../ButtonStyle/style';
 
 const ProfileDescription = ({ dataUser }) => {
 
@@ -39,19 +39,28 @@ const ProfileDescription = ({ dataUser }) => {
     }
 
     return (
-        <div style={{ marginTop: 174 }}>
-            <div>
-                <h2>{user.firstname + " " + user.name}</h2>
-                <p>Membre depuis le {dayjs(user.dateSignup).format("DD/MM/YYYY")}</p>
-                <p>Numéro perso {user.phoneNumber}</p>
-                <p>Poste occupé : {user.phonePro} </p>
-                <p>Habite à {user.actualLocation}</p>
-                <p>De {user.birthLocation}</p>
-            </div>
-            <div>
-                <h3>Biographie</h3>
-                <p>{user.biography}</p>
-            </div>
+        <div style={{ marginTop: 135 }}>
+
+            <ContainerBio>
+                <div>
+                    <h2 style={{ color: 'rgb(215 78 78)' }}>{user.firstname + " " + user.name}</h2>
+                    <p><span>Membre depuis le </span>{dayjs(user.dateSignup).format("MM / YYYY")}</p>
+                    <p><span>Poste occupé : </span>{user.phoneNumber}</p>
+                    <p><span>Numéro pro : </span>{user.phonePro} </p>
+                    <p><span>Habite à </span>{user.actualLocation}</p>
+                    <p><span>De </span>{user.birthLocation}</p>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        <h3>Biographie</h3>
+                        <CreateIcon
+                            style={{ marginLeft: 10, fontSize: 21, marginBottom: 4 }}
+                            onClick={() => setOpen(true)} />
+                    </div>
+                    <p style={{ marginTop: 0 }}>{user.biography}</p>
+                </div>
+                <div>
+                    <ButtonDeco onClick={handleDeconnexion}>Déconnexion</ButtonDeco>
+                </div>
+            </ContainerBio>
 
             {
                 dataUser
@@ -103,10 +112,6 @@ const ProfileDescription = ({ dataUser }) => {
                             <button onClick={handleSubmit}>Enregistrer les modifications</button>
                             <button onClick={() => setOpen(false)}>Retour</button>
                         </HyperModal>
-
-                        <AutoFixHighIcon onClick={() => setOpen(true)} />
-
-                        <button onClick={handleDeconnexion}>Se déconnecter</button>
                     </div>
             }
         </div >

@@ -59,10 +59,6 @@ const ProfileCover = ({ dataUser }) => {
                 {imageCover
                     ? (<div>
                         <CoverImg src={imageCover} alt={"Image de couverture de " + user.firstname} />
-                        <div>
-                            <Button onClick={(e) => { setImageCover(null); setFileCover(null) }}>Annuler</Button>
-                            <Button onClick={handleChangeCover}>Confirmer</Button>
-                        </div>
                     </div>)
                     : <CoverImg src={user.coverImg} alt={"Image de couverture de " + user.firstname} />
                 }
@@ -79,6 +75,10 @@ const ProfileCover = ({ dataUser }) => {
                                 style={{ display: 'none' }}
                                 onChange={(e) => handleImageCover(e)}
                             />
+                            <div>
+                                <Button onClick={(e) => { setImageCover(null); setFileCover(null) }}>Annuler</Button>
+                                <Button onClick={handleChangeCover}>Confirmer</Button>
+                            </div>
                         </div>
                 }
             </div>
@@ -98,7 +98,7 @@ const ProfileCover = ({ dataUser }) => {
                     dataUser
                         ? null
                         : <div style={{ marginTop: -30 }}>
-                            <BtnUpdateCover2 htmlFor="avatarFile"><AutoFixHighIcon style={{ fontSize: 29 }} /></BtnUpdateCover2>
+                            <BtnUpdateCover2 htmlFor="avatarFile"><AutoFixHighIcon style={{ fontSize: 26 }} /></BtnUpdateCover2>
                             <input
                                 id='avatarFile'
                                 type="file"

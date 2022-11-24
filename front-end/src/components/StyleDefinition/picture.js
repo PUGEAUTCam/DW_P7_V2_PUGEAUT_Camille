@@ -24,5 +24,5 @@ export const AvatarProfile = styled.img`
     height: 204px;
     border-radius: 102px;
     object-fit: cover;
-    border: 2px solid ${colors.primary};
+    border: 1px solid ${colors.primary};
 `

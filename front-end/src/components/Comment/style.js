@@ -7,6 +7,7 @@ export const ContainerInput = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     padding-top: 13px;
+    padding-bottom: 15px;
 `
 
 export const CommentSection = styled.div`
