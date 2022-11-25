@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import Text from "../Text"
 import { Link, useNavigate } from 'react-router-dom';
 import { API_ROUTES } from '../../API';
 import { useDispatch } from "react-redux";
@@ -33,7 +32,7 @@ const LoginForm = () => {
             })
 
             .catch(({ response }) => {
-                setForm({ ...form, error: response?.status === 500 ? 'Notre serveur est actuellement indisponible' : "Votre email ou mot de passe est incorrect" })
+                setForm({ ...form, error: response?.status === 500 ? 'Notre serveur est actuellement indisponible' : "Votre email et / ou mot de passe est incorrect" })
             });
     };
 
@@ -44,7 +43,7 @@ const LoginForm = () => {
                     id="email"
                     label="Email"
                     type='text'
-                    // autofocus="true"
+                    autofocus="true"
                     placeholder='Adresse mail'
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value, error: '' })}
@@ -59,7 +58,7 @@ const LoginForm = () => {
                 />
 
                 <Button onClick={handleSubmit} style={{ marginLeft: 0, marginTop: 61 }}>Connexion</Button>
-                <div>{form.error}</div>
+                <div style={{ marginTop: 28 }}>{form.error}</div>
             </ContainerLogin>
 
             <p style={{ marginTop: 48 }}>

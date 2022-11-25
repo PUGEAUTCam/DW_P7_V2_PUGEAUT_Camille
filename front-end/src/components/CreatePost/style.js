@@ -42,6 +42,7 @@ export const ContainerBtn = styled.div`
     align-items: center;
     justify-content: center;
     margin-bottom: 17px;
+    margin-right: 47px;
 `
 
 

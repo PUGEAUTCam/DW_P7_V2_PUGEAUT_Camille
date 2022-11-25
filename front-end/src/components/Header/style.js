@@ -7,7 +7,6 @@ export const ContainerHeader = styled.header`
     // position: fixed;
     width: 100%;
     left: 0;
-    padding: 0px 36px;
     box-sizing: border-box;
     margin-top: 6px;
 `

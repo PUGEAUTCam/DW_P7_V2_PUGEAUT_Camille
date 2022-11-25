@@ -48,6 +48,7 @@ const SignupForm = () => {
                 type="text"
                 id='name'
                 placeholder='Nom'
+                autoFocus="true"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
             />
@@ -75,8 +76,7 @@ const SignupForm = () => {
                 value={form.password}
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
             />
-            <div>{form.password.length >= 1 ? validPassword(form.password).message : null}</div>
-
+            <div style={{ marginTop: 6 }}>{form.password.length >= 1 ? validPassword(form.password).message : null}</div>
 
             <Button onClick={handleSubmit} style={{ marginLeft: 0, marginTop: 61 }}>S'inscrire</Button>
 

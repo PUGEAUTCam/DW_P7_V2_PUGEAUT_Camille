@@ -6,8 +6,8 @@ export const ContainerInput = styled.div`
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    padding-top: 13px;
-    padding-bottom: 15px;
+    padding-top: 20px;
+    padding-bottom: 19px;
 `
 
 export const CommentSection = styled.div`

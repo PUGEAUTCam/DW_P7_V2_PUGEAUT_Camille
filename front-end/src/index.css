@@ -1,17 +1,22 @@
 html, body {
-    max-width: 1620px;
+    max-width: 1440px;
 	margin: 0 auto;
     height: 100%;
     width: 100%;
     background-color: rgb(24 23 23);
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lato', sans-serif;
     color: white;
+}
+
+p{
+    font-size: 18px;
 }
 
 a{
     color: white;
     text-decoration : none;
+    cursor: pointer
 }
 
 a:hover {
@@ -24,4 +29,16 @@ a:active{
 
 span{
     color: gray;
+}
+input{
+    cursor: pointer;
+    font-size: 18px;
+}
+
+textarea{
+    cursor: pointer;
+}
+
+button{
+    cursor: pointer;
 }

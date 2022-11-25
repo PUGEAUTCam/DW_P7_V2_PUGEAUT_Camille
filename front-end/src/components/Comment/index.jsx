@@ -24,6 +24,7 @@ const Comment = ({ post, onComment }) => {
                 <Input
                     type="text"
                     placeholder='Envie de commenter?'
+                    style={{ width: 457, border: '1px solid #f27f3d82', borderRadius: 5 }}
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                 />
@@ -37,7 +38,7 @@ const Comment = ({ post, onComment }) => {
                             <AvatarImg src={comment.userId.avatar} alt={"avatar de " + post.userId?.firstname + " " + post.userId?.name} />
                         </IconHello>
                         <ContainerName style={{ paddingTop: 0 }}>
-                            <p>{comment.userId.firstname + comment.userId.name}</p>
+                            <p>{comment.userId.firstname + " " + comment.userId.name}</p>
                             <Date>{dayjs(comment.createdAt).format("DD/MM/YYYY à HH:mm")}</Date>
                         </ContainerName>
                     </HeaderUser>

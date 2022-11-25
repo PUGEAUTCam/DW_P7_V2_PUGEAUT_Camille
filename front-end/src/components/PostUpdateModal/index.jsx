@@ -48,7 +48,6 @@ const PostUpdateModal = ({ post, onUpdate }) => {
                         onChange={(e) => setUpdatePost(e.target.value)}
                     >
                     </TextArea>
-
                     <div>
                         <img src={updateImage} alt='' style={{ width: 100 }} />
                         {updateImage

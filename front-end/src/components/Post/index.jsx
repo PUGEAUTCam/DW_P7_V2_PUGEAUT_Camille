@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import InsertCommentIcon from '@mui/icons-material/InsertComment';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DehazeIcon from '@mui/icons-material/Dehaze';
@@ -36,19 +35,19 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
         <ContainerPost key={index}>
             <div >
                 <HeaderUser>
-                    <IconAvatar style={{ border: "1px solid #24b6a9" }} onClick={() => navigate(`/profile?id=${post.userId._id}`)}>
+                    <IconAvatar style={{ border: "1px solid #24b6a9", background: "white" }} onClick={() => navigate(`/profile?id=${post.userId._id}`)}>
                         <AvatarImg src={post.userId.avatar} alt={"avatar de " + post.userId?.firstname + " " + post.userId?.name} />
                     </IconAvatar>
 
-                    <ContainerName>
+                    <ContainerName style={{ cursor: "pointer" }}>
                         <p onClick={() => navigate(`/profile?id=${post.userId._id}`)}> {post.userId?.firstname + " " + post.userId?.name}</p>
                         <Date>{dayjs(post.createdAt).format("DD/MM/YYYY à HH:mm")}</Date>
                     </ContainerName>
                 </HeaderUser>
 
                 <ContainerTxtImg>
-                    <Text style={{ margin: '27px 42px' }}>{post.message} </Text>
-                    <img style={{ width: 316, margin: "0px auto" }} src={post.imageUrl} alt="" />
+                    <Text style={{ margin: "27px 81px" }}>{post.message} </Text>
+                    <img style={{ width: 323, margin: "0px auto" }} src={post.imageUrl} alt="" />
                 </ContainerTxtImg>
             </div>
 
@@ -56,7 +55,7 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                 {
                     post.userId._id === userStore.user._id
                         ? <div>
-                            <DehazeIcon onClick={() => setOpenParams(!openParams)} />
+                            <DehazeIcon onClick={() => setOpenParams(!openParams)} style={{ cursor: "pointer" }} />
                         </div>
                         : null
                 }
@@ -64,19 +63,19 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                 <div style={{ display: 'flex', alignItems: "center" }}>
                     {
                         post.usersLiked.includes(userStore.user._id)
-                            ? <FavoriteIcon style={{ color: "#24b6a9" }} onClick={() => handleLike(post)} />
-                            : <FavoriteBorderIcon onClick={() => handleLike(post)} />
+                            ? <FavoriteIcon style={{ color: "#24b6a9", cursor: "pointer" }} onClick={() => handleLike(post)} />
+                            : <FavoriteBorderIcon style={{ cursor: "pointer" }} onClick={() => handleLike(post)} />
                     }
                     <p style={{ padding: 2 }}>{post.likes}</p>
                 </div>
                 {/* Comment */}
-                <ChatBubbleOutlineIcon className='icon' style={{ color: "#24b6a9" }} onClick={() => setOpenComment(!openComment)} />
+                <ChatBubbleOutlineIcon className='icon' style={{ color: "#24b6a9", cursor: "pointer" }} onClick={() => setOpenComment(!openComment)} />
             </ContainerIcon>
 
             {openParams &&
                 <ContainerDeleteUpdate style={{ display: "flex" }}>
-                    <PostUpdateModal post={post} onUpdate={onUpdate} />
-                    <DeleteForeverIcon onClick={() => handleDeletePost(post)} />
+                    <PostUpdateModal post={post} onUpdate={onUpdate} style={{ cursor: "pointer" }} />
+                    <DeleteForeverIcon onClick={() => handleDeletePost(post)} style={{ cursor: "pointer" }} />
                 </ContainerDeleteUpdate>}
 
             {openComment && <Comment post={post} onComment={onComment} />}

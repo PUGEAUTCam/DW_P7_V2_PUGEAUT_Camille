@@ -49,7 +49,7 @@ const CreatePost = () => {
     return (
         <ContainerCreatePost>
             <ContainerHello>
-                <IconHello style={{ border: "1px solid rgb(225, 122, 122)", marginLeft: "13px" }}>
+                <IconHello style={{ border: "1px solid rgb(225, 122, 122)", marginLeft: "13px", background: "white" }}>
                     <AvatarImg src={userStore.user.avatar} alt={"avatar de " + userStore.user.firstname} />
                 </IconHello>
                 <HelloTitle>Bonjour {userStore.user.firstname}</HelloTitle>
@@ -84,7 +84,6 @@ const CreatePost = () => {
                         style={{ display: 'none' }}
                         onChange={(e) => handleImage(e)}
                     />
-
                     <div>
                         {newPost || postImage
                             ? (<Button onClick={cleanState}>Annuler le post</Button>)

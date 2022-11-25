@@ -16,9 +16,8 @@ export const IconAvatar = styled.div`
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
 `
-
-
 export const AvatarProfile = styled.img`
     width: 204px;
     height: 204px;

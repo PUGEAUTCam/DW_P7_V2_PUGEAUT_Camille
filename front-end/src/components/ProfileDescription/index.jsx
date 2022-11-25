@@ -39,10 +39,10 @@ const ProfileDescription = ({ dataUser }) => {
     }
 
     return (
-        <div style={{ marginTop: 135 }}>
+        <div style={{ marginTop: 82 }}>
 
             <ContainerBio>
-                <div>
+                <div style={{ width: "100%" }}>
                     <h2 style={{ color: 'rgb(215 78 78)' }}>{user.firstname + " " + user.name}</h2>
                     <p><span>Membre depuis le </span>{dayjs(user.dateSignup).format("MM / YYYY")}</p>
                     <p><span>Poste occupé : </span>{user.phoneNumber}</p>
@@ -51,69 +51,72 @@ const ProfileDescription = ({ dataUser }) => {
                     <p><span>De </span>{user.birthLocation}</p>
                     <div style={{ display: "flex", alignItems: "center" }}>
                         <h3>Biographie</h3>
-                        <CreateIcon
-                            style={{ marginLeft: 10, fontSize: 21, marginBottom: 4 }}
-                            onClick={() => setOpen(true)} />
+                        {
+                            dataUser
+                                ? null
+                                : <CreateIcon
+                                    style={{ marginLeft: 10, fontSize: 21, marginBottom: 4, cursor: "pointer" }}
+                                    onClick={() => setOpen(true)}
+                                />
+                        }
                     </div>
                     <p style={{ marginTop: 0 }}>{user.biography}</p>
                 </div>
-                <div>
-                    <ButtonDeco onClick={handleDeconnexion}>Déconnexion</ButtonDeco>
-                </div>
+                {
+                    dataUser
+                        ? null
+                        : <ButtonDeco onClick={handleDeconnexion}>Déconnexion</ButtonDeco>
+                }
             </ContainerBio>
 
-            {
-                dataUser
-                    ? null
-                    :
-                    <div>
-                        <HyperModal isOpen={open} requestClose={() => setOpen(false)}>
-                            <ModalInputContainer>
-                                <label htmlFor="phone-perso">Numéro perso</label>
-                                <input
-                                    type="tel"
-                                    id="phoneperso"
-                                    value={form.phoneNumber}
-                                    onChange={(e) => setForm({ ...form, phoneNumber: e.target.value })}
-                                />
+            <div>
+                <HyperModal isOpen={open} requestClose={() => setOpen(false)}>
+                    <ModalInputContainer>
+                        <label htmlFor="phone-perso">Numéro perso</label>
+                        <input
+                            type="tel"
+                            id="phoneperso"
+                            value={form.phoneNumber}
+                            onChange={(e) => setForm({ ...form, phoneNumber: e.target.value })}
+                        />
 
-                                <label htmlFor="phone-pro">Numéro pro</label>
-                                <input
-                                    type="tel"
-                                    id="phonepro"
-                                    value={form.phonePro}
-                                    onChange={(e) => setForm({ ...form, phonePro: e.target.value })}
-                                />
+                        <label htmlFor="phone-pro">Numéro pro</label>
+                        <input
+                            type="tel"
+                            id="phonepro"
+                            value={form.phonePro}
+                            onChange={(e) => setForm({ ...form, phonePro: e.target.value })}
+                        />
 
-                                <label htmlFor="actual-location">Habite à</label>
-                                <input
-                                    type="text"
-                                    id="actualLocation"
-                                    value={form.actualLocation}
-                                    onChange={(e) => setForm({ ...form, actualLocation: e.target.value })}
-                                />
+                        <label htmlFor="actual-location">Habite à</label>
+                        <input
+                            type="text"
+                            id="actualLocation"
+                            value={form.actualLocation}
+                            onChange={(e) => setForm({ ...form, actualLocation: e.target.value })}
+                        />
 
-                                <label htmlFor="birth-location">De</label>
-                                <input
-                                    type="text"
-                                    id="birthLocation"
-                                    value={form.birthLocation}
-                                    onChange={(e) => setForm({ ...form, birthLocation: e.target.value })}
-                                />
+                        <label htmlFor="birth-location">De</label>
+                        <input
+                            type="text"
+                            id="birthLocation"
+                            value={form.birthLocation}
+                            onChange={(e) => setForm({ ...form, birthLocation: e.target.value })}
+                        />
 
-                                <label htmlFor="biography">Biographie</label>
-                                <textarea
-                                    type="text"
-                                    id="biography"
-                                    value={form.biography}
-                                    onChange={(e) => setForm({ ...form, biography: e.target.value })}
-                                />
-                            </ModalInputContainer>
-                            <button onClick={handleSubmit}>Enregistrer les modifications</button>
-                            <button onClick={() => setOpen(false)}>Retour</button>
-                        </HyperModal>
-                    </div>
-            }
+                        <label htmlFor="biography">Biographie</label>
+                        <textarea
+                            type="text"
+                            id="biography"
+                            value={form.biography}
+                            onChange={(e) => setForm({ ...form, biography: e.target.value })}
+                        />
+                    </ModalInputContainer>
+                    <button onClick={handleSubmit}>Enregistrer les modifications</button>
+                    <button onClick={() => setOpen(false)}>Retour</button>
+                </HyperModal>
+            </div>
+
         </div >
     );
 };

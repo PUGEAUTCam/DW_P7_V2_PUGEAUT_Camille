@@ -12,6 +12,18 @@ export const SectionCover = styled.div`
     width: 100%;
     height: 480px;
 `
+export const ContainerAvatarBtn = styled.div`
+    position: absolute;
+    top: 236px;
+    left: 57px;
+`
+export const ContainerBtnConfirmCover = styled.div`
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+`
+
 export const BtnUpdateCover = styled.label`
     color: #000000;
     position: absolute;
@@ -33,8 +45,3 @@ export const BtnUpdateCover2 = styled.label`
         }
 `
 
-export const ContainerAvatarBtn = styled.div`
-    position: absolute;
-    top: 236px;
-    left: 57px;
-`

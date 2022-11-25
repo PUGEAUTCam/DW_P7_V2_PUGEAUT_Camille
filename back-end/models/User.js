@@ -46,11 +46,11 @@ const userSchema = mongoose.Schema({
     },
     avatar: {
         type: String,
-        default: "http://localhost:5500/images/profil-picture.jpg",
+        default: "http://localhost:5500/images/profile-icon.png",
     },
     coverImg: {
         type: String,
-        default: "http://localhost:5500/images/profil-picture.jpg",
+        default: "http://localhost:5500/images/icon-left-font.png",
     },
 },
     {

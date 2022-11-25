@@ -28,6 +28,7 @@ export const ContainerIcon = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-top: 17px;
 `
 export const ContainerDeleteUpdate = styled.div`
     display: flex;

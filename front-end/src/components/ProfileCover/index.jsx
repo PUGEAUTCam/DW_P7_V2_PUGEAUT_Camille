@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import { useDispatch } from "react-redux";
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { getUser } from '../../features/usersSlice';
 import { uploadCoverImg, uploadAvatarImg } from '../../API';
-import { BtnUpdateCover, BtnUpdateCover2, ContainerAvatarBtn, CoverImg } from './style';
-import { Button } from '../ButtonStyle/style';
+import { BtnUpdateCover, BtnUpdateCover2, ContainerAvatarBtn, ContainerBtnConfirmCover, CoverImg } from './style';
+import { Button, ButtonAvatar } from '../ButtonStyle/style';
 import { AvatarProfile } from '../StyleDefinition/picture';
 
 const ProfileCover = ({ dataUser }) => {
@@ -59,14 +58,19 @@ const ProfileCover = ({ dataUser }) => {
                 {imageCover
                     ? (<div>
                         <CoverImg src={imageCover} alt={"Image de couverture de " + user.firstname} />
+                        <ContainerBtnConfirmCover>
+                            <Button onClick={(e) => { setImageCover(null); setFileCover(null) }}>Annuler</Button>
+                            <Button onClick={handleChangeCover}>Confirmer</Button>
+                        </ContainerBtnConfirmCover>
                     </div>)
                     : <CoverImg src={user.coverImg} alt={"Image de couverture de " + user.firstname} />
                 }
                 {
                     dataUser
                         ? null
-                        : <div style={{ marginTop: "-32px" }}>
-                            <BtnUpdateCover htmlFor="coverFile"><AutoFixHighIcon style={{ fontSize: 32 }} /></BtnUpdateCover>
+                        :
+                        <div>
+                            <BtnUpdateCover htmlFor="coverFile"><AutoFixHighIcon style={{ fontSize: 32, cursor: "pointer" }} /></BtnUpdateCover>
                             <input
                                 id='coverFile'
                                 type="file"
@@ -75,10 +79,6 @@ const ProfileCover = ({ dataUser }) => {
                                 style={{ display: 'none' }}
                                 onChange={(e) => handleImageCover(e)}
                             />
-                            <div>
-                                <Button onClick={(e) => { setImageCover(null); setFileCover(null) }}>Annuler</Button>
-                                <Button onClick={handleChangeCover}>Confirmer</Button>
-                            </div>
                         </div>
                 }
             </div>
@@ -88,8 +88,8 @@ const ProfileCover = ({ dataUser }) => {
                     ? (<div>
                         <AvatarProfile src={imageAvatar} alt={"Avatar de " + user.firstname} />
                         <div>
-                            <button onClick={(e) => { setImageAvatar(null); setFileAvatar(null) }}><HighlightOffIcon /></button>
-                            <button onClick={handleChangeAvatar}>Modifier la photo de profil</button>
+                            <ButtonAvatar onClick={(e) => { setImageAvatar(null); setFileAvatar(null) }}>Annuler</ButtonAvatar>
+                            <ButtonAvatar onClick={handleChangeAvatar}>Confirmer</ButtonAvatar>
                         </div>
                     </div>)
                     : <AvatarProfile src={user.avatar} alt={"Avatar de " + user.firstname} />
@@ -98,7 +98,7 @@ const ProfileCover = ({ dataUser }) => {
                     dataUser
                         ? null
                         : <div style={{ marginTop: -30 }}>
-                            <BtnUpdateCover2 htmlFor="avatarFile"><AutoFixHighIcon style={{ fontSize: 26 }} /></BtnUpdateCover2>
+                            <BtnUpdateCover2 htmlFor="avatarFile"><AutoFixHighIcon style={{ fontSize: 26, cursor: "pointer" }} /></BtnUpdateCover2>
                             <input
                                 id='avatarFile'
                                 type="file"

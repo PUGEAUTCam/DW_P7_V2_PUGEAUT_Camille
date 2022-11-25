@@ -31,7 +31,7 @@ const Header = () => {
                     </Link>
                 </IconAvatar>
 
-                <IconAvatar>
+                <IconAvatar style={{ background: "white" }}>
                     <Link to="/profile">
                         <AvatarImg
                             src={userStore.user.avatar}
