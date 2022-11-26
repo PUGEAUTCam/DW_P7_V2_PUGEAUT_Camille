@@ -1,3 +1,7 @@
+// @media all and (max-width: 768px) 
+
+// @media all and (max-width: 992px)
+
 export const mediaQueries = {
     mobileOnly: "@media all and (max-width: 768px)"
 
@@ -30,7 +34,7 @@ export const mediaQueries = {
 //     ecran-max: 1624px,
 // )
 
-      
-// @media all and (max-width: 768px) {
-        
-// }
+
+@media all and(max - width: 768px) {
+
+}

@@ -43,7 +43,7 @@ const LoginForm = () => {
                     id="email"
                     label="Email"
                     type='text'
-                    autofocus="true"
+                    autoFocus={true}
                     placeholder='Adresse mail'
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value, error: '' })}
@@ -61,7 +61,7 @@ const LoginForm = () => {
                 <div style={{ marginTop: 28 }}>{form.error}</div>
             </ContainerLogin>
 
-            <p style={{ marginTop: 48 }}>
+            <p style={{ marginTop: 48, textAlign: "unset" }}>
                 Vous n’avez pas de compte ? <Link to="/signup" style={{ color: "#24b6a9" }}>Inscrivez-vous</Link>
             </p>
         </div>

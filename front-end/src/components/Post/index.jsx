@@ -5,7 +5,7 @@ import DehazeIcon from '@mui/icons-material/Dehaze';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { ContainerDeleteUpdate, ContainerIcon, ContainerName, ContainerPost, ContainerTxtImg, HeaderUser } from './style';
-import { AvatarImg, IconAvatar } from '../StyleDefinition/picture';
+import { AvatarImg, IconAvatar, ImgPost } from '../StyleDefinition/picture';
 import dayjs from 'dayjs';
 import { useSelector } from "react-redux";
 import { deletePost, likePost } from '../../API';
@@ -46,8 +46,8 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                 </HeaderUser>
 
                 <ContainerTxtImg>
-                    <Text style={{ margin: "27px 81px" }}>{post.message} </Text>
-                    <img style={{ width: 323, margin: "0px auto" }} src={post.imageUrl} alt="" />
+                    <Text>{post.message} </Text>
+                    <ImgPost src={post.imageUrl} alt="" />
                 </ContainerTxtImg>
             </div>
 

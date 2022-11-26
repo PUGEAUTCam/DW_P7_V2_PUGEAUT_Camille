@@ -3,11 +3,15 @@ import colors from "../StyleDefinition/colors"
 
 
 export const ContainerCreatePost = styled.div`
-    width: 730px;
+    max-width: 730px;
+    width: 90%;
     margin: 0px auto;
     margin-top: 36px;
     margin-bottom: 80px;
     border: 1px solid ${colors.border};
+        @media all and (max-width: 768px) {
+            margin-bottom: 0px;
+        }
 `
 export const IconHello = styled.div`
     border: 1px solid rgb(225, 122, 122);
@@ -15,17 +19,26 @@ export const IconHello = styled.div`
     height: 44px;
     border-radius: 22px;
     overflow: hidden;
+        @media all and (max-width: 768px) {
+            width: 36px;
+            height: 36px;
+            border-radius: 18px;
+        }    
 `
 export const HelloTitle = styled.h2`
     color: ${colors.primary2};
     font-weight: 300;
     margin-left: 11px;
+
 `
 export const ContainerHello = styled.div`
-    width: 100%;
+    width: 98%;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
+        @media screen and (max-width: 768px) {
+            justify-content: center;
+        }
 `
 ///////////////
 export const ContainerInputBtn = styled.div`
@@ -43,6 +56,10 @@ export const ContainerBtn = styled.div`
     justify-content: center;
     margin-bottom: 17px;
     margin-right: 47px;
+    @media all and (max-width: 768px) {
+        margin-right:0px;
+    }
+    
 `
 
 

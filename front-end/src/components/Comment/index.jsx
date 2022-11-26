@@ -6,7 +6,7 @@ import { ButtonComment, Input } from '../ButtonStyle/style';
 import { CommentSection, ContainerInput } from './style';
 import { IconHello } from '../CreatePost/style';
 import { ContainerName, HeaderUser } from '../Post/style';
-import { Date, Text } from '../Text';
+import { Date, Text, TextComment } from '../Text';
 
 const Comment = ({ post, onComment }) => {
 
@@ -24,7 +24,7 @@ const Comment = ({ post, onComment }) => {
                 <Input
                     type="text"
                     placeholder='Envie de commenter?'
-                    style={{ width: 457, border: '1px solid #f27f3d82', borderRadius: 5 }}
+                    style={{ border: '1px solid #f27f3d82', borderRadius: 5 }}
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                 />
@@ -42,7 +42,7 @@ const Comment = ({ post, onComment }) => {
                             <Date>{dayjs(comment.createdAt).format("DD/MM/YYYY à HH:mm")}</Date>
                         </ContainerName>
                     </HeaderUser>
-                    <Text style={{ margin: '12px 71px' }}>{comment.message}</Text>
+                    <TextComment>{comment.message}</TextComment>
                 </CommentSection>
             )}
         </div>

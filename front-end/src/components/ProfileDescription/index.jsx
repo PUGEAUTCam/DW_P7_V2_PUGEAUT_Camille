@@ -8,7 +8,8 @@ import { profileUpdate } from '../../API';
 import { useDispatch } from "react-redux";
 import { getUser } from '../../features/usersSlice';
 import { useNavigate } from 'react-router-dom';
-import { ButtonDeco } from '../ButtonStyle/style';
+import { Button, ButtonDeco, Input } from '../ButtonStyle/style';
+import { ContainerBtn } from '../PostUpdateModal/style';
 
 const ProfileDescription = ({ dataUser }) => {
 
@@ -72,16 +73,15 @@ const ProfileDescription = ({ dataUser }) => {
             <div>
                 <HyperModal isOpen={open} requestClose={() => setOpen(false)}>
                     <ModalInputContainer>
-                        <label htmlFor="phone-perso">Numéro perso</label>
-                        <input
+                        <label htmlFor="actual-location">Poste occupé</label>
+                        <Input
                             type="tel"
                             id="phoneperso"
                             value={form.phoneNumber}
                             onChange={(e) => setForm({ ...form, phoneNumber: e.target.value })}
                         />
-
-                        <label htmlFor="phone-pro">Numéro pro</label>
-                        <input
+                        <label htmlFor="actual-location">Numéro de téléphone</label>
+                        <Input
                             type="tel"
                             id="phonepro"
                             value={form.phonePro}
@@ -89,7 +89,7 @@ const ProfileDescription = ({ dataUser }) => {
                         />
 
                         <label htmlFor="actual-location">Habite à</label>
-                        <input
+                        <Input
                             type="text"
                             id="actualLocation"
                             value={form.actualLocation}
@@ -97,7 +97,7 @@ const ProfileDescription = ({ dataUser }) => {
                         />
 
                         <label htmlFor="birth-location">De</label>
-                        <input
+                        <Input
                             type="text"
                             id="birthLocation"
                             value={form.birthLocation}
@@ -105,15 +105,17 @@ const ProfileDescription = ({ dataUser }) => {
                         />
 
                         <label htmlFor="biography">Biographie</label>
-                        <textarea
+                        <Input
                             type="text"
                             id="biography"
                             value={form.biography}
                             onChange={(e) => setForm({ ...form, biography: e.target.value })}
                         />
                     </ModalInputContainer>
-                    <button onClick={handleSubmit}>Enregistrer les modifications</button>
-                    <button onClick={() => setOpen(false)}>Retour</button>
+                    <ContainerBtn>
+                        <Button onClick={handleSubmit}>Enregistrer</Button>
+                        <Button onClick={() => setOpen(false)}>Retour</Button>
+                    </ContainerBtn>
                 </HyperModal>
             </div>
 

@@ -6,7 +6,7 @@ import { API_ROUTES, header } from '../../API';
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addPost } from '../../features/postsSlice';
-import { AvatarImg } from '../StyleDefinition/picture';
+import { AvatarImg, ImgCreatePost } from '../StyleDefinition/picture';
 import { Button, ButtonDelete, TextArea } from '../ButtonStyle/style';
 
 const CreatePost = () => {
@@ -68,7 +68,7 @@ const CreatePost = () => {
                 <div>
                     {postImage
                         ? (<ContainerImg>
-                            <img src={postImage} style={{ width: 316 }} alt="" />
+                            <ImgCreatePost src={postImage} alt="" />
                             <ButtonDelete onClick={(e) => { setPostImage(null); setFile(null) }}>X</ButtonDelete>
                         </ContainerImg>)
                         : null
@@ -86,7 +86,7 @@ const CreatePost = () => {
                     />
                     <div>
                         {newPost || postImage
-                            ? (<Button onClick={cleanState}>Annuler le post</Button>)
+                            ? (<Button onClick={cleanState}>Annuler</Button>)
                             : null}
 
                         <Button onClick={handlePost}>Grouposter</Button>

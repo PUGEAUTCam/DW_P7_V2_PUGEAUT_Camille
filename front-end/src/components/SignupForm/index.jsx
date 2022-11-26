@@ -80,7 +80,7 @@ const SignupForm = () => {
 
             <Button onClick={handleSubmit} style={{ marginLeft: 0, marginTop: 61 }}>S'inscrire</Button>
 
-            <p style={{ marginTop: 48 }}>Vous avez déjà un compte ? <Link to='/' style={{ color: "#24b6a9" }}>Connectez-vous</Link></p>
+            <p style={{ marginTop: 48, textAlign: "unset" }}>Vous avez déjà un compte ? <Link to='/' style={{ color: "#24b6a9" }}>Connectez-vous</Link></p>
         </div>
     );
 };

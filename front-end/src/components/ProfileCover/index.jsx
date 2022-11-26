@@ -4,7 +4,7 @@ import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import { useDispatch } from "react-redux";
 import { getUser } from '../../features/usersSlice';
 import { uploadCoverImg, uploadAvatarImg } from '../../API';
-import { BtnUpdateCover, BtnUpdateCover2, ContainerAvatarBtn, ContainerBtnConfirmCover, CoverImg } from './style';
+import { BtnUpdateCover, BtnUpdateCover2, ContainerAvatarBtn, ContainerBtnConfirmCover, ContainerbtnUpdate, CoverImg } from './style';
 import { Button, ButtonAvatar } from '../ButtonStyle/style';
 import { AvatarProfile } from '../StyleDefinition/picture';
 
@@ -97,7 +97,7 @@ const ProfileCover = ({ dataUser }) => {
                 {
                     dataUser
                         ? null
-                        : <div style={{ marginTop: -30 }}>
+                        : <ContainerbtnUpdate>
                             <BtnUpdateCover2 htmlFor="avatarFile"><AutoFixHighIcon style={{ fontSize: 26, cursor: "pointer" }} /></BtnUpdateCover2>
                             <input
                                 id='avatarFile'
@@ -107,7 +107,7 @@ const ProfileCover = ({ dataUser }) => {
                                 style={{ display: 'none' }}
                                 onChange={(e) => handleImageAvatar(e)}
                             />
-                        </div>
+                        </ContainerbtnUpdate>
                 }
             </ContainerAvatarBtn>
 

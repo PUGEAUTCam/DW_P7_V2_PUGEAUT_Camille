@@ -7,10 +7,24 @@ export const Date = styled.p`
 
 export const Text = styled.p`
     color: #b0abab;
+    font-size: 16px;
+    text-align: justify;
+    margin: 27px 81px;
+        @media screen and (max-width: 768px) {
+            font-size: 15px;
+            margin: 18px 25px;
+        }
+`
+export const TextComment = styled.p`
+    color: #b0abab;
     font-size: 18px;
     text-align: justify;
+    margin: 3px 71px;
+        @media screen and (max-width: 768px) {
+            font-size: 15px;
+            margin: 3px 25px;
+        }
 `
 
 
-// color: ${(props) => props.color ? props.color : "black"};
-//     ${(props) => props.bold ? `font-weight: bold;` : null}
+

@@ -3,8 +3,9 @@ import colors from "../StyleDefinition/colors"
 
 export const ContainerPost = styled.div`
     border: 1px solid ${colors.border};
-    width: 730px;
+    max-width: 730px;
     margin: 0px auto;
+    width: 90%;
 `
 
 export const HeaderUser = styled.div`

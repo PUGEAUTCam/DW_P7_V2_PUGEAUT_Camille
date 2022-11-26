@@ -7,6 +7,13 @@ export const CoverImg = styled.img`
     object-fit: cover;
     border-radius: 11px;
     margin-top: 20px;
+        @media all and (max-width: 996px) {
+            height: 252px;
+        }
+        @media all and (max-width: 768px) {
+            height: 179px;
+            border-radius: 0px;
+        }
 `
 export const SectionCover = styled.div`
     width: 100%;
@@ -16,6 +23,13 @@ export const ContainerAvatarBtn = styled.div`
     position: absolute;
     top: 236px;
     left: 57px;
+    @media screen and (max-width: 996px) {
+        top: 204px;
+    }
+    @media screen and (max-width: 768px) {
+        top: 148px;
+        left: 31px;
+    }
 `
 export const ContainerBtnConfirmCover = styled.div`
     display: flex;
@@ -35,10 +49,17 @@ export const BtnUpdateCover = styled.label`
             transform: scale(1.03);
         }
 `
+
+export const ContainerbtnUpdate = styled.div`
+    margin-top: -30px;
+        @media screen and (max-width: 768px) {  
+            margin-top: -11px;
+        }
+`
+
 export const BtnUpdateCover2 = styled.label`
     color: white;
     transition: all 300ms ease;
-    margin-top: -30px;
         :hover{
             color:${colors.blue1};
             transform: scale(1.03);
