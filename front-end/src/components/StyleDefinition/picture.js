@@ -39,9 +39,9 @@ export const IconAvatar = styled.div`
             border-color: #24b6a9;
         }
         @media screen and (max-width: 768px) {
-            border-radius: 22px;
-            width: 44px;
-            height: 44px;
+            border-radius: 19px;
+            width: 38px;
+            height: 38px;
         }
 `
 export const AvatarProfile = styled.img`

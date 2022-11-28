@@ -70,7 +70,7 @@ const ProfileCover = ({ dataUser }) => {
                         ? null
                         :
                         <div>
-                            <BtnUpdateCover htmlFor="coverFile"><AutoFixHighIcon style={{ fontSize: 32, cursor: "pointer" }} /></BtnUpdateCover>
+                            <BtnUpdateCover htmlFor="coverFile"><AutoFixHighIcon sx={{ fontSize: 32, cursor: "pointer" }} /></BtnUpdateCover>
                             <input
                                 id='coverFile'
                                 type="file"
