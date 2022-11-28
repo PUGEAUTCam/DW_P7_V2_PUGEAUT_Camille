@@ -43,11 +43,6 @@ export const BtnUpdateCover = styled.label`
     position: absolute;
     bottom: 8px;
     right: 11px;
-    transition: all 300ms ease;
-        :hover{
-            color:${colors.primary};
-            transform: scale(1.03);
-        }
 `
 
 export const ContainerbtnUpdate = styled.div`

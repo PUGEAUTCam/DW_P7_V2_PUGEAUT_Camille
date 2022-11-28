@@ -64,6 +64,7 @@ const LoginForm = () => {
             <p style={{ marginTop: 48, textAlign: "unset" }}>
                 Vous n’avez pas de compte ? <Link to="/signup" style={{ color: "#24b6a9" }}>Inscrivez-vous</Link>
             </p>
+
         </div>
     );
 };

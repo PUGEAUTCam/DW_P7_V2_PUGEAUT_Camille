@@ -77,7 +77,7 @@ const CreatePost = () => {
 
                 <ContainerBtn>
                     <label htmlFor="file">
-                        <ImageSearchIcon sx={{ fontSize: { xs: 30, lg: 36 } }} style={{ color: "#3e3e42" }} />
+                        <ImageSearchIcon sx={{ fontSize: { xs: 30, lg: 36 }, color: "#3e3e42", "&:hover": { color: "#24b6a9" }, cursor: "pointer" }} />
                     </label>
                     <input type="file"
                         id='file'

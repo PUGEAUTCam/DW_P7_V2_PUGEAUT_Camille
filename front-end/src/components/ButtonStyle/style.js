@@ -31,7 +31,7 @@ export const ButtonTurquoise = styled.button`
     font-size: 19px;
     margin-left: 8px;
     color: ${colors.blue1};
-    transition: all 300ms ease;
+    transition: all 500ms ease;
         :hover{
             color:${colors.primary};
             transform: scale(1.01);

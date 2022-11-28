@@ -46,7 +46,7 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                 </HeaderUser>
 
                 <ContainerTxtImg>
-                    <Text>{post.message} </Text>
+                    <Text>{post.message}</Text>
                     <ImgPost src={post.imageUrl} alt="" />
                 </ContainerTxtImg>
             </div>
@@ -69,13 +69,13 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                     <p style={{ padding: 2 }}>{post.likes}</p>
                 </div>
                 {/* Comment */}
-                <ChatBubbleOutlineIcon className='icon' style={{ color: "#24b6a9", cursor: "pointer" }} onClick={() => setOpenComment(!openComment)} />
+                <ChatBubbleOutlineIcon className='icon' sx={{ color: "#24b6a9", "&:hover": { color: "rgb(213 23 23)" }, cursor: "pointer" }} onClick={() => setOpenComment(!openComment)} />
             </ContainerIcon>
 
             {openParams &&
                 <ContainerDeleteUpdate style={{ display: "flex" }}>
                     <PostUpdateModal post={post} onUpdate={onUpdate} style={{ cursor: "pointer" }} />
-                    <DeleteForeverIcon onClick={() => handleDeletePost(post)} style={{ cursor: "pointer" }} />
+                    <DeleteForeverIcon onClick={() => handleDeletePost(post)} sx={{ "&:hover": { color: "rgb(213 23 23)" }, cursor: "pointer" }} />
                 </ContainerDeleteUpdate>}
 
             {openComment && <Comment post={post} onComment={onComment} />}

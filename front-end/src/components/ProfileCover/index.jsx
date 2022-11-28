@@ -98,7 +98,7 @@ const ProfileCover = ({ dataUser }) => {
                     dataUser
                         ? null
                         : <ContainerbtnUpdate>
-                            <BtnUpdateCover2 htmlFor="avatarFile"><AutoFixHighIcon style={{ fontSize: 26, cursor: "pointer" }} /></BtnUpdateCover2>
+                            <BtnUpdateCover2 htmlFor="avatarFile"><AutoFixHighIcon sx={{ fontSize: 26, cursor: "pointer", "&:hover": { color: "rgb(213 23 23)" } }} /></BtnUpdateCover2>
                             <input
                                 id='avatarFile'
                                 type="file"
