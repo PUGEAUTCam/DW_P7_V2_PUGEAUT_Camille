@@ -19,6 +19,27 @@ export const Button = styled.button`
             height: 32px;
             width: 100px;
             font-size: 16px;
+            margin-left: 10px;
+        }
+`
+export const ButtonTurquoise = styled.button`
+    height: 39px;
+    width: 164px;
+    border-radius: 6px;
+    background:#000000;
+    border: none;
+    font-size: 19px;
+    margin-left: 8px;
+    color: ${colors.blue1};
+    transition: all 300ms ease;
+        :hover{
+            color:${colors.primary};
+            transform: scale(1.01);
+        }
+        @media screen and (max-width: 768px) {
+                height: 28px;
+                width: 88px;
+                font-size: 14px;
         }
 `
 export const ButtonDeco = styled.button`
@@ -49,10 +70,28 @@ export const ButtonDelete = styled.button`
     font-size: 20px;
     color: ${colors.primary};
     transition: all 300ms ease;
-
         :hover{
             color:${colors.blue1};
             transform: scale(1.03);
+        }
+`
+export const ButtonDeleteTurquoise = styled.button`
+    height: 38px;
+    width: 36px;
+    border-radius: 0px 17px 17px 0px;
+    background: #000000;
+    border: none;
+    font-size: 20px;
+    color: ${colors.blue1};
+    transition: all 300ms ease;
+        :hover{
+            color:${colors.primary};
+            transform: scale(1.03);
+        }
+        @media screen and (max-width: 768px) {
+            height: 28px;
+            width: 28px;
+            font-size: 16px;
         }
 `
 export const ButtonComment = styled.button`
@@ -103,6 +142,25 @@ export const Input = styled.textarea`
         font-size: 14px;
     }
 `
+export const InputModal = styled.input`
+    background: ${colors.bg1};
+    height: 40px;
+    width: 93%;
+    margin-left: 13px;
+    border: none;
+    resize: none;
+    font-size: 17px;
+    color: white;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    font-family: unset;
+        @media screen and (max-width: 768px) {
+            margin-left: 0px;
+            width: 100%;
+            font-size: 15px;
+            padding-left: 16px;
+`
 export const InputForm = styled.input`
     background: ${colors.bg1};
     border: none;
@@ -121,7 +179,6 @@ export const InputForm = styled.input`
             font-size: 16px;
         }
 `
-
 export const TextArea = styled.textarea`
     background: ${colors.bg1};
     width: 93%;
@@ -137,6 +194,26 @@ export const TextArea = styled.textarea`
     font-family: unset;
         @media screen and (max-width: 768px) {
             text-align: center;
-            font-size: 15px;
-        }
+            font-size: 14px;
+      }
+`
+
+export const TextArea2 = styled.textarea`
+    background: ${colors.bg1};
+    width: 93%;
+    height: 65px;
+    border: none;
+    resize: none;
+    font-size: 17px;
+    margin-left: 13px;
+    color: white;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    font-family: unset;
+        @media screen and (max-width: 768px) {
+            margin-left: 0px;
+            width: 100%;
+            font-size: 14px;
+            padding-left: 16px;
 `

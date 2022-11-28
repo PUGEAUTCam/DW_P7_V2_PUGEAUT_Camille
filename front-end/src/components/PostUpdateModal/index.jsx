@@ -4,8 +4,8 @@ import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import { postUpdate } from '../../API';
-import { Button, ButtonDelete, TextArea } from '../ButtonStyle/style';
-
+import { ButtonDeleteTurquoise, ButtonTurquoise, TextArea2 } from '../ButtonStyle/style';
+import { ContainerBtnInputFile, ContainerImg, ImgModal, ModalSection } from './style';
 
 const PostUpdateModal = ({ post, onUpdate }) => {
     const [open, setOpen] = useState(false);
@@ -36,41 +36,48 @@ const PostUpdateModal = ({ post, onUpdate }) => {
     return (
         <div>
             <HyperModal isOpen={open} requestClose={() => setOpen(false)} style={{ background: "#454545e6" }}>
-                <h2>Modifier votre post</h2>
-                <div>
-                    <TextArea
-                        name="post"
-                        id="updatePost"
-                        cols='100'
-                        rows='10'
-                        placeholder='Ton nouveau post'
-                        value={updatePost}
-                        onChange={(e) => setUpdatePost(e.target.value)}
-                    >
-                    </TextArea>
+                <ModalSection>
+                    <h2>Modifier votre post</h2>
                     <div>
-                        <img src={updateImage} alt='' style={{ width: 100 }} />
-                        {updateImage
-                            ? (<ButtonDelete onClick={() => { setUpdateImage(null); setUpdateFile(null) }}>X</ButtonDelete>)
-                            : null
-                        }
+                        <TextArea2
+                            name="post"
+                            id="updatePost"
+                            cols='100'
+                            rows='10'
+                            placeholder='Ton nouveau post'
+                            value={updatePost}
+                            onChange={(e) => setUpdatePost(e.target.value)}
+                        >
+                        </TextArea2>
+                        <ContainerImg>
+                            <ImgModal src={updateImage} alt='' />
+                            {updateImage
+                                ? (<ButtonDeleteTurquoise onClick={() => { setUpdateImage(null); setUpdateFile(null) }}>X</ButtonDeleteTurquoise>)
+                                : null}
+                        </ContainerImg>
                     </div>
-                </div>
 
-                <label htmlFor={`updateFile_${post._id}`}><ImageSearchIcon /></label>
-                <input type="file"
-                    id={`updateFile_${post._id}`}
-                    name='file'
-                    accept='.jpg, .jpeg, .png'
-                    style={{ display: 'none' }}
-                    onChange={(e) => handleImage(e)}
-                />
+                    <ContainerBtnInputFile>
+                        <label htmlFor={`updateFile_${post._id}`}>
+                            <ImageSearchIcon sx={{ fontSize: { xs: 28, lg: 36 } }} />
+                        </label>
+                        <input type="file"
+                            id={`updateFile_${post._id}`}
+                            name='file'
+                            accept='.jpg, .jpeg, .png'
+                            style={{ display: 'none' }}
+                            onChange={(e) => handleImage(e)}
+                        />
+                        <ButtonTurquoise onClick={handleSubmit} >Enregistrer</ButtonTurquoise>
+                        <ButtonTurquoise onClick={() => setOpen(false)}>Retour</ButtonTurquoise>
+                    </ContainerBtnInputFile>
 
-                <Button onClick={handleSubmit} >Enregistrer</Button>
-                <Button onClick={() => setOpen(false)}>Retour</Button>
+                </ModalSection>
             </HyperModal >
 
+
             <FontAwesomeIcon icon={faPenToSquare} onClick={() => setOpen(true)} />
+
         </div >
 
     );

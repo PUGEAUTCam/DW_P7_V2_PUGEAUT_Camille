@@ -3,13 +3,14 @@ import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import CreateIcon from '@mui/icons-material/Create';
 import HyperModal from 'react-hyper-modal';
-import { ContainerBio, ModalInputContainer } from './style';
+import { Background, ContainerBio, ModalInputContainer } from './style';
 import { profileUpdate } from '../../API';
 import { useDispatch } from "react-redux";
 import { getUser } from '../../features/usersSlice';
 import { useNavigate } from 'react-router-dom';
-import { Button, ButtonDeco, Input } from '../ButtonStyle/style';
-import { ContainerBtn } from '../PostUpdateModal/style';
+import { ButtonDeco, ButtonTurquoise, Input, InputModal, TextArea2 } from '../ButtonStyle/style';
+import { ContainerBtn } from '../ProfileDescription/style';
+import { Label, ModalSection } from '../PostUpdateModal/style';
 
 const ProfileDescription = ({ dataUser }) => {
 
@@ -58,8 +59,7 @@ const ProfileDescription = ({ dataUser }) => {
                                 : <CreateIcon
                                     style={{ marginLeft: 10, fontSize: 21, marginBottom: 4, cursor: "pointer" }}
                                     onClick={() => setOpen(true)}
-                                />
-                        }
+                                />}
                     </div>
                     <p style={{ marginTop: 0 }}>{user.biography}</p>
                 </div>
@@ -72,50 +72,52 @@ const ProfileDescription = ({ dataUser }) => {
 
             <div>
                 <HyperModal isOpen={open} requestClose={() => setOpen(false)}>
-                    <ModalInputContainer>
-                        <label htmlFor="actual-location">Poste occupé</label>
-                        <Input
-                            type="tel"
-                            id="phoneperso"
-                            value={form.phoneNumber}
-                            onChange={(e) => setForm({ ...form, phoneNumber: e.target.value })}
-                        />
-                        <label htmlFor="actual-location">Numéro de téléphone</label>
-                        <Input
-                            type="tel"
-                            id="phonepro"
-                            value={form.phonePro}
-                            onChange={(e) => setForm({ ...form, phonePro: e.target.value })}
-                        />
+                    <Background>
+                        <ModalInputContainer>
+                            <Label htmlFor="actual-location">Poste occupé</Label>
+                            <InputModal
+                                type="tel"
+                                id="phoneperso"
+                                value={form.phoneNumber}
+                                onChange={(e) => setForm({ ...form, phoneNumber: e.target.value })}
+                            />
+                            <Label htmlFor="actual-location">Numéro de téléphone</Label>
+                            <InputModal
+                                type="tel"
+                                id="phonepro"
+                                value={form.phonePro}
+                                onChange={(e) => setForm({ ...form, phonePro: e.target.value })}
+                            />
 
-                        <label htmlFor="actual-location">Habite à</label>
-                        <Input
-                            type="text"
-                            id="actualLocation"
-                            value={form.actualLocation}
-                            onChange={(e) => setForm({ ...form, actualLocation: e.target.value })}
-                        />
+                            <Label htmlFor="actual-location">Habite à</Label>
+                            <InputModal
+                                type="text"
+                                id="actualLocation"
+                                value={form.actualLocation}
+                                onChange={(e) => setForm({ ...form, actualLocation: e.target.value })}
+                            />
 
-                        <label htmlFor="birth-location">De</label>
-                        <Input
-                            type="text"
-                            id="birthLocation"
-                            value={form.birthLocation}
-                            onChange={(e) => setForm({ ...form, birthLocation: e.target.value })}
-                        />
+                            <Label htmlFor="birth-location">De</Label>
+                            <InputModal
+                                type="text"
+                                id="birthLocation"
+                                value={form.birthLocation}
+                                onChange={(e) => setForm({ ...form, birthLocation: e.target.value })}
+                            />
 
-                        <label htmlFor="biography">Biographie</label>
-                        <Input
-                            type="text"
-                            id="biography"
-                            value={form.biography}
-                            onChange={(e) => setForm({ ...form, biography: e.target.value })}
-                        />
-                    </ModalInputContainer>
-                    <ContainerBtn>
-                        <Button onClick={handleSubmit}>Enregistrer</Button>
-                        <Button onClick={() => setOpen(false)}>Retour</Button>
-                    </ContainerBtn>
+                            <Label htmlFor="biography">Biographie</Label>
+                            <TextArea2
+                                type="text"
+                                id="biography"
+                                value={form.biography}
+                                onChange={(e) => setForm({ ...form, biography: e.target.value })}
+                            />
+                        </ModalInputContainer>
+                        <ContainerBtn>
+                            <ButtonTurquoise onClick={handleSubmit}>Enregistrer</ButtonTurquoise>
+                            <ButtonTurquoise onClick={() => setOpen(false)}>Retour</ButtonTurquoise>
+                        </ContainerBtn>
+                    </Background>
                 </HyperModal>
             </div>
 

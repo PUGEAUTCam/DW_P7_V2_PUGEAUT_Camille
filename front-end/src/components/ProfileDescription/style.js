@@ -15,8 +15,21 @@ export const ContainerBio = styled.div`
             margin-bottom: 46px;
         }
 `
-
 export const ModalInputContainer = styled.div`
     display: flex;
     flex-direction: column;
-` 
+`
+export const ContainerBtn = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 11px;
+`
+
+export const Background = styled.div`
+width: 100%;
+height: 100%;
+background: #262626;
+
+`

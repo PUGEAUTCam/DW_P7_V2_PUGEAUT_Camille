@@ -36,6 +36,10 @@ input{
     font-size: 18px;
 }
 
+label{
+    color: #24b6a9;
+}
+
 textarea{
     cursor: pointer;
 }
