@@ -21,6 +21,7 @@ const PostUpdateModal = ({ post, onUpdate }) => {
 
     const handleSubmit = async () => {
         if (post.imageUrl) { setUpdateFile(post.imageUrl) }
+        console.log(updateFile);
         if (updatePost || updateImage) {
             const formData = new FormData();
             formData.append('message', updatePost);

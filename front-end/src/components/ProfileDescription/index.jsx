@@ -6,11 +6,11 @@ import HyperModal from 'react-hyper-modal';
 import { Background, ContainerBio, ModalInputContainer } from './style';
 import { profileUpdate } from '../../API';
 import { useDispatch } from "react-redux";
-import { getUser } from '../../features/usersSlice';
+import { deleteUser, getUser } from '../../features/usersSlice';
 import { useNavigate } from 'react-router-dom';
-import { ButtonDeco, ButtonTurquoise, Input, InputModal, TextArea2 } from '../ButtonStyle/style';
+import { ButtonDeco, ButtonTurquoise, InputModal, TextArea2 } from '../ButtonStyle/style';
 import { ContainerBtn } from '../ProfileDescription/style';
-import { Label, ModalSection } from '../PostUpdateModal/style';
+import { Label } from '../PostUpdateModal/style';
 
 const ProfileDescription = ({ dataUser }) => {
 
@@ -37,6 +37,7 @@ const ProfileDescription = ({ dataUser }) => {
 
     const handleDeconnexion = () => {
         localStorage.clear()
+        dispatch(deleteUser())
         navigate('/login')
     }
 

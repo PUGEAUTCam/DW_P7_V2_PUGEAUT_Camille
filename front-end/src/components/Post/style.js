@@ -39,3 +39,12 @@ export const ContainerDeleteUpdate = styled.div`
     border-top: 1px solid #ffffff36;
     padding: 12px 0px;
 `
+export const TextUser = styled.p`
+transition: all 400ms ease;
+    :hover{
+        color: #24b6a9;
+        transform: scale(1.02);
+        
+    }
+
+`

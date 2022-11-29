@@ -18,6 +18,9 @@ export const usersSlice = createSlice({
     reducers: {
         setUser: (state, action) => {
             state.user = action.payload;
+        },
+        deleteUser: (state, action) => {
+            state.user = initialState.user;
         }
     },
 
@@ -38,7 +41,7 @@ export const getUser = createAsyncThunk("user/getUser", async () => {
 })
 
 //export les fonctions / actions pour les fichiers
-export const { setUser } = usersSlice.actions;
+export const { setUser, deleteUser } = usersSlice.actions;
 
 //Exporter la slice en entier pour le store
 export default usersSlice.reducer;

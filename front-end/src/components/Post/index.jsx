@@ -4,7 +4,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { ContainerDeleteUpdate, ContainerIcon, ContainerName, ContainerPost, ContainerTxtImg, HeaderUser } from './style';
+import { ContainerDeleteUpdate, ContainerIcon, ContainerName, ContainerPost, ContainerTxtImg, HeaderUser, TextUser } from './style';
 import { AvatarImg, IconAvatar, ImgPost } from '../StyleDefinition/picture';
 import dayjs from 'dayjs';
 import { useSelector } from "react-redux";
@@ -13,6 +13,8 @@ import PostUpdateModal from '../PostUpdateModal';
 import Comment from '../Comment';
 import { useNavigate } from 'react-router-dom';
 import { Date, Text } from '../Text/index';
+import Lottie from "lottie-react";
+import like from "../lottieAnimations/like.json";
 
 const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
     const navigate = useNavigate();
@@ -40,7 +42,7 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                     </IconAvatar>
 
                     <ContainerName style={{ cursor: "pointer" }}>
-                        <p onClick={() => navigate(`/profile?id=${post.userId._id}`)}> {post.userId?.firstname + " " + post.userId?.name}</p>
+                        <TextUser onClick={() => navigate(`/profile?id=${post.userId._id}`)}> {post.userId?.firstname + " " + post.userId?.name}</TextUser>
                         <Date>{dayjs(post.createdAt).format("DD/MM/YYYY à HH:mm")}</Date>
                     </ContainerName>
                 </HeaderUser>
@@ -64,6 +66,7 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                     {
                         post.usersLiked.includes(userStore.user._id)
                             ? <FavoriteIcon style={{ color: "#24b6a9", cursor: "pointer" }} onClick={() => handleLike(post)} />
+
                             : <FavoriteBorderIcon style={{ cursor: "pointer" }} onClick={() => handleLike(post)} />
                     }
                     <p style={{ padding: 2 }}>{post.likes}</p>
@@ -84,3 +87,5 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
 };
 
 export default Post;
+
+{/* <Lottie animationData={like} style={{ width: 50, height: 50 }} key={index} /> */ }
