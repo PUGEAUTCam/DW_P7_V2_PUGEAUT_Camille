@@ -52,6 +52,10 @@ const userSchema = mongoose.Schema({
         type: String,
         default: "http://localhost:5500/images/icon-left-font.png",
     },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    }
 },
     {
         timestamps: true

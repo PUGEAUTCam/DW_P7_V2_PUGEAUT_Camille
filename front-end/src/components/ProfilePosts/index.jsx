@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { getuserPosts } from '../../API';
 import Post from '../Post';
 
 
 const ProfilePosts = ({ id }) => {
+    const userStore = useSelector((state) => state.userStore);
     const location = useLocation()
     const [data, setData] = useState(null);
     const [ready, setReady] = useState(false);
@@ -20,7 +22,7 @@ const ProfilePosts = ({ id }) => {
 
     useEffect(() => {
         getData()
-    }, [location])
+    }, [location, userStore.user.avatar])
 
     if (!ready) {
         return null;

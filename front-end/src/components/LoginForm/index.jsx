@@ -20,20 +20,17 @@ const LoginForm = () => {
         error: '',
     });
 
-    const handleSubmit = () => {
-        axios.post(API_ROUTES.login, {
+    const handleSubmit = async () => {
+        let res = await axios.post(API_ROUTES.login, {
             email: form.email,
             password: form.password,
         })
-            .then(async (res) => {
-                setToken(res.data.token);
-                await dispatch(getUser())
-                navigate('/')
-            })
+            .then((res) => res)
+            .catch(({ response }) => setForm({ ...form, error: response?.status === 500 ? 'Notre serveur est actuellement indisponible' : "Votre email et / ou mot de passe est incorrect" }));
 
-            .catch(({ response }) => {
-                setForm({ ...form, error: response?.status === 500 ? 'Notre serveur est actuellement indisponible' : "Votre email et / ou mot de passe est incorrect" })
-            });
+        setToken(res.data.token);
+        await dispatch(getUser())
+        navigate('/')
     };
 
     return (

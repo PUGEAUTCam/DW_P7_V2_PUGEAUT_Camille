@@ -42,6 +42,7 @@ button{
 }
 svg:hover{
     color: #24b6a9;
+ 
     transform: scale(1.05);
     transition: all 400ms ease;
 }

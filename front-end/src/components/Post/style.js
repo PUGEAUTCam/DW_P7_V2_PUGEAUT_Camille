@@ -2,19 +2,22 @@ import styled from "styled-components";
 import colors from "../StyleDefinition/colors"
 
 export const ContainerPost = styled.div`
-    border: 1px solid ${colors.border};
+    border: 1px solid #ffffff21;;
     max-width: 730px;
     margin: 0px auto;
     width: 90%;
+    border-bottom: 2px solid #ffffffb8;
+    background: rgb(34 33 33 / 36%);
+        @media screen and (max-width: 768px) {
+            background: ${colors.bg1};
+        }
 `
-
 export const HeaderUser = styled.div`
     display: flex;
     align-items: center;
-    margin-left: 13px;
-    margin-top: 6px;
+    margin-left: 21px;
+    margin-top: 8px;
 `
-
 export const ContainerName = styled.div`
     margin-left: 11px;
     line-height: 5px;
@@ -29,7 +32,7 @@ export const ContainerIcon = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: 17px;
+    margin: 10px 0px;
 `
 export const ContainerDeleteUpdate = styled.div`
     display: flex;

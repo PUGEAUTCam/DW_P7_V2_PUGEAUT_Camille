@@ -20,15 +20,15 @@ const PostUpdateModal = ({ post, onUpdate }) => {
     }
 
     const handleSubmit = async () => {
-        if (post.imageUrl) { setUpdateFile(post.imageUrl) }
-        console.log(updateFile);
         if (updatePost || updateImage) {
             const formData = new FormData();
             formData.append('message', updatePost);
             if (updateFile) formData.append('image', updateFile);
+            if (post.imageUrl && !updateImage) { formData.append('deleteImage', true) }
+
             let res = await postUpdate({ post, formData })
             await onUpdate(res.data)
-            setUpdateImage(null)
+            setUpdateImage(res.data.post.imageUrl)
             setUpdateFile(null)
         }
         setOpen(false)

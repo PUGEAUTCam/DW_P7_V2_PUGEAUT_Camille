@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import { useDispatch } from "react-redux";
 import { getUser } from '../../features/usersSlice';
-import { uploadCoverImg, uploadAvatarImg } from '../../API';
+import { uploadCoverImg, uploadAvatarImg, getuserPosts } from '../../API';
 import { BtnUpdateCover, BtnUpdateCover2, ContainerAvatarBtn, ContainerBtnConfirmCover, ContainerbtnUpdate, CoverImg } from './style';
 import { Button, ButtonAvatar } from '../ButtonStyle/style';
 import { AvatarProfile } from '../StyleDefinition/picture';
@@ -41,7 +41,7 @@ const ProfileCover = ({ dataUser }) => {
         const formData = new FormData();
         formData.append('image', fileAvatar);
         await uploadAvatarImg(formData);
-        await dispatch(getUser())
+        await dispatch(getUser());
         cleanState();
     }
     //ALL

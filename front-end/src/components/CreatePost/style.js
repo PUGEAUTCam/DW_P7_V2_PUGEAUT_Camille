@@ -8,13 +8,18 @@ export const ContainerCreatePost = styled.div`
     margin: 0px auto;
     margin-top: 36px;
     margin-bottom: 80px;
-    border: 1px solid ${colors.border};
+    border-radius: 6px;
+    // background: rgb(70 35 21 / 8%);
+    // border: 1px solid rgb(220 84 0 / 52%);
+    background : rgb(34 33 33 / 36%);
+    border: 1px solid rgb(220 0 0 / 52%);
         @media all and (max-width: 768px) {
-            margin-bottom: 0px;
+            margin-bottom: 39px;
         }
 `
 export const IconHello = styled.div`
-    border: 1px solid rgb(225, 122, 122);
+    border: 1px solid #24b6a9;
+    //  rgb(225, 122, 122);
     width: 44px;
     height: 44px;
     border-radius: 22px;
@@ -59,7 +64,6 @@ export const ContainerBtn = styled.div`
     @media all and (max-width: 768px) {
         margin-right:0px;
     }
-    
 `
 
 

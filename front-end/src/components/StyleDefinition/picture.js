@@ -23,7 +23,7 @@ export const AvatarImg = styled.img`
     object-fit: cover;
 `
 export const IconAvatar = styled.div`
-    border: 1px  #ffffff7a solid;
+    border: 1px solid ${colors.blue1};
     border-radius: 27px;
     width: 54px;
     height: 54px;
@@ -33,10 +33,10 @@ export const IconAvatar = styled.div`
     align-items: center;
     overflow: hidden;
         :hover{
-            border-color: #24b6a9;
+            border-color: ${colors.blue1};
         }
         :active{
-            border-color: #24b6a9;
+            border-color: ${colors.blue1};
         }
         @media screen and (max-width: 768px) {
             border-radius: 19px;

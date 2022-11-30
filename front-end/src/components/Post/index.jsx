@@ -13,12 +13,9 @@ import PostUpdateModal from '../PostUpdateModal';
 import Comment from '../Comment';
 import { useNavigate } from 'react-router-dom';
 import { Date, Text } from '../Text/index';
-import Lottie from "lottie-react";
-import like from "../lottieAnimations/like.json";
 
 const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
     const navigate = useNavigate();
-
     const userStore = useSelector((state) => state.userStore);
     const [openComment, setOpenComment] = useState(false);
     const [openParams, setOpenParams] = useState(false);
@@ -55,7 +52,7 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
 
             <ContainerIcon>
                 {
-                    post.userId._id === userStore.user._id
+                    post.userId._id === userStore.user._id || userStore.user.isAdmin === true
                         ? <div>
                             <DehazeIcon onClick={() => setOpenParams(!openParams)} style={{ cursor: "pointer" }} />
                         </div>
@@ -63,29 +60,27 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                 }
                 {/* Like */}
                 <div style={{ display: 'flex', alignItems: "center" }}>
+
                     {
                         post.usersLiked.includes(userStore.user._id)
                             ? <FavoriteIcon style={{ color: "#24b6a9", cursor: "pointer" }} onClick={() => handleLike(post)} />
-
                             : <FavoriteBorderIcon style={{ cursor: "pointer" }} onClick={() => handleLike(post)} />
                     }
                     <p style={{ padding: 2 }}>{post.likes}</p>
                 </div>
                 {/* Comment */}
-                <ChatBubbleOutlineIcon className='icon' sx={{ color: "#24b6a9", "&:hover": { color: "rgb(213 23 23)" }, cursor: "pointer" }} onClick={() => setOpenComment(!openComment)} />
+                <ChatBubbleOutlineIcon className='icon' sx={{ color: "#24b6a9", "&:hover": { color: "#e35503" }, cursor: "pointer" }} onClick={() => setOpenComment(!openComment)} />
             </ContainerIcon>
 
             {openParams &&
-                <ContainerDeleteUpdate style={{ display: "flex" }}>
+                <ContainerDeleteUpdate key={index} style={{ display: "flex" }}>
                     <PostUpdateModal post={post} onUpdate={onUpdate} style={{ cursor: "pointer" }} />
                     <DeleteForeverIcon onClick={() => handleDeletePost(post)} sx={{ "&:hover": { color: "rgb(213 23 23)" }, cursor: "pointer" }} />
                 </ContainerDeleteUpdate>}
 
-            {openComment && <Comment post={post} onComment={onComment} />}
+            {openComment && <Comment key={index} post={post} onComment={onComment} />}
         </ContainerPost>
     );
 };
 
 export default Post;
-
-{/* <Lottie animationData={like} style={{ width: 50, height: 50 }} key={index} /> */ }

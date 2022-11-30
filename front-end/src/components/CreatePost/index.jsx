@@ -59,6 +59,7 @@ const CreatePost = () => {
                     type="text"
                     name="post"
                     id="post"
+                    autoFocus={true}
                     placeholder='Une nouvelle à partager?'
                     value={newPost}
                     onChange={(e) => setNewPost(e.target.value)}

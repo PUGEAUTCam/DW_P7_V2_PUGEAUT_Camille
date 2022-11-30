@@ -6,23 +6,23 @@ export const Date = styled.p`
 `
 
 export const Text = styled.p`
-    color: #b0abab;
-    font-size: 16px;
+    color: #cdcdcd;;
+    font-size: 15px;
     text-align: justify;
-    margin: 27px 81px;
+    margin: 20px 90px;
         @media screen and (max-width: 768px) {
-            font-size: 15px;
+            font-size: 14px;
             margin: 18px 25px;
         }
 `
 export const TextComment = styled.p`
     color: #b0abab;
-    font-size: 18px;
+    font-size: 14px;
     text-align: justify;
-    margin: 3px 71px;
+    margin: 0px 79px;
         @media screen and (max-width: 768px) {
-            font-size: 15px;
-            margin: 3px 25px;
+            font-size: 13px;
+            margin: 0px 72px;
         }
 `
 

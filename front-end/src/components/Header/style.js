@@ -3,12 +3,15 @@ import styled from "styled-components";
 
 export const ContainerHeader = styled.header`
     display: flex;
+    z-index: 999;
     justify-content: space-between;
-    // position: fixed;
+    position: fixed;
+    top: 10px;
     width: 100%;
-    left: 0;
+    max-width: 1440px;
     box-sizing: border-box;
     margin-top: 6px;
+    margin: auto;
         @media screen and (max-width: 1450px) {
             padding: 0px 25px;
         }

@@ -30,11 +30,10 @@ export const header = (config = defaultConfig) => {
 }
 
 //CALL API for the posts
-export const getAllPosts = async (page) => {
-    return await axios.get(API_ROUTES.post, { ...header(), params: { page } })
+export const getAllPosts = async (page) =>
+    await axios.get(API_ROUTES.post, { ...header(), params: { page } })
         .then((res) => res)
         .catch((error) => console.log(error))
-};
 
 export const getuserPosts = async (id) => {
     return await axios.get(API_ROUTES.userPosts, { ...header(), params: { id } })
@@ -76,8 +75,8 @@ export const createComment = async ({ post, newComment }) => {
 };
 
 //USER
-export const profileUpdate = async (form) => {
-    return await axios.patch(API_ROUTES.profileUpdate, {
+export const profileUpdate = async (form) =>
+    await axios.patch(API_ROUTES.profileUpdate, {
         phoneNumber: form.phoneNumber,
         phonePro: form.phonePro,
         actualLocation: form.actualLocation,
@@ -86,7 +85,7 @@ export const profileUpdate = async (form) => {
     }, header())
         .then((res) => res)
         .catch((error) => console.log(error))
-};
+
 export const uploadCoverImg = async (formData) => {
     return await axios.post(API_ROUTES.uploadCover, formData, header({ formData: true }))
         .then(async (res) => res)

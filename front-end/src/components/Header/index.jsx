@@ -22,7 +22,7 @@ const Header = () => {
             <NavBar>
 
                 <IconAvatar style={{ marginRight: 13 }}>
-                    <SearchIcon sx={{ fontSize: { xs: 24, lg: 32 }, color: 'white', display: "flex" }} />
+                    <SearchIcon onClick={() => alert("Fonctionnalité en cours de développement")} sx={{ fontSize: { xs: 24, lg: 32 }, color: 'white', display: "flex" }} />
                 </IconAvatar>
 
                 <IconAvatar style={{ marginRight: 13 }}>

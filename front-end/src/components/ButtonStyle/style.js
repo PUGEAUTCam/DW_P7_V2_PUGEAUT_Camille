@@ -8,7 +8,7 @@ export const Button = styled.button`
     background:  ${colors.btnBg};
     border: none;
     font-size: 19px;
-    color: ${colors.primary};
+    color:rgb(230 231 231);;
     margin-left: 20px;
     transition: all 300ms ease;
         :hover{
@@ -127,10 +127,11 @@ transition: all 300ms ease;
 
 //INPUT
 export const Input = styled.textarea`
-    background: ${colors.bg1};
+    background: rgb(24 23 23 / 64%); 
     border: none;
     resize: none;
-    font-size: 18px;
+    font-size: 16px;
+    padding-left: 8px;
     color: white;
     overflow: auto;
     outline: none;
@@ -140,6 +141,7 @@ export const Input = styled.textarea`
     width: 76%;
     @media all and (max-width: 768px) {
         font-size: 14px;
+        background: ${colors.bg1};
     }
 `
 export const InputModal = styled.input`
@@ -180,7 +182,8 @@ export const InputForm = styled.input`
         }
 `
 export const TextArea = styled.textarea`
-    background: ${colors.bg1};
+    background: rgb(70 35 21 / 3%);
+    // rgb(34 33 33 / 25%);
     width: 93%;
     height: 65px;
     border: none;
@@ -192,6 +195,9 @@ export const TextArea = styled.textarea`
     outline: none;
     box-shadow: none;
     font-family: unset;
+        ::placeholder{
+            color: #b8afaf;
+        }
         @media screen and (max-width: 768px) {
             text-align: center;
             font-size: 14px;

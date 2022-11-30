@@ -5,6 +5,7 @@ import ProfileCover from '../../components/ProfileCover';
 import ProfileDescription from '../../components/ProfileDescription';
 import ProfilePosts from '../../components/ProfilePosts';
 import { useLocation } from 'react-router-dom';
+import Layout from '../../components/layout';
 
 const ProfilePage = () => {
     const location = useLocation();
@@ -32,12 +33,11 @@ const ProfilePage = () => {
     }
 
     return (
-        <div>
-            <Header />
+        <Layout>
             <ProfileCover dataUser={dataUser} />
             <ProfileDescription dataUser={dataUser} />
             <ProfilePosts id={id} />
-        </div>
+        </Layout>
     );
 };
 

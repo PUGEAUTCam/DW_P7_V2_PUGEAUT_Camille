@@ -67,8 +67,7 @@ exports.getLikedPosts = (req, res, next) => {
 exports.deletePost = (req, res, next) => {
     Post.findOne({ _id: req.params.id })
         .then(post => {
-
-            if (post.userId != req.auth.userId) {
+            if (post.userId != req.auth.userId && req.auth.isAdmin != true) {
                 res.status(403).json({ message: 'Not authorized' });
             } else {
                 //it's the same 
@@ -110,8 +109,7 @@ exports.likePost = (req, res, next) => {
 };
 
 exports.modifyOnePost = (req, res, next) => {
-    console.log(req.body)
-    const postBody = { ...req.body, userId_: req.auth.userId, imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '' }
+    const deleteImage = req.body?.deleteImage === "true"
 
     Post.findOne({ _id: req.params.id })
         .then((post) => {
@@ -119,13 +117,24 @@ exports.modifyOnePost = (req, res, next) => {
                 res.status(403).json({ message: 'Not authorized' });
             }
             else {
-                // On supprime l'ancienne image de la BDD
-                const filename = post.imageUrl.split('/images/')[1];
-                if (filename) {
-                    fs.unlink(`images/${filename}`, (err) => {
-                        if (err) throw err;
-                    });
-                };
+                if (req.file || deleteImage) {
+                    const filename = post.imageUrl.split('/images/')[1];
+                    if (filename) {
+                        // On supprime l'ancienne image de la BDD
+                        fs.unlink(`images/${filename}`, (err) => {
+                            if (err) throw err;
+                        });
+                    };
+                }
+
+                const postBody = {
+                    ...req.body,
+                    imageUrl: req?.file
+                        ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+                        : deleteImage
+                            ? ""
+                            : post.imageUrl
+                }
 
                 Post.updateOne({ _id: req.params.id }, postBody)
                     .then(() => res.status(200).json({ message: 'Post modifiée', post: postBody, id: req.params.id }))

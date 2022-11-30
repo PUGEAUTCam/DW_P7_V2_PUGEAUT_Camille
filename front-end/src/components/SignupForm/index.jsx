@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_ROUTES } from '../../API';
 import axios from "axios";
+import { getUser } from "../../features/usersSlice";
+import { useDispatch } from "react-redux";
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { validEmail, validFirstname, validName, validPassword } from '../../utils/formCheck';
 import { Button, InputForm } from '../ButtonStyle/style';
 
 const SignupForm = () => {
+    // eslint-disable-next-line
+    const [token, setToken] = useLocalStorage("TOKEN", []);
+    const dispatch = useDispatch();
+
 
     const [form, setForm] = useState({
         name: '',
@@ -17,7 +24,7 @@ const SignupForm = () => {
 
     const navigate = useNavigate()
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
 
         if (
             validName(form.name).isValid &&
@@ -25,21 +32,29 @@ const SignupForm = () => {
             validEmail(form.email).isValid &&
             validPassword(form.password).isValid
         ) {
-            axios.post(API_ROUTES.signup, {
+            await axios.post(API_ROUTES.signup, {
                 name: form.name,
                 firstname: form.firstname,
                 email: form.email,
                 password: form.password,
             })
-                .then((res) => {
-                    navigate('/')
-                })
-
+                .then((res) => res)
                 .catch(({ response }) => {
                     setForm({ ...form, error: response?.status === 500 ? 'Erreur serveur' : response?.data?.message })
                 });
-        }
 
+            let res = await axios.post(API_ROUTES.login, {
+                email: form.email,
+                password: form.password,
+            })
+                .then(async (res) => res)
+                .catch(({ response }) => {
+                    setForm({ ...form, error: response?.status === 500 ? 'Notre serveur est actuellement indisponible' : "Votre email et / ou mot de passe est incorrect" })
+                });
+            setToken(res.data.token);
+            await dispatch(getUser())
+            navigate('/')
+        }
     };
 
     return (
