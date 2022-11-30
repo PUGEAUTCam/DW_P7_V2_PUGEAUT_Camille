@@ -28,7 +28,7 @@ exports.profileUpdate = (req, res, next) => {
 
     UserModel.updateOne({ _id: userId }, userInfo)
         .then(() => res.status(200).json({ message: 'Profil mis a jour' }))
-        .catch(error => res.status(401).json({ error }));
+        .catch(error => res.status(400).json({ error }));
 };
 
 
@@ -59,7 +59,6 @@ exports.login = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
 };
 
-
 exports.me = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
@@ -75,7 +74,7 @@ exports.me = (req, res, next) => {
                 delete user.password
                 res.status(200).json({ user })
             })
-            .catch(error => res.status(403).json({ error }))
+            .catch(error => res.status(400).json({ error }))
 
     } catch (error) {
         res.status(402).json({ error });
@@ -89,7 +88,7 @@ exports.getOneUser = (req, res, next) => {
             res.status(200).json({ user })
         })
 
-        .catch(error => res.status(403).json(console.log(error)))
+        .catch(error => res.status(400).json(console.log(error)))
 };
 
 
@@ -98,7 +97,7 @@ exports.uploadCoverImg = (req, res, next) => {
     UserModel.findOne({ _id: req.auth.userId })
         .then((user) => {
             if (user._id != req.auth.userId) {
-                res.status(403).json({ message: 'Not authorized' });
+                res.status(401).json({ message: 'Not authorized' });
             }
             else {
                 // const filename = user.file.split('/images/')[1];
@@ -119,12 +118,14 @@ exports.uploadCoverImg = (req, res, next) => {
 
 exports.uploadAvatarImg = (req, res, next) => {
     const avatarImage = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : '';
+
     UserModel.findOne({ _id: req.auth.userId })
         .then((user) => {
             if (user._id != req.auth.userId) {
                 res.status(403).json({ message: 'Not authorized' });
             }
             else {
+
                 // const filename = user.avatar.split('/images/')[1];
                 // if (filename) {
                 //     fs.unlink(`images/${filename}`, (err) => {

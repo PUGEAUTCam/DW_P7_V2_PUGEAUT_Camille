@@ -49,6 +49,7 @@ export const ButtonDeco = styled.button`
     background:  ${colors.btnBg};
     border: none;
     font-size: 18px;
+    margin-top: 7px;
     color: ${colors.primary};
     transition: all 300ms ease;
         :hover{

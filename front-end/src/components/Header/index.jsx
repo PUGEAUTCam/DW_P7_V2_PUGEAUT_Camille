@@ -20,25 +20,24 @@ const Header = () => {
             </Link>
 
             <NavBar>
-
-                <IconAvatar style={{ marginRight: 13 }}>
+                <IconAvatar style={{ marginRight: 13, cursor: "pointer" }}>
                     <SearchIcon onClick={() => alert("Fonctionnalité en cours de développement")} sx={{ fontSize: { xs: 24, lg: 32 }, color: 'white', display: "flex" }} />
                 </IconAvatar>
 
-                <IconAvatar style={{ marginRight: 13 }}>
-                    <Link to="/postsLiked">
+                <Link to="/postsLiked">
+                    <IconAvatar style={{ marginRight: 13 }}>
                         <FavoriteBorderIcon sx={{ fontSize: { xs: 24, lg: 32 }, color: 'white', display: "flex" }} />
-                    </Link>
-                </IconAvatar>
+                    </IconAvatar>
+                </Link>
 
-                <IconAvatar style={{ background: "white" }}>
-                    <Link to="/profile">
+                <Link to="/profile">
+                    <IconAvatar style={{ background: "white" }}>
                         <AvatarImg
                             src={userStore.user.avatar}
                             alt={`avatar de profil de ${userStore.user.firstname} `}
                         />
-                    </Link>
-                </IconAvatar>
+                    </IconAvatar>
+                </Link>
             </NavBar>
 
         </ContainerHeader>

@@ -11,7 +11,7 @@ export const ContainerInput = styled.div`
 `
 
 export const CommentSection = styled.div`
-    padding-bottom: 14px;
+    padding-bottom: 20px;
     border-top: 1px solid #24b6a978;
     padding-top: 4px;
 `

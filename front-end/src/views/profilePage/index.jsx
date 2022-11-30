@@ -6,6 +6,7 @@ import ProfileDescription from '../../components/ProfileDescription';
 import ProfilePosts from '../../components/ProfilePosts';
 import { useLocation } from 'react-router-dom';
 import Layout from '../../components/layout';
+import { TextEnd } from '../../components/HomePosts/style';
 
 const ProfilePage = () => {
     const location = useLocation();
@@ -37,6 +38,7 @@ const ProfilePage = () => {
             <ProfileCover dataUser={dataUser} />
             <ProfileDescription dataUser={dataUser} />
             <ProfilePosts id={id} />
+            <TextEnd>Groupost' personnels</TextEnd>
         </Layout>
     );
 };

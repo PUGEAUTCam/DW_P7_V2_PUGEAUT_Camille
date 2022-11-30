@@ -35,7 +35,7 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
             <div >
                 <HeaderUser>
                     <IconAvatar style={{ border: "1px solid #24b6a9", background: "white" }} onClick={() => navigate(`/profile?id=${post.userId._id}`)}>
-                        <AvatarImg src={post.userId.avatar} alt={"avatar de " + post.userId?.firstname + " " + post.userId?.name} />
+                        <AvatarImg src={post.userId?.avatar} alt={"avatar de " + post.userId?.firstname + " " + post.userId?.name} />
                     </IconAvatar>
 
                     <ContainerName style={{ cursor: "pointer" }}>
@@ -52,7 +52,7 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
 
             <ContainerIcon>
                 {
-                    post.userId._id === userStore.user._id || userStore.user.isAdmin === true
+                    post?.userId?._id === userStore.user._id || userStore.user.isAdmin === true
                         ? <div>
                             <DehazeIcon onClick={() => setOpenParams(!openParams)} style={{ cursor: "pointer" }} />
                         </div>

@@ -6,10 +6,11 @@ export const ContainerBio = styled.div`
     align-items: flex-start;
     justify-content: space-between;
     margin: 0px 74px;
-    margin-bottom: 60px;
+    padding-bottom: 60px;
         @media screen and (max-width: 768px) {
             margin: 0px 30px;
             margin-bottom: 46px;
+            padding-bottom: 18px;
         }
         @media screen and (max-width: 992px) {
             margin-bottom: 46px;

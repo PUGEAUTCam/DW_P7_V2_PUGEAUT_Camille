@@ -5,6 +5,7 @@ import { getPost, updatePostStore, likePostStore, deletePostStore, commentStore 
 import Post from '../Post';
 import InfiniteScroll from "react-infinite-scroll-component";
 import CreatePost from '../CreatePost';
+import { TextEnd } from './style';
 
 const HomePosts = () => {
 
@@ -21,7 +22,7 @@ const HomePosts = () => {
             next={() => postsStore.posts?.hasNextPage && dispatch(getPost(postsStore.posts?.nextPage))}
             loader={<h4>Loading...</h4>}
             hasMore={postsStore.posts?.hasNextPage}
-            endMessage={<CreatePost />}
+            endMessage={<TextEnd>Fin du fil d'actualité - Groupost un nouveau message dès maintenant</TextEnd>}
         >
             {postsStore.posts?.docs?.map((post, index) =>
                 <Post

@@ -61,6 +61,7 @@ export const ContainerBtn = styled.div`
     justify-content: center;
     margin-bottom: 17px;
     margin-right: 47px;
+    margin-top: 20px;
     @media all and (max-width: 768px) {
         margin-right:0px;
     }
