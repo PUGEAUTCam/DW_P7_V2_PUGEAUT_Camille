@@ -12,7 +12,7 @@ const SignupForm = () => {
     // eslint-disable-next-line
     const [token, setToken] = useLocalStorage("TOKEN", []);
     const dispatch = useDispatch();
-
+    const navigate = useNavigate()
 
     const [form, setForm] = useState({
         name: '',
@@ -22,9 +22,7 @@ const SignupForm = () => {
         error: '',
     });
 
-    const navigate = useNavigate()
-
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
 
         if (
             validName(form.name).isValid &&
@@ -49,7 +47,7 @@ const SignupForm = () => {
             })
                 .then(async (res) => res)
                 .catch(({ response }) => {
-                    setForm({ ...form, error: response?.status === 500 ? 'Notre serveur est actuellement indisponible' : "Votre email et / ou mot de passe est incorrect" })
+                    setForm({ ...form, error: response?.status === 500 ? 'Notre serveur est actuellement indisponible' : "" })
                 });
             setToken(res.data.token);
             await dispatch(getUser())
@@ -63,7 +61,7 @@ const SignupForm = () => {
                 type="text"
                 id='name'
                 placeholder='Nom'
-                autoFocus="true"
+                autoFocus={true}
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
             />

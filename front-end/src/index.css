@@ -3,7 +3,8 @@ html, body {
 	margin: 0 auto;
     height: 100%;
     width: 100%;
-    background-color: rgb(24 23 23);
+    background-color: rgb(32, 33, 36);
+    /* background-color: rgb(24 23 23); */
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
     color: white;
@@ -54,20 +55,23 @@ svg:active{
 
 @media screen and (max-width: 768px) {
     h2{
-        font-size: 20px;
-    }
-    h3{
         font-size: 18px;
     }
+    h3{
+        font-size: 16px;
+    }
     p{
-        font-size: 16px;   
+        font-size: 14px;   
     }
     textarea{
-        font-size: 16px;
+        font-size: 14px;
     }
 
     button{
         font-size: 16px;
+    }
+    label{
+        font-size: 14px;
     }
 }
 

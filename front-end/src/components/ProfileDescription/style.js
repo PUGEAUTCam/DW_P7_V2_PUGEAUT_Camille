@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import colors from "../StyleDefinition/colors"
+
 
 export const ContainerBio = styled.div`
     display: flex;
@@ -29,8 +31,11 @@ export const ContainerBtn = styled.div`
 `
 
 export const Background = styled.div`
-width: 100%;
-height: 100%;
-background: #262626;
+    width: 100%;
+    height: 100%;
+    background: ${colors.bg1};
+`
 
+export const Label = styled.label`
+    margin: 11px 15px 1px 15px;
 `

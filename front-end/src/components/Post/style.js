@@ -2,12 +2,12 @@ import styled from "styled-components";
 import colors from "../StyleDefinition/colors"
 
 export const ContainerPost = styled.div`
-    border: 1px solid #ffffff21;;
+    border: 1px solid #ffffff29;
     max-width: 730px;
     margin: 0px auto;
     width: 90%;
-    border-bottom: 2px solid #ffffffb8;
-    background: rgb(34 33 33 / 36%);
+    border-bottom: 1px solid #ffffffb8;
+    background: rgb(68 68 68 / 15%);
         @media screen and (max-width: 768px) {
             background: ${colors.bg1};
         }

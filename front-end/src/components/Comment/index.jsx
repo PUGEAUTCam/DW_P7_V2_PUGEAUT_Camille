@@ -6,7 +6,7 @@ import { ButtonComment, Input } from '../ButtonStyle/style';
 import { CommentSection, ContainerInput } from './style';
 import { IconHello } from '../CreatePost/style';
 import { ContainerName, HeaderUser } from '../Post/style';
-import { Date, Text, TextComment } from '../Text';
+import { Date, TextComment } from '../Text';
 
 const Comment = ({ post, onComment }) => {
 

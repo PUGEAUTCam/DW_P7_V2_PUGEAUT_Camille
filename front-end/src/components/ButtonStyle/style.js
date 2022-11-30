@@ -148,27 +148,29 @@ export const Input = styled.textarea`
 export const InputModal = styled.input`
     background: ${colors.bg1};
     height: 40px;
-    width: 93%;
+    max-width: 495px;
+    width: 80%;
     margin-left: 13px;
     border: none;
     resize: none;
-    font-size: 17px;
+    font-size: 16px;
     color: white;
     overflow: auto;
     outline: none;
     box-shadow: none;
     font-family: unset;
+    border-bottom: 1px solid #ffffffad;
         @media screen and (max-width: 768px) {
             margin-left: 0px;
             width: 100%;
-            font-size: 15px;
+            font-size: 14px;
             padding-left: 16px;
 `
 export const InputForm = styled.input`
     background: ${colors.bg1};
     border: none;
     resize: none;
-    font-size: 18px;
+    font-size: 16px;
     color: white;
     overflow: auto;
     outline: none;
@@ -179,7 +181,7 @@ export const InputForm = styled.input`
     margin-top: 40px;
     padding-bottom: 9px;
         @media all and (max-width: 768px) {
-            font-size: 16px;
+            font-size: 13px;
         }
 `
 export const TextArea = styled.textarea`
@@ -189,7 +191,7 @@ export const TextArea = styled.textarea`
     height: 65px;
     border: none;
     resize: none;
-    font-size: 17px;
+    font-size: 16px;
     margin-left: 13px;
     color: white;
     overflow: auto;
@@ -197,21 +199,22 @@ export const TextArea = styled.textarea`
     box-shadow: none;
     font-family: unset;
         ::placeholder{
-            color: #b8afaf;
+            color: #cdcdcd;
         }
         @media screen and (max-width: 768px) {
             text-align: center;
-            font-size: 14px;
+            font-size: 13px;
       }
 `
 
 export const TextArea2 = styled.textarea`
     background: ${colors.bg1};
-    width: 93%;
+    max-width: 1085px;
+    width: 90%;
     height: 65px;
     border: none;
     resize: none;
-    font-size: 17px;
+    font-size: 16px;
     margin-left: 13px;
     color: white;
     overflow: auto;
@@ -221,6 +224,28 @@ export const TextArea2 = styled.textarea`
         @media screen and (max-width: 768px) {
             margin-left: 0px;
             width: 100%;
-            font-size: 14px;
+            font-size: 13px;
             padding-left: 16px;
+        }
+`
+
+export const TextAreaModal = styled.textarea`
+    background: ${colors.bg1};
+    border: none;
+    resize: none;
+    font-size: 17px;
+    color: white;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    font-family: unset;
+    border: 1px solid #ffffff5c;
+    padding: 14px;
+    max-width: 700px;
+    width: 100%;
+    box-sizing: border-box;
+        @media screen and (max-width: 768px) {
+            font-size: 13px;
+        }
+
 `

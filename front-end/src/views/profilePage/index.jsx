@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getOneUser } from '../../API';
-import Header from '../../components/Header';
 import ProfileCover from '../../components/ProfileCover';
 import ProfileDescription from '../../components/ProfileDescription';
 import ProfilePosts from '../../components/ProfilePosts';

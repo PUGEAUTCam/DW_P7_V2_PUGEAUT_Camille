@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { getPost, updatePostStore, likePostStore, deletePostStore, commentStore } from '../../features/postsSlice';
 import Post from '../Post';
 import InfiniteScroll from "react-infinite-scroll-component";
-import CreatePost from '../CreatePost';
 import { TextEnd } from './style';
 
 const HomePosts = () => {

@@ -9,8 +9,7 @@ import { useDispatch } from "react-redux";
 import { deleteUser, getUser } from '../../features/usersSlice';
 import { useNavigate } from 'react-router-dom';
 import { ButtonDeco, ButtonTurquoise, InputModal, TextArea2 } from '../ButtonStyle/style';
-import { ContainerBtn } from '../ProfileDescription/style';
-import { Label } from '../PostUpdateModal/style';
+import { ContainerBtn, Label } from '../ProfileDescription/style';
 
 const ProfileDescription = ({ dataUser }) => {
 

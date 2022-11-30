@@ -11,10 +11,13 @@ export const ContainerCreatePost = styled.div`
     border-radius: 6px;
     // background: rgb(70 35 21 / 8%);
     // border: 1px solid rgb(220 84 0 / 52%);
-    background : rgb(34 33 33 / 36%);
+    // background : rgb(34 33 33 / 36%);
+    background: rgb(68 68 68 / 15%);
     border: 1px solid rgb(220 0 0 / 52%);
         @media all and (max-width: 768px) {
             margin-bottom: 39px;
+            background: ${colors.bg1};
+            border-radius: 0px;
         }
 `
 export const IconHello = styled.div`

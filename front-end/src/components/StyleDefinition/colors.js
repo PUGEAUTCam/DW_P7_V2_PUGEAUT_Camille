@@ -12,7 +12,7 @@ const colors = {
     blue3: "#30b0a6",
     blue2: '#499699',
 
-    bg1: "rgb(24 23 23)",
+    bg1: "rgb(32, 33, 36)",
     bg2: "#191919"
 }
 export default colors;

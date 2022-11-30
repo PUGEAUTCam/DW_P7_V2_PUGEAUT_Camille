@@ -4,7 +4,7 @@ import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import { postUpdate } from '../../API';
-import { ButtonDeleteTurquoise, ButtonTurquoise, TextArea2 } from '../ButtonStyle/style';
+import { ButtonDeleteTurquoise, ButtonTurquoise, TextAreaModal } from '../ButtonStyle/style';
 import { ContainerBtnInputFile, ContainerImg, ImgModal, ModalSection } from './style';
 
 const PostUpdateModal = ({ post, onUpdate }) => {
@@ -36,11 +36,11 @@ const PostUpdateModal = ({ post, onUpdate }) => {
 
     return (
         <div>
-            <HyperModal isOpen={open} requestClose={() => setOpen(false)} style={{ background: "#454545e6" }}>
+            <HyperModal isOpen={open} requestClose={() => setOpen(false)}>
                 <ModalSection>
                     <h2>Modifier votre post</h2>
                     <div>
-                        <TextArea2
+                        <TextAreaModal
                             name="post"
                             id="updatePost"
                             cols='100'
@@ -49,7 +49,7 @@ const PostUpdateModal = ({ post, onUpdate }) => {
                             value={updatePost}
                             onChange={(e) => setUpdatePost(e.target.value)}
                         >
-                        </TextArea2>
+                        </TextAreaModal>
                         <ContainerImg>
                             <ImgModal src={updateImage} alt='' />
                             {updateImage
