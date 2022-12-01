@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { addPost } from '../../features/postsSlice';
 import { AvatarImg, ImgCreatePost } from '../StyleDefinition/picture';
 import { Button, ButtonDelete, TextArea } from '../ButtonStyle/style';
+import Lottie from "lottie-react";
+import Coffee from "../lottieAnimations/77597-coffee.json"
 
 const CreatePost = () => {
     const userStore = useSelector((state) => state.userStore);
@@ -53,6 +55,7 @@ const CreatePost = () => {
                     <AvatarImg src={userStore.user.avatar} alt={"avatar de " + userStore.user.firstname} />
                 </IconHello>
                 <HelloTitle>Bonjour {userStore.user.firstname}</HelloTitle>
+                <Lottie animationData={Coffee} style={{ width: 49, paddingBottom: 4 }} />
             </ContainerHello>
             <ContainerInputBtn>
                 <TextArea

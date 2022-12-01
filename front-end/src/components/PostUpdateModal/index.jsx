@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import HyperModal from 'react-hyper-modal';
+import Modal from 'react-modal';
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import { postUpdate } from '../../API';
 import { ButtonDeleteTurquoise, ButtonTurquoise, TextAreaModal } from '../ButtonStyle/style';
 import { ContainerBtnInputFile, ContainerImg, ImgModal, ModalSection } from './style';
+import colors from "../StyleDefinition/colors"
 
 const PostUpdateModal = ({ post, onUpdate }) => {
     const [open, setOpen] = useState(false);
@@ -33,10 +34,25 @@ const PostUpdateModal = ({ post, onUpdate }) => {
         }
         setOpen(false)
     };
+    const customStyles = {
+        content: {
+            borderRadius: 10,
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: colors.bg1
+        },
+        overlay: {
+            zIndex: 999
+        }
+    };
 
     return (
         <div>
-            <HyperModal isOpen={open} requestClose={() => setOpen(false)}>
+            <Modal style={customStyles} isOpen={open} onRequestClose={() => setOpen(false)}>
                 <ModalSection>
                     <h2>Modifier votre post</h2>
                     <div>
@@ -74,7 +90,7 @@ const PostUpdateModal = ({ post, onUpdate }) => {
                     </ContainerBtnInputFile>
 
                 </ModalSection>
-            </HyperModal >
+            </Modal>
 
 
             <FontAwesomeIcon icon={faPenToSquare} onClick={() => setOpen(true)} />

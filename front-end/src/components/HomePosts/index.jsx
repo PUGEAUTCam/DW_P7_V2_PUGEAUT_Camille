@@ -5,6 +5,9 @@ import { getPost, updatePostStore, likePostStore, deletePostStore, commentStore 
 import Post from '../Post';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { TextEnd } from './style';
+import { LottieDiv2 } from '../StyleDefinition/picture';
+import { LogoLogin } from '../../components/StyleDefinition/picture';
+
 
 const HomePosts = () => {
 
@@ -21,7 +24,11 @@ const HomePosts = () => {
             next={() => postsStore.posts?.hasNextPage && dispatch(getPost(postsStore.posts?.nextPage))}
             loader={<h4>Loading...</h4>}
             hasMore={postsStore.posts?.hasNextPage}
-            endMessage={<TextEnd>Fin du fil d'actualité - Groupost un nouveau message dès maintenant</TextEnd>}
+            endMessage={<LottieDiv2>
+                <LogoLogin src="./icon-left-font-monochrome-black.svg" alt="Groupomania-logo" style={{ marginTop: 25 }} />
+                <TextEnd>Fin du fil d'actualité - Groupost un nouveau message dès maintenant</TextEnd>
+            </LottieDiv2>
+            }
         >
             {postsStore.posts?.docs?.map((post, index) =>
                 <Post
@@ -37,3 +44,5 @@ const HomePosts = () => {
 }
 
 export default HomePosts;
+
+{/*  */ }

@@ -23,7 +23,6 @@ export const ImgModal = styled.img`
             width: 120px;
         }
 `
-
 export const ContainerBtnInputFile = styled.div`
     display: flex;
     align-items: center;

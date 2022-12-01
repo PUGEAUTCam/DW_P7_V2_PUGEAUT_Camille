@@ -61,3 +61,19 @@ export const AvatarProfile = styled.img`
             border-radius: 50px;
         }
 `
+
+//LOTTIE
+
+export const LottieDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 55px;
+`
+
+export const LottieDiv2 = styled.div`
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-bottom: 30px;
+
+`
