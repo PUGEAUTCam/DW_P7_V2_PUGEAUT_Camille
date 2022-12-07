@@ -75,5 +75,8 @@ export const LottieDiv2 = styled.div`
     flex-direction: column-reverse;
     align-items: center;
     padding-bottom: 30px;
+    @media all and (max-width: 768px) {
+        padding-bottom: 0px;
+    }  
 
 `

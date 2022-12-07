@@ -51,7 +51,7 @@ const CreatePost = () => {
     return (
         <ContainerCreatePost>
             <ContainerHello>
-                <IconHello style={{ border: "1px solid rgb(225, 122, 122)", marginLeft: "13px", background: "white" }}>
+                <IconHello>
                     <AvatarImg src={userStore.user.avatar} alt={"avatar de " + userStore.user.firstname} />
                 </IconHello>
                 <HelloTitle>Bonjour {userStore.user.firstname}</HelloTitle>

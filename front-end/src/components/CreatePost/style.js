@@ -9,9 +9,6 @@ export const ContainerCreatePost = styled.div`
     margin-top: 36px;
     margin-bottom: 80px;
     border-radius: 6px;
-    // background: rgb(70 35 21 / 8%);
-    // border: 1px solid rgb(220 84 0 / 52%);
-    // background : rgb(34 33 33 / 36%);
     background: rgb(68 68 68 / 15%);
     border: 1px solid rgb(220 0 0 / 52%);
         @media all and (max-width: 768px) {
@@ -21,11 +18,12 @@ export const ContainerCreatePost = styled.div`
         }
 `
 export const IconHello = styled.div`
-    border: 1px solid #24b6a9;
-    //  rgb(225, 122, 122);
+    border: 1px solid rgb(225, 122, 122);
+    margin-left: 13px;
     width: 44px;
     height: 44px;
     border-radius: 22px;
+    background: white;
     overflow: hidden;
         @media all and (max-width: 768px) {
             width: 36px;
@@ -37,7 +35,6 @@ export const HelloTitle = styled.h2`
     color: ${colors.primary2};
     font-weight: 300;
     margin-left: 11px;
-
 `
 export const ContainerHello = styled.div`
     width: 98%;

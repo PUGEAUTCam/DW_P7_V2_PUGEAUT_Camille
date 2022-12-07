@@ -45,9 +45,7 @@ export const ContainerDeleteUpdate = styled.div`
 export const TextUser = styled.p`
 transition: all 400ms ease;
     :hover{
-        color: #24b6a9;
-        transform: scale(1.02);
-        
+        color: ${colors.blue1};
+        transform: scale(1.02);  
     }
-
 `

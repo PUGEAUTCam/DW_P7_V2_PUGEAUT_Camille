@@ -1,12 +1,12 @@
-import React from 'react';
-import { ConversationsContainer } from '../style';
+// import React from 'react';
+// import { ConversationsContainer } from '../style';
 
-const Conversations = () => {
-    return (
-        <ConversationsContainer>
+// const Conversations = () => {
+//     return (
+//         <ConversationsContainer>
 
-        </ConversationsContainer>
-    );
-};
+//         </ConversationsContainer>
+//     );
+// };
 
-export default Conversations;
+// export default Conversations;

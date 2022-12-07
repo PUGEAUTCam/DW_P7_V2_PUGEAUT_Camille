@@ -25,7 +25,7 @@ const HomePosts = () => {
             loader={<h4>Loading...</h4>}
             hasMore={postsStore.posts?.hasNextPage}
             endMessage={<LottieDiv2>
-                <LogoLogin src="./icon-left-font-monochrome-black.svg" alt="Groupomania-logo" style={{ marginTop: 25 }} />
+                <LogoLogin src="./icon-left-font-monochrome-black.svg" alt="Groupomania-logo" />
                 <TextEnd>Fin du fil d'actualité - Groupost un nouveau message dès maintenant</TextEnd>
             </LottieDiv2>
             }

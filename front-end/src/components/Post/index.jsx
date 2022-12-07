@@ -4,7 +4,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { ContainerDeleteUpdate, ContainerIcon, ContainerName, ContainerPost, ContainerTxtImg, HeaderUser, TextUser } from './style';
+import { ContainerComment, ContainerDeleteUpdate, ContainerIcon, ContainerName, ContainerPost, ContainerTxtImg, HeaderUser, TextUser } from './style';
 import { AvatarImg, IconAvatar, ImgPost } from '../StyleDefinition/picture';
 import dayjs from 'dayjs';
 import { useSelector } from "react-redux";
@@ -60,7 +60,6 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                 }
                 {/* Like */}
                 <div style={{ display: 'flex', alignItems: "center" }}>
-
                     {
                         post.usersLiked.includes(userStore.user._id)
                             ? <FavoriteIcon style={{ color: "#24b6a9", cursor: "pointer" }} onClick={() => handleLike(post)} />
@@ -68,8 +67,12 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
                     }
                     <p style={{ padding: 2 }}>{post.likes}</p>
                 </div>
+
                 {/* Comment */}
-                <ChatBubbleOutlineIcon className='icon' sx={{ color: "#24b6a9", "&:hover": { color: "#e35503" }, cursor: "pointer" }} onClick={() => setOpenComment(!openComment)} />
+                <div style={{ display: 'flex', alignItems: "center" }}>
+                    <ChatBubbleOutlineIcon className='icon' sx={{ color: "#24b6a9", "&:hover": { color: "rgb(213 23 23)" }, cursor: "pointer" }} onClick={() => setOpenComment(!openComment)} />
+                    <p style={{ paddingBottom: 2, paddingLeft: 4 }}>{post.comments.length}</p>
+                </div>
             </ContainerIcon>
 
             {openParams &&

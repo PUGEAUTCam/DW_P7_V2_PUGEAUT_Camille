@@ -24,7 +24,7 @@ const Comment = ({ post, onComment }) => {
                 <Input
                     type="text"
                     placeholder='Envie de commenter?'
-                    style={{ border: '1px solid #f27f3d82', borderRadius: 5 }}
+                    style={{ border: '1px solid rgb(213 23 23 / 47%)', borderRadius: 5 }}
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                 />

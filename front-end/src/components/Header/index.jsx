@@ -20,9 +20,11 @@ const Header = () => {
             </Link>
 
             <NavBar>
-                <IconAvatar style={{ marginRight: 13, cursor: "pointer" }}>
-                    <SearchIcon onClick={() => alert("Fonctionnalité en cours de développement")} sx={{ fontSize: { xs: 24, lg: 32 }, color: 'white', display: "flex" }} />
-                </IconAvatar>
+                <Link to="/search">
+                    <IconAvatar style={{ marginRight: 13, cursor: "pointer" }}>
+                        <SearchIcon sx={{ fontSize: { xs: 24, lg: 32 }, color: 'white', display: "flex" }} />
+                    </IconAvatar>
+                </Link>
 
                 <Link to="/postsLiked">
                     <IconAvatar style={{ marginRight: 13 }}>

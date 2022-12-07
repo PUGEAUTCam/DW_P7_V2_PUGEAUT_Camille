@@ -102,7 +102,7 @@ export const ButtonComment = styled.button`
     background: ${colors.btnBg};
     border: none;
     font-size: 20px;
-    color: #e35503;
+    color: rgb(213 23 23);
     margin-left: 12px;
     transition: all 300ms ease;
         :hover{
@@ -111,15 +111,15 @@ export const ButtonComment = styled.button`
         }
 `
 export const ButtonAvatar = styled.button`
-height: 26px;
-width: 106px;
-border-radius: 6px;
-background: #323235ba;
-border: none;
-font-size: 17px;
-margin-left: 32px;
-color: rgb(213 23 23);
-transition: all 300ms ease;
+    height: 26px;
+    width: 106px;
+    border-radius: 6px;
+    background: #323235ba;
+    border: none;
+    font-size: 17px;
+    margin-left: 32px;
+    color: rgb(213 23 23);
+    transition: all 300ms ease;
         :hover{
             color:${colors.blue1};
             transform: scale(1.03);

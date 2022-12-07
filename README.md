@@ -1,4 +1,5 @@
-                                        GROUPOMANIA
+                                                         GROUPOMANIA
+
 
 This app is an internal social network.
 
@@ -32,5 +33,8 @@ You should see this message on your console :
 
 
 ## DEVELOPER ##
-PUGEAUT Camille https://github.com/PUGEAUTCam
+PUGEAUT Camille 
+
+https://github.com/PUGEAUTCam
+https://www.linkedin.com/in/camille-pugeaut/
 

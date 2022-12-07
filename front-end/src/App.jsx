@@ -8,6 +8,7 @@ import { getUser } from "./features/usersSlice";
 import ProfilePage from "./views/profilePage";
 import LikedPage from "./views/likedPage";
 import Chat from "./views/chat";
+import SearchPage from "./views/searchPage";
 
 function App() {
     const [ready, setReady] = useState(false)
@@ -55,11 +56,16 @@ function App() {
                         view: <LikedPage />
                     })}
                 />
-
                 <Route
+                    path="/search"
+                    element={requiredLogged({
+                        view: <SearchPage />
+                    })}
+                />
+                {/* <Route
                     path="/chat"
                     element={<Chat />}
-                />
+                /> */}
 
             </Routes>
         </BrowserRouter>
