@@ -4,7 +4,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import DehazeIcon from '@mui/icons-material/Dehaze';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { ContainerComment, ContainerDeleteUpdate, ContainerIcon, ContainerName, ContainerPost, ContainerTxtImg, HeaderUser, TextUser } from './style';
+import { ContainerDeleteUpdate, ContainerIcon, ContainerName, ContainerPost, ContainerTxtImg, HeaderUser, TextUser } from './style';
 import { AvatarImg, IconAvatar, ImgPost } from '../StyleDefinition/picture';
 import dayjs from 'dayjs';
 import { useSelector } from "react-redux";
@@ -21,6 +21,7 @@ const Post = ({ post, index, onUpdate, onLike, onDelete, onComment }) => {
     const [openParams, setOpenParams] = useState(false);
 
     const handleDeletePost = async (post) => {
+        setOpenParams(false)
         let res = await deletePost(post)
         onDelete(res.data)
     }

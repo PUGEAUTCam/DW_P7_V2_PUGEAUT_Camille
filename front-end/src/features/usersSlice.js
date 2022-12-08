@@ -36,7 +36,6 @@ export const getUser = createAsyncThunk("user/getUser", async () => {
     let res = await axios.get(API_ROUTES.me, header())
         .then((res) => res)
         .catch((error) => console.log(error))
-
     return res.data
 })
 

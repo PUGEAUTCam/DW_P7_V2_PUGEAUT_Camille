@@ -39,13 +39,16 @@ exports.getUserPosts = (req, res, next) => {
     let userId = req.query.id ? req.query.id : req.auth.userId
     Post.find({ userId: userId })
         .sort({ createdAt: -1 })
-        .populate([{ path: 'userId', select: 'name firstname avatar' }, {
-            path: "comments", populate: {
-                path: 'userId',
-                model: 'User',
-                select: 'name firstname avatar'
+        .populate([
+            { path: 'userId', select: 'name firstname avatar' },
+            {
+                path: "comments", populate: {
+                    path: 'userId',
+                    model: 'User',
+                    select: 'name firstname avatar'
+                }
             }
-        }])
+        ])
         .then(posts => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error }));
 };
@@ -53,13 +56,16 @@ exports.getUserPosts = (req, res, next) => {
 exports.getLikedPosts = (req, res, next) => {
     Post.find({ usersLiked: req.auth.userId })
         .sort({ createdAt: -1 })
-        .populate([{ path: 'userId', select: 'name firstname avatar' }, {
-            path: "comments", populate: {
-                path: 'userId',
-                model: 'User',
-                select: 'name firstname avatar'
+        .populate([
+            { path: 'userId', select: 'name firstname avatar' },
+            {
+                path: "comments", populate: {
+                    path: 'userId',
+                    model: 'User',
+                    select: 'name firstname avatar'
+                }
             }
-        }])
+        ])
         .then(posts => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error }));
 };
@@ -127,7 +133,6 @@ exports.modifyOnePost = (req, res, next) => {
                         });
                     };
                 }
-
                 const postBody = {
                     ...req.body,
                     imageUrl: req?.file
@@ -136,7 +141,6 @@ exports.modifyOnePost = (req, res, next) => {
                             ? ""
                             : post.imageUrl
                 }
-
                 Post.updateOne({ _id: req.params.id }, postBody)
                     .then(() => res.status(200).json({ message: 'Post modifiée', post: postBody, id: req.params.id }))
                     .catch(error => {

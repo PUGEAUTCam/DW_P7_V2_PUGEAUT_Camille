@@ -3,8 +3,8 @@ html, body {
 	margin: 0 auto;
     height: 100%;
     width: 100%;
-    background-color: rgb(32, 33, 36);
-    /* background-color: rgb(24 23 23); */
+    background-color: rgb(31 32 33);
+    /* background-color: rgb(32, 33, 36); */
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
     color: white;

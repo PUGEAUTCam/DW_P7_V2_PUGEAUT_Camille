@@ -8,7 +8,5 @@ export const store = configureStore({
     reducer: {
         userStore: usersSlice.reducer,
         postsStore: postsSlice.reducer,
-
-
     },
 });
