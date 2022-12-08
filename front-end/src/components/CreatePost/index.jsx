@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from "react-redux";
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import { ContainerCreatePost, ContainerHello, ContainerBtn, ContainerInputBtn, HelloTitle, IconHello, ContainerImg } from './style';
-import { API_ROUTES, header } from '../../API';
-import axios from "axios";
+import { createPost } from '../../API';
 import { useDispatch } from "react-redux";
 import { addPost } from '../../features/postsSlice';
 import { AvatarImg, ImgCreatePost } from '../StyleDefinition/picture';
@@ -29,13 +28,10 @@ const CreatePost = () => {
             const formData = new FormData();
             formData.append('message', newPost);
             if (file) formData.append('image', file);
-
-            await axios.post(API_ROUTES.post, formData, header({ formData: true }))
-                .then(async (res) => {
-                    await dispatch(addPost(res.data.post))
-                    cleanState()
-                })
-                .catch((error) => console.log(error))
+            //CALL API / STORE 
+            let res = await createPost(formData);
+            await dispatch(addPost(res.data.post))
+            cleanState()
 
         } else {
             alert(`Veuillez group'oster un message ou une image ! `)

@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./features/usersSlice";
 import ProfilePage from "./views/profilePage";
 import LikedPage from "./views/likedPage";
-import Chat from "./views/chat";
 import SearchPage from "./views/searchPage";
+// import Chat from "./views/chat";
 
 function App() {
     const [ready, setReady] = useState(false)
@@ -25,6 +25,11 @@ function App() {
         return logged ? props.view : <Navigate to="/login" replace />
     }
 
+    const checkAuth = (props) => {
+        let authOk = userStore.user !== null
+        return authOk ? <Navigate to="/" replace /> : props.view
+    }
+
     if (!ready) {
         return null;
     }
@@ -32,24 +37,30 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/login"
+                    element={checkAuth({
+                        view: <LoginPage />
 
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<SignupPage />} />
+                    })}
+                />
+                <Route path="/signup"
+                    element={checkAuth({
+                        view: <SignupPage />
 
+                    })}
+                />
                 <Route
                     path="/"
                     element={requiredLogged({
                         view: <HomePage />
                     })}
                 />
-
                 <Route
                     path="/profile"
                     element={requiredLogged({
                         view: <ProfilePage />
                     })}
                 />
-
                 <Route
                     path="/postsLiked"
                     element={requiredLogged({
@@ -66,7 +77,6 @@ function App() {
                     path="/chat"
                     element={<Chat />}
                 /> */}
-
             </Routes>
         </BrowserRouter>
     );

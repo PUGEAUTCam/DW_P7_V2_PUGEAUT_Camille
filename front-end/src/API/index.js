@@ -30,6 +30,11 @@ export const header = (config = defaultConfig) => {
 }
 
 //CALL API for the posts
+export const createPost = async (formData) =>
+    await axios.post(API_ROUTES.post, formData, header({ formData: true }))
+        .then((res) => res)
+        .catch((error) => console.log(error))
+
 export const getAllPosts = async (page) =>
     await axios.get(API_ROUTES.post, { ...header(), params: { page } })
         .then((res) => res)

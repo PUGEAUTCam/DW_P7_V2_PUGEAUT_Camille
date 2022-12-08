@@ -44,5 +44,3 @@ const HomePosts = () => {
 }
 
 export default HomePosts;
-
-{/*  */ }

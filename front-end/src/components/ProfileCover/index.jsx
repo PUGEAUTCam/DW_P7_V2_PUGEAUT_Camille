@@ -3,23 +3,22 @@ import { useSelector } from 'react-redux';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import { useDispatch } from "react-redux";
 import { getUser } from '../../features/usersSlice';
-import { uploadCoverImg, uploadAvatarImg, getuserPosts } from '../../API';
+import { uploadCoverImg, uploadAvatarImg } from '../../API';
 import { BtnUpdateCover, BtnUpdateCover2, ContainerAvatarBtn, ContainerBtnConfirmCover, ContainerbtnUpdate, CoverImg } from './style';
 import { Button, ButtonAvatar } from '../ButtonStyle/style';
 import { AvatarProfile } from '../StyleDefinition/picture';
 
 const ProfileCover = ({ dataUser }) => {
+    const userStore = useSelector((state) => state.userStore);
+    const dispatch = useDispatch();
+    let user = dataUser || userStore.user
+
     //COVER
     const [fileCover, setFileCover] = useState(null);
     const [imageCover, setImageCover] = useState(null);
     //AVATAR
     const [fileAvatar, setFileAvatar] = useState(null);
     const [imageAvatar, setImageAvatar] = useState(null);
-
-    const userStore = useSelector((state) => state.userStore);
-    const dispatch = useDispatch();
-    let user = dataUser || userStore.user
-
     //COVER
     const handleImageCover = async (e) => {
         setImageCover(URL.createObjectURL(e.target.files[0]));
@@ -110,7 +109,6 @@ const ProfileCover = ({ dataUser }) => {
                         </ContainerbtnUpdate>
                 }
             </ContainerAvatarBtn>
-
 
         </div>
     );
