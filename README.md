@@ -1,4 +1,4 @@
-                         #GROUPOMANIA
+                                    #GROUPOMANIA
 
 This app is an internal social network.  
 This is the front end and back end server for Project 7 of the Web Developer path OpenCLassrooms in november 2022.  
@@ -15,9 +15,9 @@ Then Clone this repository.
 
 
 ## Front en Installation ##
-#Run npm install.  
+`Run npm install`  
 From the "front" folder of the project run: 
-#npm start  
+`npm start`
 The view front-end should start in the browser, on port default 3000.  
 You should see this message on your console :  
 
@@ -44,9 +44,9 @@ ACCESS_TOKEN_SECRET= 'random character string'
 
 
 ## Back end Installation ##
-#Run npm install.  
+`Run npm install`  
 From the "back" folder of the project run the server with : 
-#npm start.   
+`npm start`  
 The server should run on localhost with default port 5500.  
 You should see this message on your console :   
 

@@ -33,10 +33,14 @@ export const IconAvatar = styled.div`
     align-items: center;
     overflow: hidden;
         :hover{
-            border-color: ${colors.blue1};
+            border-color: ${colors.primary2};
+            background: #0d554e1d;
+            transition: all 300ms ease;
         }
         :active{
-            border-color: ${colors.blue1};
+            border-color:${colors.primary2};
+            background: #0d554e1d;
+            transition: all 300ms ease;
         }
         @media screen and (max-width: 768px) {
             border-radius: 19px;

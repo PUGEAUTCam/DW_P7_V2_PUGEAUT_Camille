@@ -22,13 +22,13 @@ const Header = () => {
             <NavBar>
                 <Link to="/search">
                     <IconAvatar style={{ marginRight: 13, cursor: "pointer" }}>
-                        <SearchIcon sx={{ fontSize: { xs: 24, lg: 32 }, color: 'white', display: "flex" }} />
+                        <SearchIcon sx={{ fontSize: { xs: 24, lg: 32 }, color: 'white', display: "flex", "&:hover": { color: "#d6d6d6" } }} />
                     </IconAvatar>
                 </Link>
 
                 <Link to="/postsLiked">
                     <IconAvatar style={{ marginRight: 13 }}>
-                        <FavoriteBorderIcon sx={{ fontSize: { xs: 24, lg: 32 }, color: 'white', display: "flex" }} />
+                        <FavoriteBorderIcon sx={{ fontSize: { xs: 24, lg: 32 }, color: 'white', display: "flex", "&:hover": { color: "#d6d6d6" } }} />
                     </IconAvatar>
                 </Link>
 

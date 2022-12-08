@@ -10,7 +10,7 @@ const colors = {
 
     blue1: "#24b6a9",
     blue3: "#30b0a6",
-    blue2: '#499699',
+    blue2: '#04252d',
 
     bg1: "rgb(32, 33, 36)",
     bg2: "#191919"

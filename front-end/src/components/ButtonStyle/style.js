@@ -186,13 +186,13 @@ export const InputForm = styled.input`
 `
 export const TextArea = styled.textarea`
     background: rgb(70 35 21 / 3%);
-    // rgb(34 33 33 / 25%);
-    width: 93%;
+    width: 88%;
     height: 65px;
     border: none;
     resize: none;
     font-size: 16px;
     margin-left: 13px;
+    padding-left: 54px;
     color: white;
     overflow: auto;
     outline: none;
@@ -204,7 +204,8 @@ export const TextArea = styled.textarea`
         @media screen and (max-width: 768px) {
             text-align: center;
             font-size: 13px;
-      }
+            padding-left: 0px;
+            width: 91%;
 `
 
 export const TextArea2 = styled.textarea`
