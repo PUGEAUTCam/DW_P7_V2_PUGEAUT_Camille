@@ -20,7 +20,7 @@ export const TextComment = styled.p`
     color: #b0abab;
     font-size: 14px;
     text-align: inherit;
-    margin: 0px 79px;
+    margin: 0px 92px;
         @media screen and (max-width: 768px) {
             font-size: 13px;
             margin: 0px 72px;
