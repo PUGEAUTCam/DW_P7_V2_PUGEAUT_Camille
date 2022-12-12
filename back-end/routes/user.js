@@ -11,11 +11,14 @@ const auth = require('../middlewares/auth');
 router.post('/signup', passwordValidator, userCtrl.signup);
 router.post('/login', userCtrl.login);
 router.get('/me', auth, userCtrl.me);
+
+//Search
+router.get('/search', userCtrl.searchUser);
+
 router.get('/:id', userCtrl.getOneUser);
 
 router.patch('/profileUpdate', auth, userCtrl.profileUpdate);
 router.post("/uploadCoverImg", multer, auth, userCtrl.uploadCoverImg);
 router.post("/uploadAvatarImg", multer, auth, userCtrl.uploadAvatarImg);
-
 
 module.exports = router;

@@ -1,15 +1,15 @@
 import React from 'react';
 import Lottie from "lottie-react";
-import Puzzle from "../../components/lottieAnimations/puzzle.json"
-import Header from '../../components/Header';
+import Detective from "../../components/lottieAnimations/96262-detective-search.json"
 import Layout from '../../components/layout';
+import SearchBar from '../../components/SearchBar';
 
 const SearchPage = () => {
     return (
         <Layout>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <Lottie animationData={Puzzle} style={{ width: "40%" }} />
-                <h2>Page en cours de développement</h2>
+                <Lottie animationData={Detective} style={{ width: "30%" }} />
+                <SearchBar />
             </div>
         </Layout>
     );

@@ -1,6 +1,7 @@
 import axios from "axios";
 //ROUTES
 export const API_ROUTES = {
+    //api/auth
     login: `http://localhost:5500/api/auth/login`,
     signup: `http://localhost:5500/api/auth/signup`,
     me: `http://localhost:5500/api/auth/me`,
@@ -8,6 +9,8 @@ export const API_ROUTES = {
     profileUpdate: `http://localhost:5500/api/auth/profileUpdate`,
     uploadCover: `http://localhost:5500/api/auth/uploadCoverImg`,
     uploadAvatar: `http://localhost:5500/api/auth/uploadAvatarImg`,
+    search: `http://localhost:5500/api/auth/search`,
+    // api/post
     post: `http://localhost:5500/api/post/`,
     userPosts: `http://localhost:5500/api/post/userPosts`,
     likedPosts: `http://localhost:5500/api/post/likedPosts`,
@@ -107,3 +110,9 @@ export const getOneUser = async (id) => {
         .then((res) => res)
         .catch((error) => console.log(error))
 };
+
+export const searchUser = async (search) => {
+    return await axios.get(API_ROUTES.search, { ...header(), params: { letter: search } })
+        .then((res) => res)
+        .catch((error) => console.log(error))
+}

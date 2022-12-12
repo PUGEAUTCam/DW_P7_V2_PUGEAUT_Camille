@@ -125,7 +125,6 @@ exports.uploadAvatarImg = (req, res, next) => {
                 res.status(403).json({ message: 'Not authorized' });
             }
             else {
-
                 // const filename = user.avatar.split('/images/')[1];
                 // if (filename) {
                 //     fs.unlink(`images/${filename}`, (err) => {
@@ -134,10 +133,24 @@ exports.uploadAvatarImg = (req, res, next) => {
                 // };
                 UserModel.updateOne({ _id: req.auth.userId }, { avatar: avatarImage })
                     .then(() => res.status(200).json({ message: 'avatar de profil modifié' }))
-                    .catch(error => res.status(401).json({ error }));
+                    .catch(error => res.status(400).json({ error }));
             }
         })
         .catch((error) => {
             res.status(400).json({ error });
         });
+};
+
+exports.searchUser = (req, res, next) => {
+    const search = req.query.letter;
+
+    UserModel.find({
+        $or:
+            [
+                { name: { $regex: search, $options: 'i' } },
+                { firstname: { $regex: search, $options: 'i' } },
+            ],
+    })
+        .then((result) => res.status(200).json({ result }))
+        .catch(error => console.log(error));
 };

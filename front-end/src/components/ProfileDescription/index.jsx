@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import CreateIcon from '@mui/icons-material/Create';
-import { Background, ContainerBio, ModalInputContainer } from './style';
+import { ContainerBio, ModalInputContainer } from './style';
 import { profileUpdate } from '../../API';
 import { useDispatch } from "react-redux";
 import { deleteUser, getUser } from '../../features/usersSlice';
