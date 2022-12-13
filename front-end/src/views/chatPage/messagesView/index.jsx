@@ -7,16 +7,23 @@ import {
     SendButton
 } from '../style';
 
+
+//Partie messages avec les bulles de conversations
 const MessagesView = () => {
     return (
         <MessagesContainer>
+
             <BubblesContainer>
 
             </BubblesContainer>
+
+
+
             <InputTextContainer>
                 <Input />
                 <SendButton>Envoyer</SendButton>
             </InputTextContainer>
+
         </MessagesContainer>
     );
 };

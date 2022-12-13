@@ -8,7 +8,7 @@ import { getUser } from "./features/usersSlice";
 import ProfilePage from "./views/profilePage";
 import LikedPage from "./views/likedPage";
 import SearchPage from "./views/searchPage";
-// import Chat from "./views/chat";
+import ChatPage from "./views/chatPage";
 
 function App() {
     const [ready, setReady] = useState(false)
@@ -73,10 +73,11 @@ function App() {
                         view: <SearchPage />
                     })}
                 />
-                {/* <Route
+                <Route
                     path="/chat"
-                    element={<Chat />}
-                /> */}
+                    element={<ChatPage />}
+                />
+
             </Routes>
         </BrowserRouter>
     );

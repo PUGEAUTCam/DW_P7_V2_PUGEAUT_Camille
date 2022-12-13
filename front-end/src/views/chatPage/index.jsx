@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
+import Layout from '../../components/layout';
 import Conversations from './conversations';
 import MessagesView from './messagesView';
 import { ChatContainer } from './style';
 
-const Chat = () => {
+const ChatPage = () => {
 
     const [activeConversation, setActiveConversation] = useState(null)
 
 
     return (
-        <ChatContainer>
-            <Conversations />
-            <MessagesView />
-        </ChatContainer>
+        <Layout>
+            <ChatContainer>
+                <Conversations />
+                <MessagesView />
+            </ChatContainer>
+        </Layout >
     );
 };
 
-export default Chat;
+export default ChatPage;
