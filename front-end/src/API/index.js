@@ -16,7 +16,15 @@ export const API_ROUTES = {
     likedPosts: `http://localhost:5500/api/post/likedPosts`,
     like: `http://localhost:5500/api/post/like`,
     comment: `http://localhost:5500/api/comment/`,
+    //chatRoutes
+    conversations: `http://localhost:5500/api/chat/conversations/`
 }
+
+//CHAT
+export const getConversations = async (userId) =>
+    await axios.get(API_ROUTES.conversations + userId, header())
+        .then((res) => res)
+        .catch((error) => console.log(error))
 
 //AUTH
 let defaultConfig = {

@@ -1,36 +1,30 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import axios from "axios";
 import { ConversationsContainer } from '../style';
 import { useSelector } from "react-redux";
+import { getConversations } from '../../../API';
+import { AvatarImg } from '../../../components/StyleDefinition/picture';
+import { IconHello } from '../../../components/CreatePost/style';
 
 const Conversations = () => {
     const userStore = useSelector((state) => state.userStore)
     const [conversations, setConversations] = useState([]);
 
     useEffect(() => {
-        const getConversations = async () => {
-            try {
-                const res = await axios.get("http://localhost:5500/api/chat/conversations/" + userStore.user._id);
-                setConversations(res.data);
-                console.log(res.data)
-
-            } catch (err) {
-                console.log(err)
-            }
-        };
-        getConversations();
-    }, [userStore.user._id])
-
-
-
-
+        getConversations(userStore.user._id).then((res) => setConversations(res.data))
+    }, [])
 
     return (
         <ConversationsContainer>
             {conversations?.map((conv, index) => (
-                <div key={index}> {conv.members} </div>
+
+                <div key={index} style={{ display: "flex" }}>
+                    <IconHello>
+                        <AvatarImg src={conv.senderId.avatar} alt={"avatar de " + conv.senderId.firstname + " " + conv.senderId.name} />
+                    </IconHello>
+                    <p>{conv.senderId.firstname + " " + conv.senderId.name}</p>
+                </div>
 
             ))}
 

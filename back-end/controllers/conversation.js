@@ -1,29 +1,21 @@
 const Conversations = require("../models/Conversation");
 
 //new conversation
-exports.createNewConversation = async (req, res, next) => {
+exports.createNewConversation = (req, res, next) => {
     const newConversation = new Conversations({
-        members: [req.body.senderId, req.body.receiverId],
+        senderId: req.body.senderId,
+        receiverId: req.body.receiverId,
     });
-
-    try {
-        const savedConversation = await newConversation.save()
-        res.status(200).json(savedConversation);
-
-    } catch (err) {
-        res.status(500).json(err);
-    }
+    newConversation.save()
+        .then(newConversation => newConversation.populate("senderId", "name firstname avatar"))
+        .then(() => res.status(200).json({ message: 'Conversation registered in database', newConversation }))
+        .catch(error => res.status(400).json({ error }));
 };
 
 //get conv of a user 
-exports.getConversation = async (req, res, next) => {
-    try {
-        const conversation = await Conversations.find({
-            members: { $in: [req.params.userId] }
-        });
-        res.status(200).json(conversation);
-
-    } catch (err) {
-        res.status(500).json(err);
-    }
+exports.getConversation = (req, res, next) => {
+    Conversations.find({ receiverId: req.params.userId })
+        .populate({ path: 'senderId', select: 'name firstname avatar' })
+        .then((conversations) => res.status(200).json(conversations))
+        .catch(error => res.status(400).json({ error }));
 };

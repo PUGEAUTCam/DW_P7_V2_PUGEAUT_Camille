@@ -4,26 +4,18 @@ const Messages = require("../models/Message");
 exports.createNewMessage = async (req, res, next) => {
     const newMessage = new Messages(req.body)
 
-    try {
-        const savedMessage = await newMessage.save();
-        res.status(200).json(savedMessage);
-
-    } catch (err) {
-        res.status(500).json(err);
-    }
+    newMessage.save()
+        .then(newMessage => newMessage.populate("sender", "name firstname avatar"))
+        .then(() => res.status(200).json({ message: 'Message registered in database', newMessage }))
+        .catch(error => res.status(400).json({ error }));
 };
 
 //get messages 
 exports.getMessages = async (req, res, next) => {
-    try {
-        const messages = await Messages.findOne({
-            conversationId: req.params.conversationId,
-        });
-        res.status(200).json(messages);
-
-    } catch (err) {
-        res.status(500).json(err);
-    }
+    Messages.findOne({ conversationId: req.params.conversationId })
+        .populate({ path: 'sender', select: 'name firstname avatar' })
+        .then((messages) => res.status(200).json(messages))
+        .catch(error => res.status(400).json({ error }));
 };
 
 
