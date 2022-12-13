@@ -17,12 +17,18 @@ export const API_ROUTES = {
     like: `http://localhost:5500/api/post/like`,
     comment: `http://localhost:5500/api/comment/`,
     //chatRoutes
-    conversations: `http://localhost:5500/api/chat/conversations/`
+    conversations: `http://localhost:5500/api/chat/conversations/`,
+    messages: `http://localhost:5500/api/chat/messages/`
 }
 
 //CHAT
 export const getConversations = async (userId) =>
     await axios.get(API_ROUTES.conversations + userId, header())
+        .then((res) => res)
+        .catch((error) => console.log(error))
+
+export const getMessages = async (conversationId) =>
+    await axios.get(API_ROUTES.messages + conversationId, header())
         .then((res) => res)
         .catch((error) => console.log(error))
 

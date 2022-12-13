@@ -7,15 +7,15 @@ import UserConnected from './userConnected';
 
 const ChatPage = () => {
 
-    const [activeConversation, setActiveConversation] = useState(null)
+    // const [activeConversation, setActiveConversation] = useState(null)
 
 
     return (
         <Layout>
-            <ChatContainer>
-                <Conversations />
-                <MessagesView />
-            </ChatContainer>
+            {/* <ChatContainer> */}
+            <Conversations />
+            {/* <MessagesView /> */}
+            {/* </ChatContainer> */}
             <UserConnected />
         </Layout >
     );

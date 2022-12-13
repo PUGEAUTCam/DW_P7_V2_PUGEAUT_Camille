@@ -19,6 +19,7 @@
         "axios": "^1.1.2",
         "dayjs": "^1.11.6",
         "dotenv": "^16.0.3",
+        "javascript-time-ago": "^2.5.9",
         "lottie-react": "^2.3.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -31,6 +32,7 @@
         "react-search-autocomplete": "^8.2.1",
         "save": "^2.9.0",
         "styled-components": "^5.3.6",
+        "timeago.js": "^4.0.2",
         "web-vitals": "^2.1.4"
     },
     "scripts": {

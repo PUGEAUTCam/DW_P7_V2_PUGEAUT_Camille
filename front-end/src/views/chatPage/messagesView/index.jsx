@@ -1,31 +1,47 @@
-import React from 'react';
-import {
-    BubblesContainer,
-    InputTextContainer,
-    MessagesContainer,
-    Input,
-    SendButton
-} from '../style';
+// import React, { useState } from 'react';
+// import {
+//     BubblesContainer,
+//     InputTextContainer,
+//     MessagesContainer,
+//     Input,
+//     SendButton
+// } from '../style';
 
 
-//Partie messages avec les bulles de conversations
-const MessagesView = () => {
-    return (
-        <MessagesContainer>
+// //Partie messages avec les bulles de conversations
+// const MessagesView = () => {
 
-            <BubblesContainer>
-
-            </BubblesContainer>
+//     const [currentChat, setCurrentChat] = useState(null);
+//     const [messages, setMessages] = useState([]);
 
 
 
-            <InputTextContainer>
-                <Input />
-                <SendButton>Envoyer</SendButton>
-            </InputTextContainer>
 
-        </MessagesContainer>
-    );
-};
 
-export default MessagesView;
+
+
+//     return (
+//         <MessagesContainer>
+
+//             {currentChat
+//                 ? <>
+//                     <BubblesContainer>
+//                         <p>coucou</p>
+
+//                     </BubblesContainer>
+//                 </>
+//                 : <p>Veuillez cliquer sur une conversation pour group'chater</p>
+//             }
+
+
+
+//             <InputTextContainer>
+//                 <Input />
+//                 <SendButton>Envoyer</SendButton>
+//             </InputTextContainer>
+
+//         </MessagesContainer>
+//     );
+// };
+
+// export default MessagesView;

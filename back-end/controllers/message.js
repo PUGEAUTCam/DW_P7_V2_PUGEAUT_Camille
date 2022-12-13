@@ -12,7 +12,7 @@ exports.createNewMessage = async (req, res, next) => {
 
 //get messages 
 exports.getMessages = async (req, res, next) => {
-    Messages.findOne({ conversationId: req.params.conversationId })
+    Messages.find({ conversationId: req.params.conversationId })
         .populate({ path: 'sender', select: 'name firstname avatar' })
         .then((messages) => res.status(200).json(messages))
         .catch(error => res.status(400).json({ error }));

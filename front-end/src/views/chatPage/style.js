@@ -17,12 +17,12 @@ export const MessagesContainer = styled.div`
 export const ConversationsContainer = styled.div`
     height: 100vh;
     width: 50vw;
-    background-color: blue;
+    background-color: gray;
 `
 export const BubblesContainer = styled.div`
-    height: calc(100vh - ${inputHeight}px);
+    // height: calc(100vh - ${inputHeight}px);
     width: 100%;
-    background-color: yellow;
+    background-color: #110b0b;
 `
 export const InputTextContainer = styled.div`
     display: flex;
