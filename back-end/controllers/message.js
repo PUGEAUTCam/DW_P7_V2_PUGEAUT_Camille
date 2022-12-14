@@ -5,7 +5,7 @@ exports.createNewMessage = async (req, res, next) => {
     const newMessage = new Messages(req.body)
 
     newMessage.save()
-        .then(newMessage => newMessage.populate("sender", "name firstname avatar"))
+        .then(newMessage => newMessage.populate("senderId", "name firstname avatar"))
         .then(() => res.status(200).json({ message: 'Message registered in database', newMessage }))
         .catch(error => res.status(400).json({ error }));
 };
@@ -13,7 +13,7 @@ exports.createNewMessage = async (req, res, next) => {
 //get messages 
 exports.getMessages = async (req, res, next) => {
     Messages.find({ conversationId: req.params.conversationId })
-        .populate({ path: 'sender', select: 'name firstname avatar' })
+        .populate({ path: 'senderId', select: 'name firstname avatar' })
         .then((messages) => res.status(200).json(messages))
         .catch(error => res.status(400).json({ error }));
 };

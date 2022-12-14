@@ -33,7 +33,7 @@ export const InputTextContainer = styled.div`
     background-color: #707070;
 `
 
-export const Input = styled.input`
+export const Input = styled.textarea`
     width: calc(100% - ${sendButtonWidth}px);
     padding-left: 20px;
     font-size: 38px;

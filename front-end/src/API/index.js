@@ -32,6 +32,11 @@ export const getMessages = async (conversationId) =>
         .then((res) => res)
         .catch((error) => console.log(error))
 
+export const createNewMessage = async (message) =>
+    await axios.post(API_ROUTES.messages, message, header())
+        .then((res) => res)
+        .catch((error) => console.log(error))
+
 //AUTH
 let defaultConfig = {
     formData: false,
