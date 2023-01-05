@@ -12,7 +12,8 @@ export const ChatContainer = styled.div`
 export const MessagesContainer = styled.div`
     height: 100vh;
     width: 50vw;
-    background-color: green;   
+    background-color: green; 
+    
 `
 export const ConversationsContainer = styled.div`
     height: 100vh;

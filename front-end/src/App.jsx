@@ -37,12 +37,17 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/login"
+                <Route
+                    path="/login"
+                    element={<LoginPage />}
+                />
+
+                {/* <Route path="/login"
                     element={checkAuth({
                         view: <LoginPage />
 
                     })}
-                />
+                /> */}
                 <Route path="/signup"
                     element={checkAuth({
                         view: <SignupPage />

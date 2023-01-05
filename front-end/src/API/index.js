@@ -1,24 +1,26 @@
 import axios from "axios";
+let API = process.env?.REACT_APP_API || `http://localhost:5500/`
+
 //ROUTES
 export const API_ROUTES = {
     //api/auth
-    login: `http://localhost:5500/api/auth/login`,
-    signup: `http://localhost:5500/api/auth/signup`,
-    me: `http://localhost:5500/api/auth/me`,
-    getOneUser: `http://localhost:5500/api/auth/`,
-    profileUpdate: `http://localhost:5500/api/auth/profileUpdate`,
-    uploadCover: `http://localhost:5500/api/auth/uploadCoverImg`,
-    uploadAvatar: `http://localhost:5500/api/auth/uploadAvatarImg`,
-    search: `http://localhost:5500/api/auth/search`,
+    login: `${API}api/auth/login`,
+    signup: `${API}api/auth/signup`,
+    me: `${API}api/auth/me`,
+    getOneUser: `${API}api/auth/`,
+    profileUpdate: `${API}api/auth/profileUpdate`,
+    uploadCover: `${API}api/auth/uploadCoverImg`,
+    uploadAvatar: `${API}api/auth/uploadAvatarImg`,
+    search: `${API}api/auth/search`,
     // api/post
-    post: `http://localhost:5500/api/post/`,
-    userPosts: `http://localhost:5500/api/post/userPosts`,
-    likedPosts: `http://localhost:5500/api/post/likedPosts`,
-    like: `http://localhost:5500/api/post/like`,
-    comment: `http://localhost:5500/api/comment/`,
+    post: `${API}api/post/`,
+    userPosts: `${API}api/post/userPosts`,
+    likedPosts: `${API}api/post/likedPosts`,
+    like: `${API}api/post/like`,
+    comment: `${API}api/comment/`,
     //chatRoutes
-    conversations: `http://localhost:5500/api/chat/conversations/`,
-    messages: `http://localhost:5500/api/chat/messages/`
+    conversations: `${API}api/chat/conversations/`,
+    messages: `${API}api/chat/messages/`
 }
 
 //CHAT
