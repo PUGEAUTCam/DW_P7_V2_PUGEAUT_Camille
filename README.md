@@ -1,6 +1,6 @@
                                          #GROUPOMANIA
 
-Demonstration of the site on youtube : https://youtu.be/paJewhhLn5k
+Demonstration of the site on youtube : https://youtu.be/paJewhhLn5k 
 This app is an internal social network.  
 This is the front end and back end server for Project 7 of the Web Developer path OpenCLassrooms in november 2022.  
 
